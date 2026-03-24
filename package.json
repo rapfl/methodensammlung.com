@@ -1,0 +1,13 @@
+{
+  "name": "methodensammlung-product-layer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:data": "python3 scripts/export_methodensammlung_json.py",
+    "lint": "node scripts/lint.mjs",
+    "typecheck": "node scripts/typecheck.mjs",
+    "build": "python3 scripts/export_methodensammlung_json.py && node scripts/typecheck.mjs && node scripts/lint.mjs",
+    "serve": "python3 -m http.server 4173"
+  }
+}

@@ -1,0 +1,16158 @@
+export const METHODENSAMMLUNG_DATA = {
+  "meta": {
+    "sourceWorkbook": "Methodensammlung_SSOT_v2_1.xlsx",
+    "entityCounts": {
+      "readme": 39,
+      "rawOriginalImport": 82,
+      "methods": 82,
+      "methodTags": 1128,
+      "methodVariants": 9,
+      "finderIntents": 10,
+      "collections": 7,
+      "collectionItems": 65,
+      "vectors": 10,
+      "methodVectorMap": 189,
+      "composerBlocksReference": 91,
+      "uiFieldMapping": 14,
+      "mockupConstraints": 9,
+      "openQuestions": 7
+    }
+  },
+  "sheets": {
+    "readme": [
+      {
+        "section": "Purpose",
+        "key": "Workbook role",
+        "value": "Diese Arbeitsmappe ist die kanonische SSOT fuer Method Finder, Library, Method Detail, Composer und Active Session."
+      },
+      {
+        "section": "Purpose",
+        "key": "Source hierarchy",
+        "value": "Fachlich verbindlich ist die reale Methodenliste aus dem Import. Stitch-/Brand-Dokumente steuern nur Produktlogik und UI-Constraints."
+      },
+      {
+        "section": "Purpose",
+        "key": "Method count",
+        "value": "82 Methoden-Zeilen aus dem Import wurden uebernommen."
+      },
+      {
+        "section": "Source inputs",
+        "key": "Primary source",
+        "value": "Methodensammlung_KI.xlsx, Sheet Uebersicht."
+      },
+      {
+        "section": "Source inputs",
+        "key": "Design and mockup files used",
+        "value": "DESIGN.md sowie die HTML-Exporte fuer Entry Moment, Library Editorial Collection, Method Detail, Workshop Composer und Active Session wurden fuer Produktlogik-Alignment genutzt."
+      },
+      {
+        "section": "Source inputs",
+        "key": "Supporting product docs",
+        "value": "01_GOOGLE_STITCH_PROJECT_BRIEF.md, 02_STITCH_PROMPT_PACK.md, 03_STITCH_RUNBOOK.md, 04_STITCH_ONE_SHOT_PROMPT.txt und polarstern-brand-agent.md wurden zusaetzlich fuer Produkt- und Markenlogik beruecksichtigt."
+      },
+      {
+        "section": "Data classes",
+        "key": "Raw source",
+        "value": "RAW_Original_Import ist die archivierte Rohschicht. Sie bewahrt die originale Uebersicht inhaltlich unveraendert."
+      },
+      {
+        "section": "Data classes",
+        "key": "Normalized product layer",
+        "value": "Methods, Method_Tags, Vectors, Collections, Finder_Intents, Method_Variants und Composer_Blocks_Reference sind die normalisierte Produkt-Schicht."
+      },
+      {
+        "section": "Data classes",
+        "key": "Heuristic layer",
+        "value": "Energy/Intensity/Movement/Noise/Preparation sowie Teile von safeguarding_flag und indoor_outdoor sind Hilfsmetadaten. Ihre Herkunft steht in den *_source-Spalten der Methods-Tabelle."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Raw preservation",
+        "value": "RAW_Original_Import bewahrt den Import in inhaltlich unveraenderter Form als Archivschicht."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Method grain",
+        "value": "Methods enthaelt pro importierter Methoden-Zeile genau einen kanonischen Datensatz; erkennbare Dubletten wurden nicht still zusammengefuehrt."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Short descriptions",
+        "value": "Wenn die One-sentence-Spalte leer war, wurde short_description konservativ aus dem ersten Satz bzw. der ersten Zeile der Beschreibung extrahiert."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Primary purpose cleanup",
+        "value": "primary_purpose ist jetzt immer ein einzelnes dominantes Rohfragment. Wenn der Import mehrere Purpose-Signale enthielt, bleibt das erste Rohfragment im Feld und weitere Signale liegen in Method_Tags als purpose_signal."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Durations",
+        "value": "Dauer wurde nur befuellt, wenn im Import oder in Beschreibung/Notiz ein expliziter Wert stand. Einseitig bekannte Grenzen bleiben einseitig (z.B. ab 30 Min. oder bis 5 Min.). Alles andere bleibt leer."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Group sizes",
+        "value": "Gruppengroessen wurden nur bei klaren Angaben wie mind. 5 TN, 2-4 Personen oder 5-8 Personen normalisiert."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Controlled taxonomy",
+        "value": "Vectors, Finder_Intents, Collections und normalisierte Tags sind NEW_CONTROLLED_TAXONOMY und bewusst sparsam gehalten."
+      },
+      {
+        "section": "Normalization rules",
+        "key": "Provenance columns",
+        "value": "Methods.*_source markiert, ob ein Feld aus RAW_IMPORT, DESCRIPTION_EXPLICIT oder HEURISTIC_KEYWORD_MAPPING stammt."
+      },
+      {
+        "section": "Relations",
+        "key": "Method",
+        "value": "Methods ist die Kernentitaet fuer fachliche Inhalte."
+      },
+      {
+        "section": "Relations",
+        "key": "Tags and vectors",
+        "value": "Method_Tags und Method_Vector_Map liefern Browse-, Finder- und Filter-Signale."
+      },
+      {
+        "section": "Relations",
+        "key": "Collections",
+        "value": "Collections und Collection_Items bilden editoriale Gruppierungen fuer die Library."
+      },
+      {
+        "section": "Relations",
+        "key": "Variants",
+        "value": "Method_Variants werden nur verwendet, wenn die Quelle eine echte Unterform oder Einsatzvariante hergibt."
+      },
+      {
+        "section": "Relations",
+        "key": "Composer blocks",
+        "value": "Composer_Blocks_Reference liefert die pool-faehige Sicht fuer Drag-and-Drop, nicht die Runtime-Session selbst."
+      },
+      {
+        "section": "Authoritative use",
+        "key": "Frontend may treat as authoritative",
+        "value": "RAW_Original_Import als Archiv, Methods-Kernfelder (IDs, Name, Beschreibungen, primary_purpose, group_form, explizit belegte Dauer/Gruppengroesse), Method_Tags, Vectors, Collections, Method_Variants und UI_Field_Mapping."
+      },
+      {
+        "section": "Authoritative use",
+        "key": "Frontend must treat as optional",
+        "value": "Dauerchips, Gruppengroesse, Materialien, Facilitator Notes, Risk-/Safeguarding-Hinweise und heuristische Meta-Felder nur anzeigen, wenn das jeweilige Feld befuellt ist."
+      },
+      {
+        "section": "Authoritative use",
+        "key": "Heuristic fields in UI",
+        "value": "Felder mit *_source = HEURISTIC_KEYWORD_MAPPING sind Assistenzsignale fuer Browse/Composer und keine harten Rohfakten."
+      },
+      {
+        "section": "Consumption",
+        "key": "Method Finder",
+        "value": "Finder nutzt Finder_Intents als situation-first Einstiege und Method_Tags/Method_Vector_Map fuer zusaetzliche Suche."
+      },
+      {
+        "section": "Consumption",
+        "key": "Library",
+        "value": "Library list cards lesen primaer aus Methods; Collections und Vectors strukturieren Browse-Pfade."
+      },
+      {
+        "section": "Consumption",
+        "key": "Method Detail",
+        "value": "Method Detail zieht Kerninhalte aus Methods und optionale UI-spezifische Verfeinerungen aus Method_Variants."
+      },
+      {
+        "section": "Consumption",
+        "key": "Composer",
+        "value": "Composer nutzt Composer_Blocks_Reference als methoden- und variantenfaehigen Pool."
+      },
+      {
+        "section": "Consumption",
+        "key": "Active Session",
+        "value": "Active Session verbindet Methoden-/Variant-Basis mit Runtime-Timer, Session-Notizen und situativen Logs ausserhalb dieser SSOT."
+      },
+      {
+        "section": "Frontend constraints",
+        "key": "Palette and layout",
+        "value": "Aurora-Palette, Intentional Asymmetry und No-Line Rule sind Frontend-Vorgaben und gehoeren nicht als Inhalt in die Methoden."
+      },
+      {
+        "section": "Frontend constraints",
+        "key": "Typography",
+        "value": "Chau Philomene One nur fuer groessere editoriale Display-Momente; funktionale UI in Roboto."
+      },
+      {
+        "section": "Frontend constraints",
+        "key": "CTA and surfaces",
+        "value": "Gradient primary CTA sowie Surface-Layering bzw. Glass-Treatment nur als Designsystem-Regel verwenden."
+      },
+      {
+        "section": "Frontend constraints",
+        "key": "Duration visibility",
+        "value": "Duration chips, Karten-Metadaten und Timeline-Labels muessen verborgen bleiben, wenn keine grounded duration vorhanden ist."
+      },
+      {
+        "section": "Uncertainty handling",
+        "key": "Policy",
+        "value": "Unsichere Mappings wurden sichtbar markiert, nicht still geglaettet."
+      },
+      {
+        "section": "Cleanup v2.1",
+        "key": "Corrected factual notes",
+        "value": "README und Open_Questions wurden auf die verfuegbaren Design- und HTML-Dateien berichtigt."
+      },
+      {
+        "section": "Cleanup v2.1",
+        "key": "Purpose-field cleanup",
+        "value": "Mehrfach-Purpose-Werte wurden in einen singulaeren primary_purpose ueberfuehrt; weitere Signale liegen als purpose_signal in Method_Tags."
+      },
+      {
+        "section": "Cleanup v2.1",
+        "key": "Provenance clarification",
+        "value": "Methods enthaelt jetzt explizite *_source-Spalten fuer heuristische Produktfelder."
+      },
+      {
+        "section": "Cleanup v2.1",
+        "key": "Uncertainty updates",
+        "value": "Unsicherheit bleibt fuer tatsaechlich offene oder nur teilweise gestuetzte Planungswerte reserviert, vor allem bei Dauer, Dubletten und unvollstaendigen Datensaetzen."
+      }
+    ],
+    "rawOriginalImport": [
+      {
+        "#": "1.0",
+        "Name": "Pappteller Steckbrief",
+        "One-sentence description": null,
+        "Description": "Jede*r TN bekommt einen Pappteller und Stifte. WS-Leitung leitet dann Schritt für Schritt an: 1) Schreibe deinen Namen auf den Teller 2) Wie gehts dir gerade? Zeichne einen Smiley (oder Wetter) \n3) Welches Tier wärst du? Zeichne dein Spirit Animal drauf \noptional: 4) Schreibe oder Zeichne dein größtes Hobby drauf 5) Schreibe auf, was du voll langweilig findest, usw. \nDann gehen TN im Raum herum (ggf. Gangart vorgeben! z.B. kleine Schritte, große Schritte, nur nach links, etc.) und finden sich auf Anweisung der WS-Leitung immer zu zweit zusammen und haben dann 2 Minuten Zeit um sich gegenseitig vorzustellen.",
+        "Purpose": "Kennenlernen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Pappteller, Stifte",
+        "Notes": "Bei jüngeren Kindern: unbedingt Anweisungen zu den Gangarten geben, sonst sind sie nicht mehr zu bändigen :)",
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "2.0",
+        "Name": "Stimmung als Wetter",
+        "One-sentence description": null,
+        "Description": "WS-Leitung fragt TN, welches Wetter ihre aktuelle Stimmung am besten beschreibt. ggf. zeichnen lassen",
+        "Purpose": "Gefühle, Selbstwahrnehmung, Warm-Up",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "ggf. Papier, Stifte",
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Gefühle erkennen und einordnen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "3.0",
+        "Name": "\"Schön, dass du da bist!\"",
+        "One-sentence description": null,
+        "Description": "TN verteilen sich im Raum und begrüßen sich immer Gegenseitig mit \"Schön, dass du da bist!\" und schauen sich in die Augen (+ ggf. Hände schütteln, Handschlag, Ellbogen-Stupser, Verbeugung, etc.). Dafür haben sie aber nur 10 Sekunden Zeit und müssen so viele begrüßen wie möglich!",
+        "Purpose": "Warm-Up, Kennenlernen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "4.0",
+        "Name": "Tauschgesellschaft",
+        "One-sentence description": null,
+        "Description": "Jede*r TN wählt eine Stimmung (+ dazu passende Fortbewegungsart/Mimik/Gestik). TN gehen im Raum herum und übergeben sich durch Hände schütteln (oder Handschlag, Ellbogen-Stupser, Verbeugung, etc.) die Stimmung.",
+        "Purpose": "Warm-Up, Kennenlernen, Bewegung, Achtsamkeit, Gefühle wahrnehmen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Achtsamkeit und Konzentration",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "5.0",
+        "Name": "Alle, die... /\nWer von euch...?",
+        "One-sentence description": null,
+        "Description": "Im Sitzkreis: WS-Leitende stellen \"Wer von euch...\"-Fragen und TN stehen auf, wenn sie die Frage mit \"Ich\" beantworten können. z.B. \nWer von euch ist heute mit dem Bus zur Schule gefahren? Wer von euch spricht 2 Sprachen oder mehr? Wer von euch hat heute schon gelacht? Wer von euch war heute schon freundlich? Wer von euch war heute schon neugierig? Wer von euch macht gern Sport? Wer von euch trifft sich gern mit Freund*innen? Wer von euch spielt gern Computerspiele? etc.\nLetzte Frage: Wer von euch ist stark? Dann fragen, was stark sein bedeutet (körperlich vs. geistig) \nggf. auf einzelne Fragen genauer eingehen: z.B. welche Sportart? welche Sprachen? etc.\nAlternative: TN tauschen die Plätze (vgl. Obstsalat). ",
+        "Purpose": "Aktivierend, Warm-Up, Kennenlernen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "TN freuen sich, wenn man bei einzelnen Fragen \"nachbohrt\" und Interesse zeigt",
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "6.0",
+        "Name": "Roboter",
+        "One-sentence description": null,
+        "Description": "Es steht jede*r TN frei, wann und wie oft er*sie sich erheben will. Es sind aber die folgenden Spielregeln einzuhalten:\n• Es wird nicht gesprochen.\n• Jeder darf höchsten fünf Sekunden stehen.\n• Es müssen immer genau vier Spieler stehen.\n• Jeder muss sich mindestens dreimal bewegt haben.\nDas ist gar nicht so einfach, weil nicht nur schnelle Reaktion, sondern auch gute Beobachtung und Abstimmung gefordert ist. Das Spiel eignet sich besonders nach längerem Sitzen.\"",
+        "Purpose": "Aktivierend ",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Auflockerung",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "7.0",
+        "Name": "In Gruppe bis 10 zählen",
+        "One-sentence description": null,
+        "Description": "In 3 Gruppen teilen und bis 10 zählen lassen, wobei nicht ausgemacht werden darf, wer wann eine Zahl sagt und niemand zwei Zahlen hintereinander sagen darf",
+        "Purpose": "Kooperationsspiel\n",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Achtsamkeit und Konzentration",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "8.0",
+        "Name": "Der wandernde Tennisball",
+        "One-sentence description": null,
+        "Description": "(Kleingruppen mit mind. 5 TN) Aufgabe: \"der Tennisball muss innerhalb von X Sekunden durch alle Hände gegangen sein\" (z.B. bei 10 TN --> 10 Sekunden) Die Gruppe hat 1 Min. Zeit um zu überlegen, bevor sie den Ball bekommen. Nach erfolgreicher Absolvierung wird die Zeit halbiert. Dann wird die Zeit immer weiter verkürzt, bis nur noch 1 Sekunde pro Gruppe bleibt. Einfachste Lösung: alle TN formen mit Zeigefinder und Daumen einen Kreis und halten sie untereinander. 1 TN lässt den Ball von oben durchfallen...",
+        "Purpose": "Teamspiel\nKooperationsspiel",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Tennisbälle",
+        "Notes": null,
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Kreativität",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "9.0",
+        "Name": "Achtung hier kommt ein Karton!",
+        "One-sentence description": null,
+        "Description": "(Kleingruppen mit mind. 5 TN) Die Gruppe erhält einen Karton (Bananenkarton, Umzugskarton). Auf diesem sollen alle Platz finden - egal wie es die Gruppe anstellt. Welche Möglichkeiten die Gruppe hat, wird der Gruppe nicht mitgeteilt.",
+        "Purpose": "Teamspiel\nKooperationsspiel",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Karton",
+        "Notes": null,
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Kreativität",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "10.0",
+        "Name": "Hai-Attacke (wie Hangman)",
+        "One-sentence description": null,
+        "Description": "\nWS-Leitende überlegt sich ein oder mehrere Wörter und schreibt nur den 1. Buchstaben an die Tafel. Die anderen Buchstaben werden durch Striche markiert. Die TN können nun Buchstaben nennen, wenn der Buchstabe im Wort nicht vorkommt, beginnen die WS-Leitenden die Hai-Attacke zu zeichnen. \nEignet sich z.B., um den TN Feedback zu geben (gesuchtes Wort = Feedback)",
+        "Purpose": "Teamspiel\nKooperationsspiel",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Tafel/Whiteboard",
+        "Notes": "Wenn es Zeit gibt: TN freuen sich, selber Leitungsrolle zu übernehmen und gegen die Klasse zu spielen",
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Auflockerung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "11.0",
+        "Name": "Murmelbahn ",
+        "One-sentence description": null,
+        "Description": "TN werden in Kleingruppen eingeteilt (max. 5 TN). Dann werden Ziele/Regeln erklärt: Jede Gruppe baut eine Murmelbahn mit den mitgebrachten Materialien. Regeln: Wer die längste Bahn baut, gewinnt. Wichtig: Pro Gruppe dürfen nur 5 Stück der Materialien benutzt werden (dürfen auch ausgetauscht werden). Es dürfen keine anderen Materialien verwendet werden (außer ggf. Tische und Stühle). Die Murmel muss von alleine rollen, d.h. sie darf nicht angeschubst werden. Die Murmel darf nicht auf dem Boden/Tisch rollen (bzw. wird diese Strecke nicht gemessen). Die Gruppen haben dafür 10 Minuten Zeit! -> evtl. um 5 Minuten verlängern lassen!\nWS-Leitungen betreuen Gruppen während der Bauphase. Ggf. wird den Gruppen der Tipp gegeben, dass sie die Materialien auch mit den Händen halten dürfen! Nach 10-15 Minuten stellen sich die Gruppen die Bahnen gegenseitig vor (jede Gruppe hat 3 Versuche). Die Länge der Bahnen wird mit Maßband gemessen und an Tafel geschrieben.\nWenn danach noch Zeit ist kann auch noch eine lange Bahn mit der ganzen Gruppe gebaut werden. Dazu bekommt jede*r TN eine Holzleiste, stellt sich der Reihe nach auf und hält die Leisten so aneinander, dass die Murmel von alleine von A nach B rollt. ",
+        "Purpose": "Teamspiel\nKooperationsspiel",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Murmeln, verschiedene Utensilien (Holzleisten, Werkzeuge, etc.), Maßband",
+        "Notes": "Alternativen: Gegenstände in der Klasse dürfen auch verwendet werden. ",
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "12.0",
+        "Name": "Marshmellow Challenge",
+        "One-sentence description": null,
+        "Description": "Man spielt die Marshmallow Challenge in Gruppen von vier bis fünf Spielern. Jede Gruppe erhält 20 Spaghetti, einen Meter Kreppband und einen Marshmallow. Dann haben die Gruppen 18 Minuten Zeit um mit den Materialien, einen Turm zu bauen. Am Ende wird bei jedem Turm die Höhe des Marshmallows gemessen und der Turm mit dem höchsten Marshmallow gewinnt.",
+        "Purpose": "Teamspiel\nKooperationsspiel, Bauen, Planen, Kreativität",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Kreppband, Spagehtti, Marshmellows",
+        "Notes": null,
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "13.0",
+        "Name": "Da Vinci Code Brücke",
+        "One-sentence description": null,
+        "Description": "Kleingruppen bekommen die Aufgabe eine Leonardo-Brücke zu errichten. Dafür bekommen sie nur die Stäbchen, keine weiteren Hilfsmittel!\nWichtig: Dauer und mind. Länge der Brücke vorab festlegen!",
+        "Purpose": "Teamspiel\nKooperationsspiel, Gruppendynamik",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Gleichförmige, lange Holzstäbchen (z.B. große Streichhölzer oder Ess-Stäbchen)",
+        "Notes": null,
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "14.0",
+        "Name": "Faule Ausrede",
+        "One-sentence description": null,
+        "Description": "Die TN sitzen im Kreis. „Ich konnte gestern nicht zur Schule kommen, weil ich unter Atemnot gelitten habe.“ - „Ich konnte gestern nicht zur Schule kommen, weil ich wegen der Deutscharbeit Bauchschmerzen hatte.“ - Jeder muss sich eine Krankheit als Entschuldigung ausdenken, die immer mit dem nächsten Buchstaben des Alphabets beginnen muss. Diese Übung ist eine gute Gelegenheit, der Phantasie freien Lauf zu lassen und lustige und ausgefallene Krankheiten zu erfinden, die als faule Ausreden herhalten müssen. Varianten: Statt einzeln in Zweiergruppen spielen - Gemischter Salat oder Fruchtsalat mit Zutaten von A bis Z",
+        "Purpose": "Phantasieanregend",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Auflockerung",
+        "Tag 2": "Phantasie anregen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "15.0",
+        "Name": "Aufstellungen",
+        "One-sentence description": null,
+        "Description": "TN müssen sich in einer Reihe aufstellen: nach Alter, Alphabetisch (Anfangsbuchstabe Vorname), ..... Möglichkeit: kein Sprechen erlaubt, nur Pantomime.",
+        "Purpose": "Bewegungsfördernd, Warm-Up, Kennenlernen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "16.0",
+        "Name": "4-Ecken-Aufstellung (oder 3-Ecken)",
+        "One-sentence description": null,
+        "Description": "TN stellen sich im Raum auf. WS-Leitung stellt Fragen; jede Frage hat 4 Antwortmöglichkeiten (je Ecke eine Antwort). TN stellen sich in die passende Ecke. 4 Ecken kann offen gehalten werden und TN können individuelle Antworten nennen. \nz.B: Wie viele Geschwister hast du? 0, 1, 2, 3 oder mehr. \nWas ist dein Lieblingssnack? Eis, Gummibärchen, Schokolade, Kekse. \nWas machst du am liebsten in deiner Freizeit? Computer spielen,  Sport machen, mit Freund*innen treffen, was anderes \nIn welchem Arbeitsbereich möchtest du mal arbeiten? Sozial/mit Menschen, Handwerklich/technisch, Kreativ/gestalterisch, was anderes\n \n",
+        "Purpose": "Kennenlernen, Einstieg, Bewegung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "17.0",
+        "Name": "Kommando",
+        "One-sentence description": null,
+        "Description": "Hier sind gute Reaktionen der TN und schnelles Agieren der WS-Leitung gefragt. Die WS-Leitung steht frontal zu den TN und erklärt zunächst die vier Kommandos mit den dazugehörenden Aufgaben: z.B. Kommando Fuß – auf der Stelle trippeln, Kommando Bauch – Hände auf den Bauch legen, Kommando Hand – Arme hoch in die Luft strecken, Kommando Knie – in leichter Hocke Hände auf die Knie legen. Die Kommandos werden ein paar Mal geprobt. Danach beginnt das eigentliche Spiel, denn jetzt kommt es darauf an, richtig zu reagieren – immer, wenn das Wort „Kommando!“ nicht vorweg genannt wird, darf die dazugehörige Aufgabe nicht ausgeführt werden, die TN müssen in der vorherigen Stellung verharren. Dabei darf die WS-Leitung selbst Fehler machen, um die TN zu verwirren. Jede*r, die*der einen Fehler macht, wechselt auf die Seite der WS-Leitung und darf nun auch falsche Sachen machen, die Kommandos kommen aber nur von der WS-Leitung – schafft er es, alle auf seine Seite zu bekommen? Dabei kommt es darauf an, dass die Kommandos schnell hintereinander kommen!",
+        "Purpose": "Bewegungsfördernd, Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Auflockerung",
+        "Tag 2": "Achtsamkeit und Konzentration",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "18.0",
+        "Name": "Stühle kippen",
+        "One-sentence description": null,
+        "Description": "Stühle werden im Kreis aufgestellt. Hinter jedem Stuhl steht eine Person und kippt den Stuhl soweit nach hinten, dass er gerade nocht hält und nicht umkippt (Lehne wird festgehalten). Wenn WS-Leitung HOPP sagt, müssen TN im Uhrzeigersinn weiter zum nächsten Stuhl, ohne dass dieser umkippt. ",
+        "Purpose": "Bewegungsfördernd, Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Stühle",
+        "Notes": null,
+        "Tag 1": "Aktivierung und Bewegung",
+        "Tag 2": "Achtsamkeit und Konzentration",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "19.0",
+        "Name": "Stärken-Tiere",
+        "One-sentence description": null,
+        "Description": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt. Danach Einzelne der Reihe um fragen: Wie heißt du? Warum wärst du dieses Tier? Welche Eigenschaften/Stärken hat dieses Tier? Hast du die auch? Bei einzelnen TN auf jew. Stärken genauer eingehen bzw. bestimmte Stärken erklären; ggf. Klasse in 2 Gruppen teilen (bei großen Klassen)\n\nAlternativ: TN erhalten Papier und malen das Tier selbst. Alternative II: es muss kein reales Tier sein, sondern darf auch ein Fantasietier oder ein*e Superheld*in sein. ",
+        "Purpose": "Selbstwahrnehmung\nSelbsteinschätzung\n\n\n",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Tier Bilder (Fotos)",
+        "Notes": "Bei großen Gruppen oft träge, wenn möglich zwei kleinere Gruppen bilden, bei der jeweils 1 WSL dabei bleibt.",
+        "Tag 1": "Selbstwahrnehmung",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "20.0",
+        "Name": "Schnelles Feedback",
+        "One-sentence description": null,
+        "Description": "Twitter-Feedback: Feedback als Hashtag aufschreiben #langweilig\noder Hoch-Gleich-Tief: auf die Frage, ob der WS gefallen hat: nicht gefallen (TN setzen sich auf Boden), war okay (sitzen bleiben), gut gefallen (aufstehen), sehr gut gefallen (auf Stuhl stehen)\noder mit Daumen angeben ob gut/okay/schlecht",
+        "Purpose": "Feedback geben",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Reflexion und Feedback",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "21.0",
+        "Name": "Feedbackplakat (Rücken)",
+        "One-sentence description": null,
+        "Description": "Jede*r TN bekommt ein Plakat/Papier, das am Rücken befestigt wird, und einen Stift. Dann bewegen sich TN im Raum und wenn sie jemandem Feedback geben wollen bleiben sie stehen und schreiben sie das Feedback auf den Rücken der jew. Person. Wichtig: Feedback sollte begründet werden (z.B. mit Beispielen). ",
+        "Purpose": "Feedback geben",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Papier, Stifte",
+        "Notes": null,
+        "Tag 1": "Reflexion und Feedback",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "22.0",
+        "Name": "Kraftposition",
+        "One-sentence description": null,
+        "Description": "TN werden ermutigt, sich eine \"Kraftposition\" vorzustellen: \"Schließe die Augen und erinnere dich an eine Situation in der du dich richtig gut gefühlt hast (z.B. eine Situation in der dir was gut gelungen ist, in der du mutig warst, ein tolles Erlebnis mit Freund*innen, etc.). Überlege was in dieser Situation passiert ist. Was hast du alles gefühlt? Was hast du gerochen, gespürt, gesehen, gehört? Wie war dein Körpergefühl? Jetzt spürst du vielleicht das selbe Gefühl wie in dieser Situation! Wenn es dir mal schlecht geht oder du in einer herausfordernden Situation bist, dann erinnere dich an dieses positive Erlebnis und die Gefühle und Körperempfindungen die du dabei hattest!\"",
+        "Purpose": "Ressourcenaktivierung\nSelbstwahrnehmung, Achtsamkeit",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Selbstwahrnehmung",
+        "Tag 2": "Ressourcenaktivierung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "23.0",
+        "Name": "Rosinen-Übung",
+        "One-sentence description": null,
+        "Description": "Jede*r TN bekommt eine Rosine/getrocknete Mango o.ä.. Anleitung: Wir versuchen jetzt die einzelnen Sinne zu erleben. Konzentriert euch bei jedem Sinn nur auf diesen und versucht die anderen Sinne \"auszuschalten\". 1) Nimm eine Rosine in die Hand und betrachte sie aufmerksam. Wie schaut die Rosine aus? wie ist ihre Oberfläche beschaffen? welche Farbe hat sie? (Nach kurzer Zeit TN fragen, was sie gesehen haben) \n2) Was hörst du, wenn du sie neben dein Ohr gibst und drückst?  (nach kurzer Zeit TN fragen, was sie gehört haben)\n3) Wie fühlt sie sich an? Wie fühlt sich die Oberfläche an? (nach kurzer Zeit TN fragen, wie sich die Rosine anfühlt) \n4) Wie riecht die Rosine, wenn du sie unter die Nase hältst? (nach kurzer Zeit TN fragen, wie sie riecht)\n5) Wie schmeckt sie, wenn du sie isst? (nach kurzer Zeit TN fragen, wie sie schmeckt)\n",
+        "Purpose": "Achtsamkeit, 5 Sinne schulen, Cool Down",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Rosinen oder getrocknete Mango",
+        "Notes": "Übung kann entweder in Stille ausgeführt werden oder TN dürfen dazwischen reden",
+        "Tag 1": "Sinneswahrnehmung",
+        "Tag 2": "Achtsamkeit und Konzentration",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "24.0",
+        "Name": "5-Finger-Methode",
+        "One-sentence description": null,
+        "Description": "Anleitung: Strecke eine Hand aus und schau dir alle 5 Finger genau an. Gehe in Gedanken einzeln alle 5 Finger durch und stelle dir jeweils folgende Fragen: 1) was sehe ich gerade? was sehe ich, wenn ich nach vorne, nach unten, nach rechts und nach links schaue? 2) was höre ich gerade? welche Geräusche (in der Nähe und in der Ferne) nehme ich wahr? 3) was spüre und taste ich gerade? was spüre ich in/an meinem Körper? wie ist die Temperatur um mich herum? wie fühlen sich Gegenstände um mich herum an? 4) was schmecke ich gerade? was schmecke ich in meinem Mund, auf meiner Zunge? 5) Finger: was rieche ich gerade? welche Gerüche um mich herum nehme ich wahr? ",
+        "Purpose": "Achtsamkeit, Sinneswahrnehmung, Selbstwahrnehmung",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Sinneswahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "25.0",
+        "Name": "Offenes Ohr ",
+        "One-sentence description": null,
+        "Description": "Anleitung: Überlege dir 1) was dich gerade stresst und 2) auf was du dich gerade freust. Teile dann deine Überlegungen mit der Gruppe und achte dabei darauf, wie es sich für dich anfühlt, wenn du über was Negatives sprichst und wenn du über was Positives sprichst. Sobald die nächste Person an der Reihe ist, höre gut zu und achte darauf, wie sich die Person verhält, wenn sie über was Negatives spricht und wenn sie über was Positives spricht. Verändert sich ihre Körperhaltung, ihre Mimik/Gestik oder ihre Stimme? Was fällt dir auf? Tauscht euch im Anschluss in der Gruppe aus, wie es euch bei der Übung ergangen ist. ",
+        "Purpose": "Achtsamkeit, Selbstwahrnehmung, Umgang mit Stress",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Vertrauen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "26.0",
+        "Name": "Body-Scan",
+        "One-sentence description": null,
+        "Description": "Anleitung: Achte darauf, dass du bequem sitzt oder liegst, die Arme liegen neben dem Körper oder liegen bequem auf den Oberschenkeln. Beginne, tief ein und aus zu atmen. Schließe mit dem Ausatmen die Augen und komm langsam zur Ruhe. Sobald du merkst, dass deine Gedanken abschweifen, komme mit deiner Aufmerksamkeit und deiner Konzentration wieder zurück zur jeweiligen Körperregion. Beginne mit deinen Füßen. Fühle, an welchen Stellen die Füße den Boden oder die Unterlagen berühren und nimm deine Fersen, die Fußsohlen, die Zehen und den Fußspann ganz bewusst wahr. Spüre dann in deine Unterschenkel hinein, die Waden und die Schienbeine. Wandere dann mit deiner Aufmerksamkeit in die Knie, die Oberschenkel und fühle, wo die Oberschenkel die Unterlage oder den Stuhl berühren. Wandere dann mit deiner Konzentration in deinen Bauch. Atme tief in den Bauch hinein und dann spüre, wie sich deine Bauchdecke beim Atmen hebt und senkt. Fühle, wo der Rücken anliegt. Sind die unteren Rückenmuskeln entspannt? Überprüfe, ob die Schultern locker nach unten hängen. Dann lässt du die Gesichtsmuskeln entspannen, überprüfe, ob der Unterkiefer locker ist, ob die Augenlider ganz locker aufeinander aufliegen. Spüre danach in deine Arme hinein. Nimm wahr, an welchen Stellen deine Arme aufliegen und fühle in die Oberarme, die Ellenbogen, die Unterarme und in deine Finger hinein. Bereite dich dann darauf vor, die Übung abzuschließen. Mit einer der nächsten Ausatmungen öffnest du deine Augen wieder. Nimm einige tiefe Atemzüge und strecke und räkel dich.",
+        "Purpose": "Achtsamkeit, Selbstwahrnehmung, Entspannung, Cool Down",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Ähnlich wie die Körperreise (#85), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. Besonders das Augenschließen wird nicht immer angenommen. Beim Einatmen werden gerne laute Geräusche gemacht.",
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Entspannung, Beruhigung und Cool-Down",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "27.0",
+        "Name": "Orchester (Body Percussion)",
+        "One-sentence description": null,
+        "Description": "TN stehen im Kreis. Jedes Kind überlegt sich und übt als erstes einen Rythmus mit dem eigenen Körper (Body Percussion). Im Anschluss beginnt ein Kind im Kreis den Rythmus/Klang zu spielen und das Kind daneben steigt kurze Zeit später ein. Dies wird im Uhrzeigersinn weitergeführt, bis alle Kinder gemeinsam musizieren. Danach hören die Kinder der Reihe nach auf.\nVariation: Kinder, die aufhören zu spielen, schließen die Augen. ",
+        "Purpose": "Konzentration, Auflockerung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "28.0",
+        "Name": "Dirigent*in",
+        "One-sentence description": null,
+        "Description": "1 Kind ist das Ratekind und geht aus dem Raum. 1 Kind ist Dirigent*in und gibt den anderen Kindern unauffällig Zeichen (wie ein*e Dirigent*in, z.B. mit den Armen kreisen). Alle anderen Kinder machen der Dirigent*in die Bewegungen nach (ohne zu offensichtlich auf die Dirigent*in zu schauen). Ratekind kommt zurück und muss raten, wer Dirigent*in ist.",
+        "Purpose": "Achtsamkeit, Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Sinneswahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "29.0",
+        "Name": "Stille Reaktion",
+        "One-sentence description": null,
+        "Description": "TN sitzen auf ihren Stühlen (wichtig: genügend Platz). WS-Leitung gibt verschiedene Anweisungen (z.B. Es stehen nur 5 Kinder, Es sitzen alle Kinder bis auf 2, etc.). TN müssen selbst entscheiden, wann sie aufstehen (können sich auch absprechen).",
+        "Purpose": "Kooperationsspiel, Konzentration, Achtsamkeit, Gruppendynamik\n",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "30.0",
+        "Name": "Wo bin ich?",
+        "One-sentence description": null,
+        "Description": "TN schließen Augen. Timer (z.B. am Handy) wird auf ein paar Sekunden eingestellt und irgendwo im Raum hingestellt. Sobald Timer abgeht müssen TN mit geschlossenen Augen raten, wo der Timer steht.",
+        "Purpose": "Achtsamkeit, Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Timer",
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Sinneswahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "31.0",
+        "Name": "Ohrenspitzer",
+        "One-sentence description": null,
+        "Description": "TN schließen Augen. WS-Leitung macht ein Geräusch (z.B. Papier zerknüllen, schnipsen, etc.). TN, die glauben zu wissen, was es ist, melden sich leise und mit geschlossenen Augen. Wenn TN richtig liegt, darf er*sie ein neues Geräusch machen.",
+        "Purpose": "Achtsamkeit, Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Sinneswahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "32.0",
+        "Name": "Klassendedektiv*in",
+        "One-sentence description": null,
+        "Description": "1 Kind ist Dedektiv*in, muss sich im Raum alles genau anschauen und dann den Raum verlassen. Dann werden im Raum 3 Dinge um Raum bzw. an den TN verändert. Dedektiv*in kommt zurück und muss eraten, was verändert wurde.",
+        "Purpose": "Achtsamkeit, Konzentration, Auflockerung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Gut funktioniert das auch mit Dedektiv-Teams aus 2 oder 3 Personen",
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Sinneswahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "33.0",
+        "Name": "Ich packe meinen Koffer (Stärken Edition)",
+        "One-sentence description": null,
+        "Description": "WS-Leitung beginnt mit: \"Ich packe meinen Koffer und nehme Ehrlichkeit mit\". Nächste*r TN: \"Ich packe meinen Koffer und nehme Ehrlichkeit und Kreativität mit\" usw.",
+        "Purpose": "Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Auflockerung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "34.0",
+        "Name": "Zungenmörder*in",
+        "One-sentence description": null,
+        "Description": "1 Kind ist Ratekind und verlässt Raum. 1 Kind ist Zungenmörder*n und mordet indem er*sie anderen die Zunge rausstreckt. Ratekind kommt zurück und muss raten, wer Zungenmörder*in ist.",
+        "Purpose": "Konzentration, Auflockerung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Auflockerung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "35.0",
+        "Name": "Motzmauer\nKlagemauer",
+        "One-sentence description": null,
+        "Description": "Als erstes wird eine Leitfrage formuliert, zu der Kritik gesammelt werden soll (z.B. Was nervt euch, wenn ihr an eure Zukunft denkt? Was nervt euch an eurer Schule etc.). An die Tafel wird groß \"Motzmauer\" geschrieben. TN werden in Kleingruppen geteilt und erhalten Karteikarten. im ersten Durchlauf kann jede*r TN für sich Kritikpunkte aufschreiben (ein Kritikpunkt je Karteikarte). im zweiten Durchlauf tauschen sich TN in der Kleingruppe über die einzelnen Kritikpunkte aus und kleben sie anschließend an die Tafel. ",
+        "Purpose": "\nSammlung/Nennung von Kritik/Problemen/Negativem, Kopf frei zu bekommen für die Phantasiephase, unkommentierte Freisetzung von Kritik und Frustration, Einstiegsmethode bei Planungsprozessen ",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "36.0",
+        "Name": "Entscheidungspyramide",
+        "One-sentence description": null,
+        "Description": "Die Methode filtert Themen, Bedürfnisse und Ideen. Teilnehmer/innen (TN) haben die Chance, eigne Ideen einzubringen. Sie können neue Blickwinkel entdecken und sind dadurch in der Lage, neue Ansichten und Per- spektiven zu entwickeln. Jede Person sammelt für sich Ideen zu einer bestimmten Fragestellung. Daraus sollen die drei für die einzelne Person wichtigsten Ideen aufgeschrieben werden. Nun finden sich die TN in Zweiergruppen zusammen. In den Pärchen werden aus den sechs Ideen die drei Wichtigsten ausgewählt, wobei die Entscheidung durch Diskussion und neue Meinungsbilder gefällt werden soll. Falls eine Synthese zweier Ideen sinnvoll ist, ist das durchaus möglich. Nur sollte darauf geachtet werden, unkompatible Ideen nicht gezwun- gen verschmelzen zu lassen.\nDieser Ablauf wird wiederholt, diesmal in einer Vierergruppe. Dabei werden wieder die drei wichtigsten Ideen ausgewählt. Das setzt sich solange fort, bis die komplette Gruppe die drei wichtigsten Ideen ausdiskutiert hat.",
+        "Purpose": "Die Methode unterstützt Gruppen bei Einigungsprozes- sen. Sie filtert aus einer Masse von Ideen, gezielt Punkte heraus, die der Gruppe wichtig sind.",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Zukunft und Entscheidungen",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "37.0",
+        "Name": "Entscheidungskreis",
+        "One-sentence description": null,
+        "Description": "Mit Hilfe des Entscheidungskreises werden gesammelte Ideen und Vorschläge anhand verschiedener Kriterien auf ihre Umsetzbarkeit geprüft. In sechs Entscheidungsringen wird zu jedem Vorschlag jeweils eine Prüffrage gestellt. Bei positiver Beantwortung rückt der Vorschlag einen Ring weiter.\n- Ist diese Idee gut für Kinder? \n- Nützt sie uns Kindern?\n- Finden wir diese Idee sinnvoll? \n- Geht das? \n- Kann diese Idee funktionieren?(Ist diese Idee grundsätzlich technisch/fachlich realisierbar?)\n- Dürfen wir das? Ist das erlaubt? (Ist diese Idee grundsätzlich rechtlich machbar?)\n- Können wir (z.B. Gemeinde) das bezahlen? Haben wir dafür genug Geld? (Ist diese Idee grundsätzlich finanziell machbar?)\n- Schaffen wir das? Sind wir genug Leute? (Ist diese Idee personell machbar?)\n- Haben wir genug Zeit? Haben wir noch etwas davon oder erst die Kinder nach uns? (Ist diese Idee grundsätzlich zeitlich machbar?)\n",
+        "Purpose": "Ideen werden auf ihre Durchführbarkeit überprüft",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Zukunft und Entscheidungen",
+        "Tag 2": "Partizipation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "38.0",
+        "Name": "Zukunftswerkstatt\nIdeenwerkstatt",
+        "One-sentence description": null,
+        "Description": "Ich will genauer wissen, was Zukunftswerkstätten sind! – Robert Jungk Bibliothek JBZ",
+        "Purpose": "Ideen für Zukunft entwickeln",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Zukunft und Entscheidungen",
+        "Tag 2": "Partizipation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "39.0",
+        "Name": "Der Weg in die Zukunft/Wunschvorstellung (für jüngere Kids)",
+        "One-sentence description": null,
+        "Description": "TN schreiben ihre Wünsche, Visionen, Ziele auf große Füße (Papier-Vorlage) - diese werden anschließend als \"Weg in die Zukunft auf den Bogen gelegt\". Wichtig: auf gleiche Anzahl an linken und rechten Füßen achten.  ",
+        "Purpose": "eigene Visionen festhalten",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Zukunft und Entscheidungen",
+        "Tag 2": "Partizipation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "40.0",
+        "Name": "Zoo der Stärken",
+        "One-sentence description": null,
+        "Description": "Anleitung: Ich will, dass sich jetzt jeder von euch folgendes vorstellt: Ihr steht vor einem riesigen goldenen Tor. Und auf diesem Tor ist ein grooooßes Schild auf dem steht „Zoo der Stärken“. Also ihr wisst schon mal, dass ihr in einen Zoo geht. Ihr macht das Tor auf, geht hinein und sieht den schönsten Zoo den ihr je gesehen habt, das kann im Winter, Sommer, Frühling oder Herbst sein. Ihr seht euch ein wenig um und bemerkt, dass genau in der Mitte des Zoos ein riesiger Ausstellungsraum ist. Ihr geht in den Ausstellungsraum und merkt sofort, dieser Raum ist nicht so wie man sich einen Ausstellungsraum vorstellt. Hier hängt nämlich kein Bild und es steht auch keine Statue, sondern in diesem Raum ist das Ausstellungsstück die Person, die neben euch sitzt. Und er*sie kann machen was auch immer ihr euch vorstellt. Wie bei jedem Ausstellungsstück, gibt es auch bei eurem*eurer Sitznachbar*in ein Schild, dass sie*ihn beschreibt. Und ich will jetzt von euch, dass ihr euch vorstellt, welche von den 24 Charakterstärken am besten in diese Beschreibung passen. Und während ihr über die Stärken nachdenkt, sucht euch für jede Stärke ein genaues Beispiel aus, wann eure*eurer Sitznachbar*in diese Stärke gezeigt hat. Wann war er*sie umsichtig oder ehrlich? Ich gebe euch noch ein bisschen Zeit darüber nachzudenken und dann wecke ich euch wieder auf",
+        "Purpose": "Phantasieanregend\nEntspannungsreise",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Wichtig: Erst TN dazu bringen, eine angenehme Sitzposition einzunehmen (z.B. \"Stelle als erstes beide Beine auf den Boden und spüre den Boden, lege dann beide Ellbogen auf den Tisch, verschränke deine Arme und leg deinen Kopf auf die verschränkten Arme. Atme einmal tief ein und aus. und schließe dann die Augen\")",
+        "Tag 1": "Stärken erkennen",
+        "Tag 2": "Selbstwahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "41.0",
+        "Name": "Museum der Stärken",
+        "One-sentence description": null,
+        "Description": "Anleitung: Im folgenden Gedächtnisexperiment habt ihr die Möglichkeit herauszufinden, was eure Stärken sind. Schließt dazu bitte die Augen und entspannt euch. [Licht wird ausgemacht und TN schließen Augen] Atmet einmal tief ein und aus. Stellt euch vor ihr geht ins Museum. In diesem Museum hängen viele schöne Bilder von berühmten Künstler*innen. Ihr spaziert gemütlich rum und bleibt plötzlich vor einem Portrait stehen, weil euch die Person die auf dem Bild abgebildet ist bekannt vor kommt. Ihr schaut genauer und seht dann, dass es ein Portrait der Person ist, die gerade neben euch in der Klasse sitzt! Unter dem Bild seht ihr eine kleine Beschreibung hängen, auf der nicht nur der Name der Person, sondern auch drauft steht, was die Person gut kann, also ihre Stärken! Was steht da drauf? Überlegt mal! ...\nÖffnet die Augen und schreibt den Namen von der Person neben euch auf die Karte und kringelt dann ihre Stärken (max. 5) auf der Hinterseite ein. Im Anschluss tauscht ihr die Karten aus und erklärt, warum ihr diese oder jene Stärke eingekringelt habt.\n",
+        "Purpose": "Phantasieanregend\nEntspannungsreise",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Stärken erkennen",
+        "Tag 2": "Selbstwahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "42.0",
+        "Name": "Obstsalat",
+        "One-sentence description": null,
+        "Description": "Wir setzen oder stellen uns auf markierten Plätzen im Kreis. Jeder erhält eine Obstsorte, beispielsweise durch Abzählen. Ein*e Spieler*in stellt sich in die Mitte und ruft eine dieser Obstsorten. Jeder betroffene Mitspieler*in verlässt seinen Platz und sucht sich einen anderen freien. Wer keinen Platz ergattert, geht in die Mitte und ruft das nächste Obst auf.\nVariationen: Gemeinsamkeiten, Eigenschaften, Interessen, Tiere,....",
+        "Purpose": "Warm-Up, Kennenlernenen, Aktivierung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "ggf. Karten mit Obstsorten (kann aber auch mündlcih zugeteilt werden)",
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "43.0",
+        "Name": "Stofftier weitergeben Spiel ",
+        "One-sentence description": null,
+        "Description": "im Sitzkreis: TN müssen sich mit den Füßen ein Stofftier weitergeben, ohne dass dieses auf den Boden fällt. Ansonsten muss wieder von vorne gestartet werden. Variation: die ganze Gruppe darf mithelfen.",
+        "Purpose": "Teamspiel, Gruppenspiel, Konzentration",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Stofftier",
+        "Notes": null,
+        "Tag 1": "Aktivierung und Bewegung",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "44.0",
+        "Name": "Komplimentekette ",
+        "One-sentence description": null,
+        "Description": "Im Plenum klären was ein Kompliment ist und wie es sicht anfühlt, eines zu bekommen. \nStärken-als-Adjektive-Karten und leere Zettel und Stifte in Mitte legen. Dann haben TN Zeit, für die Person neben ihnen ein Adjektiv auszusuchen und zu überlegen, warum diese Karte zu ihm*ihr passt. Danach geben sich TN im Kreis der Reihe nach Feedback. Mögliche Satzanfänge: \"Ich finde, du warst in diesem WS sehr XX (z.B. mutig), weil,... Ich mag an dir, dass..., Schön dass du in dieser Gruppe bist, weil..., (ggf. auf Tafel mitschreiben)\nReflexion im Plenum: Wie war ein ein Kompliment zu bekommen?",
+        "Purpose": "Feedback geben, Komplimente geben, Fremdwahrnehmung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Stärken als Adjektive-\nKarten,\nleere Zettel,\nStifte",
+        "Notes": null,
+        "Tag 1": "Stärken erkennen",
+        "Tag 2": "Femdwahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "45.0",
+        "Name": "Stärken-Tiere",
+        "One-sentence description": null,
+        "Description": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt. Danach Einzelne der Reihe um fragen: Wie heißt du? Warum wärst du dieses Tier? Welche Eigenschaften/Stärken hat dieses Tier? Hast du die auch? Bei einzelnen TN auf jew. Stärken genauer eingehen bzw. bestimmte Stärken erklären; ggf. Klasse in 2 Gruppen teilen (bei großen Klassen)",
+        "Purpose": "Selbstwahrnehmung\n\n\n",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Tier-Bilder (Fotos)",
+        "Notes": null,
+        "Tag 1": "Stärken erkennen",
+        "Tag 2": "Selbstwahrnehmung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "46.0",
+        "Name": "Klatschspiel",
+        "One-sentence description": null,
+        "Description": "Eine WS-Leitung stellt sich vor die Gruppe und erklärt das Ziel: Alle TN müssen es schaffen gleichzeitig mit der WS-Leitung zu klatschen. Schaffen sie es, gewinnen sie.",
+        "Purpose": "Konzentration, Teamspiel",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "TN freuen sich, selber die Leitungsrolle einzunehmen",
+        "Tag 1": "Auflockerung",
+        "Tag 2": "Achtsamkeit und Konzentration",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "47.0",
+        "Name": "Gefühlskarten",
+        "One-sentence description": null,
+        "Description": "Gefühlskarten (z.B. Gefühlsmonster) werden auf dem Boden verteilt und TN werden aufgefordert, sich zu der Karte zu stellen, die ihren Gemütszustand beschreibt. Dann einzelne TN fragen, ob sie sich dazu äußern wollen.",
+        "Purpose": "Gefühle einordnen und benennen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Gefühlskarten (z.B. Gefühlsmonster)",
+        "Notes": null,
+        "Tag 1": "Gefühle erkennen und einordnen",
+        "Tag 2": "Warm-Up und Kennenlernen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "48.0",
+        "Name": "Befindlichkeitsrunde mit Gegenständen ",
+        "One-sentence description": null,
+        "Description": "TN werden aufgefordert einen Gegenstand zu suchen, der zu ihrem derzeitigen Gemütszustand passt. Danach können einzelne TN was dazu sagen, wenn sie wollen.",
+        "Purpose": "Befindlichkeitsrunde, Gefühle einordnen und benennen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Gefühle erkennen und einordnen",
+        "Tag 2": "Warm-Up und Kennenlernen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "49.0",
+        "Name": "Anspannung mit Gummiband ",
+        "One-sentence description": null,
+        "Description": "Jede*r TN erhält ein Gummiband und soll anhand diesem seine*ihre Anspannung visualisieren (z.B. voll angespannt, oder springt weg oder lasch)",
+        "Purpose": "Gefühle/Anspannung einordnen und benennen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Gummibänder",
+        "Notes": null,
+        "Tag 1": "Gefühle erkennen und einordnen",
+        "Tag 2": "Warm-Up und Kennenlernen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "50.0",
+        "Name": "Ressourcenlandkarte\nKraftlandkarte",
+        "One-sentence description": null,
+        "Description": "TN erhalten ein großes Batt Papier (z.B. A3) und werden ermutigt, auf dieses alles zu schreiben/malen, was ihnen Kraft gibt (bzw. Dinge, die in ihnen stecken und die ihnen helfen, das Leben zu meistern, z.B. Fähigkeiten, Erfahrungen, Kenntnisse, Menschen, Tiere, uvm.). Bei der Gestaltung gibt es keine Grenzen. Bei Bedarf kann in die Mitte \"Meine Kraftlandkarte\" o.ä. geschrieben werden",
+        "Purpose": "Ressourcenaktivierung, Lösungsorientierung, Selbstvertrauen",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Papier, Stifte",
+        "Notes": null,
+        "Tag 1": "Visualisierung",
+        "Tag 2": "Ressourcenaktivierung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "51.0",
+        "Name": "Ressourcendusche",
+        "One-sentence description": null,
+        "Description": "TN werden ermutigt, auf kleine Papierschnipsel (oder Post-its) zu schreiben, wer oder was ihnen Kraft spendet, z.B. persönliche Stärken/Fähigkeiten, Dinge, die man gerne tut, Menschen, die für einen da sind, etc. (ein Gedanke je Post-it!).  Danach werden TN in 2er-Teams eingeteilt. 1 TN nimmt die Post-its der anderen Person, stellt sich auf einen Stuhl und lässt die Post-its einzln auf die andere Person \"regnen\" (liest sie dabei ggf. laut vor).",
+        "Purpose": "Ressourcenaktivierung",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Papier, Stifte, Scheren",
+        "Notes": null,
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Reflexion und Feedback",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "52.0",
+        "Name": "Buch über mein Leben",
+        "One-sentence description": null,
+        "Description": "Ein Buch/Comic über dein Leben  - wie würde der Titel lauten?\nWenn du ein*e Superheld*in wärst - wie würdest du heißen?\nWenn du in einer Band spielen würdest - wie würde sie heißen?\nEin Werbeplakat über dich - wie würde es aussehen? (kann auch gestaltet werden) ",
+        "Purpose": "Selbstwahrnehmung",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Selbstwahrnehmung",
+        "Tag 2": "Reflexion und Feedback",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "53.0",
+        "Name": "Steckbrief\nKraft-Namen Generator",
+        "One-sentence description": null,
+        "Description": "TN benötigen Papier und Stifte. Trainer*innen leiten TN an, folgende Dinge aufzuschreiben:\n1. Wie heißt du? Was ist dein Spitzname? Wie willst du genannt werden? Hat dein Namen eine Bedeutung?\n2. Was ist deine Lieblingsfarbe?\n3. Welche positive Eigenschaft macht dich aus? (können auch mehrere sein)\n4. Was für ein Tier wärst du? (kann auch gezeichnet werden)\n5. Was sind deine Hobbys?\n(6. Was findest du voll langweilig?) \n \nIm Anschluss werden TN ermutigt, aus all diesen Begriffen einen eigenen Kraftnamen bzw. Superheld*innen-Namen zu entwickeln (Beispiel: \"Selma, die mutige Löwin\"). Dabei ist der Kreativität keine Grenzen gesetzt. Die Begriffe können auch auf Englisch sein. Oder es wird ein neues Wort erfunden.\nEinzelne TN können freiwillig ihre Namen vorstellen. ",
+        "Purpose": "Stärken an sich selber entdecken, Selbstwahrnehmung",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Papier, Stifte",
+        "Notes": "Alternativ: TN gestalten eigenes Wappen mit den Begriffen",
+        "Tag 1": "Selbstwahrnehmung",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "54.0",
+        "Name": "Spiel des Lebens (Bilder verunstalten)",
+        "One-sentence description": null,
+        "Description": "TN erhalten ein Blatt Papier und werden aufgefordert ein Bild zu zeichnen, das ihnen gefällt (oder einen Gegenstand zu zeichnen, der ihnen gefällt). Im nächsten Schritt sollen sie es komplett verunstalten. Und dann wieder versuchen, was schönes daraus zu malen.\nAlternativ: TN arbeiten in 2er Gruppen und tauschen Bilder nach jedem Schritt aus; WS-Leitung malt etwas an die Tafel, das TN dann verunstalten und wieder verschönern können.",
+        "Purpose": "Lösungsorientierung, Probleme lösen",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Funktioniert gut, wenn es funktioniert!",
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Kreativität",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "55.0",
+        "Name": "Soziales Gefüge Landkarte",
+        "One-sentence description": null,
+        "Description": "TN erhalten ein großes Blatt Papier und werden ermutigt, das eigene soziale Gefüge zu visualisieren. Leitfragen könnten z.B. sein: Welche Personen gibt es in deinem Leben? Welche Personen sind da, wenn es dir schlecht geht? Bei wem kannst du Hilfe holen? etc.",
+        "Purpose": "Soziales Netzwerk visualisieren, soziale Ressourcen ",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Visualisierung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "56.0",
+        "Name": "Gordischer Knoten",
+        "One-sentence description": null,
+        "Description": "Beim Teamspiel Gorderischer Knoten steht eine Gruppe von Spieler*innen dicht beisammen im Kreis, jeder streckt die Arme nach vorne aus und gibt einem anderen aufs Geratewohl die Hände; auf diese Weise ist die ganze Gruppe miteinander „verknotet“. Jetzt heißt es „entknoten“, aber ohne dass irgendjemand irgendwann die gefasste Hand loslassen würde. Die Aufgabe ist gelöst, wenn sämtliche Spieler*innen wieder im Kreis stehen und die (beim Verknoten erwischten) Hände gefasst halten. \nBeim Verknoten darf nicht die Hand des*der Nachbar*in genommen werden. Und es dürfen die eigenen Hände bzw. Unterarme selbst nicht über Kreuz gereicht werden.",
+        "Purpose": "Teamspiel, Konzentration, Zusammenhalt",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Nicht besonders Covid-freundlich :)",
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Vertrauen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "57.0",
+        "Name": "Resilienz-Stories",
+        "One-sentence description": null,
+        "Description": "WS-Leitung liest eine Geschichte vor, in der eine Person resilient ist. Anhand dieser wird in der Klasse eine Diskussion angeregt.\nAlternativ: Resilienz-Geschichte aus der Natur.",
+        "Purpose": null,
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Erklärungen und Inhalte",
+        "Tag 2": "Phantasie anregen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "58.0",
+        "Name": "Gute Laune/miese Laune Plakat\nSonne/Regen Plakat",
+        "One-sentence description": null,
+        "Description": "TN erhalten ein Blatt Papier. Auf dieses zeichnen sie auf der linken Seite eine Regenwolke und auf die rechte Seite eine Sonne. Dann schreiben sie erst auf die linke Seite alles auf, was ihnen miese Laune macht. Danach schreiben sie auf dir rechte Seite alles auf, was ihnen gute Laune macht.",
+        "Purpose": "Gefühle benennen, Gefühle regulieren",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Gefühle erkennen und einordnen",
+        "Tag 2": "Warm-Up und Kennenlernen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "59.0",
+        "Name": "Froh und traurig Runde",
+        "One-sentence description": null,
+        "Description": "TN bilden einen Kreis. 1 TN beginngt und sagt etwas, das sie*ihn besonders fröhlich/glücklich macht. Im Uhrzeigersinn sagt dann jede*r TN etwas, was sie*ihn glücklich macht. Das geht so lange weiter, bis eine*r TN nichts mehr einfällt. Dann startet die nächste Runde mit Dingen, die traurig machen. \nIm Anschluss Reflexionsrunde: Gibt es Dinge, die manche fröhlich machen und manche gar nicht? --> alle Gefühle sind legitim, sowohl die positiven als auch die negativen und es ist wichtig, sie auszusprechen",
+        "Purpose": "Gefühle benennen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Gefühle erkennen und einordnen",
+        "Tag 2": "Warm-Up und Kennenlernen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "60.0",
+        "Name": "Resilienz Schwamm/\nWackel-/Drückfiguren",
+        "One-sentence description": null,
+        "Description": "Anhand von einem Schwamm oder einer Wackelfigur wird abstrakt Resilienz erklärt: Resilienz kommt aus dem Lateinischen und heißt \"zurückspringen\". In der Werkstoffkunde sind Materialien resilient, wenn sie in den ursprünglichen Zustand zurückkehren können, wie z.B. dieser Schwamm/diese Wackelfigur. ",
+        "Purpose": "Resilienz erklären",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Erklärungen und Inhalte",
+        "Tag 2": "Visualisierung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "61.0",
+        "Name": "Vertrauensübungen",
+        "One-sentence description": null,
+        "Description": "Die Teilnehmenden stellen sich in Kreisen zu 5-8 Personen auf. Eine Person stellt sich in die Mitte, schließt die Augen, und lässt sich in eine beliebige Richtung fallen. Die im Kreis verbleibenden TN stoßen die fallende Person sanft zurück in die Mitte. Funktioniert nur, wenn die Person in der Mitte wirklich loslässt und vertraut. Achtung, Kreis nicht zu weit machen!   Variante: zu zweit, dann nach hinten fallen lassen, abwechseln.",
+        "Purpose": "Vertrauen in andere, Selbstvertrauen",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Ausreichend Platz",
+        "Notes": null,
+        "Tag 1": "Vertrauen",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "62.0",
+        "Name": "Selbstvertrauen Körperübungen",
+        "One-sentence description": null,
+        "Description": null,
+        "Purpose": null,
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Vertrauen",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "63.0",
+        "Name": "Die 5-4-3-2-1-Übung",
+        "One-sentence description": null,
+        "Description": "TN werden ermutigt, es sich bequem zu machen. Anleitung durch WS-Leitung: Konzentriere dich nun auf alles, was gerade um dich herum passiert, was du siehst, hörst und spürst. Fange jetzt damit an dir 5 mal im Kopf zu sagen, was du siehst, danach sagst du dir 5 mal im Kopf was du hörst (...5 mal spüren/anfassen...5 mal riechen....5 mal schmecken). Dann machst du dasselbe 4 mal, dann 3 mal, dann 2 mal, dann einmal. Es ist wurst, wenn du dieselben Dinge siehst, hörst, riechst etc. \n(Manche Bereiche fallen einfacher, als andere, das ist normal. TN können auch Augen schließen, wenn sie wollen)",
+        "Purpose": "Achtsamkeit, Stabilisierung",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Sinneswahrnehmung",
+        "Tag 2": "Entspannung, Beruhigung und Cool-Down",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "64.0",
+        "Name": "Innere hilfreiche Wesen",
+        "One-sentence description": null,
+        "Description": "Anleitung: Was passiert in deinem Körper, wenn du dich verletzt und eine Wunde hast? Dein Körper schafft es ganz von alleine, diese wieder zu reparieren. Denn dein Körper ist ein Wunderwerk, überlege mal, zu was er alles fähig ist! Er wächst von einem kleinen, hilflosen Baby zu einem erwachsenen Menschen heran, er kann gehen, sprechen, das Herz schlägt von alleine etc. Stell dir nun vor, dass in deinem Körper viele kleine hilfreiche Wesen sind, die all dies möglich machen. Wie sehen diese aus? Könntest du auch bei anderen Probleme diese kleine Wesen um Hilfe bitten? Überlege dir, wie sie dir helfen könnten, welchen Rat sie dir geben würden! überlege auch, wie du die kleinen Wesen unterstützen könntest.",
+        "Purpose": "Vertrauen in den eigenen Körper, eigene Selbstheilungskräfte nutzen",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Visualisierung",
+        "Tag 2": "Vertrauen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "65.0",
+        "Name": "Ich werd's schaffen",
+        "One-sentence description": null,
+        "Description": "TN werden aufgefordert, sich zu überlegen, welche Herausforderungen oder Krisen  (klein und groß) sie im Leben schon erlebt haben. Als nächstes sollen sie sich überlegen, was ihnen dabei geholfen hat diese zu meistern. Dabei sollen sie die Überlegungen auf beliebige Art auf Papier bringen (z.B. A4 Blatt gestalten).",
+        "Purpose": "Selbstvertrauen, Vertrauen in eigene Lösungsstrategien stärken",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Papier, Stifte",
+        "Notes": null,
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Visualisierung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "66.0",
+        "Name": "Wer hat Recht?",
+        "One-sentence description": null,
+        "Description": "TN arbeiten in 2er Teams. WSL hat mehrere (einfache) Begriffe zur Auswahl und wählt einen davon aus (z.B. Haus, Blume, ...). TN müssen sich dann gegenseitig anleiten, den Begriff zu zeichnen. Dabei hat immer 1 TN ein Blatt Papier vor sich und der*die andere TN sagt an, z.B: \"Zeichne einen Strich unten rechts, der von oben nach unten geht\". Dann wechseln sie die Rollen. Wichtig: Es dürfen nur einzelne Zeichen, wie Striche, Bögen, Ecken, etc. angesagt werden, keine vollständigen Symbole.  \nReflexion: Wie ist es euch dabei gegangen? Wer hatte Recht? ",
+        "Purpose": "Lösungsorientierung, Konfliktfähigkeit, Kompromissfähigkeit, Toleranz für Ungewissheit",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Papier, Stifte",
+        "Notes": null,
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Kreativität",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "67.0",
+        "Name": "Handgelenk an Handgelenk",
+        "One-sentence description": null,
+        "Description": "TN stehen sich gegenüber, sodass sich sich gut an den Handgelenken fassen können. Dabei sollten sie nicht zu nah und nicht zu weit weg voneinander stehen. Dann greifen sie sich Handgelenk an Handgelenk und lehnen sich soweit zurück wie möglich. Wichtig: sie müssen sich noch gut halten können. Variation: TN versuchen, sich nur mit einer Hand in Balance zu halten. ",
+        "Purpose": "Vertrauen in andere",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Vertrauen",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "68.0",
+        "Name": "Finde jemanden....",
+        "One-sentence description": null,
+        "Description": "TN erhalten Arbeitsblatt mit verschiedenen Beispielen (z.B. Finde jemanden, der*die im März Geburtstag hat; ... lustige Witze erzählt; ....gut in Mathe ist;... etc etc). Dann begeben sie sich, durch das Klassenzimmer wandernd, auf die Suche nach einem\nanderen Kind, das bestimmte Dinge hat, tut, sieht, spielt ... Wenn sie ein Kind gefunden haben, auf das diese Aussage zutrifft, schreiben sie dessen Namen in den jeweiligen Rahmen.\nDanach fragen sie weitere Kinder, so lange bis sie alle Rahmen mit Namen gefüllt haben. \nReflexion: z.B. Wie erkennt man, dass jemand XY kann, hat, gerne macht? (Thema Gruppenzugehörigkeit)",
+        "Purpose": "Visualisierung von Ressourcen in der Klasse, Förderung Klassengemeinschaft",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": "Arbeitsblatt",
+        "Notes": null,
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "69.0",
+        "Name": "Tauschmarkt der Talente",
+        "One-sentence description": null,
+        "Description": "Im Sesselkreis: Im ersten Schritt überlegt sich jede*r TN für sich, welche Fähigkeiten und Stärken er*sie zu haben glaubt oder einfach, was er*sie besonders gut kann. Der*die Trainer*in sollte erwähnen, dass es dabei vielleicht auch um Qualitäten wie ‛zuhören können”, ‛über sich selbst lachen können”, ‛Hilfsbereitschaft” etc. geht. In der Mitte des Sesselkreises wird nun ein ganz spezieller Markt (Basar) eröffnet: Da gibt es nichts zu kaufen sondern nur zu tauschen. Diese Tauschgüter sind allerdings nicht materieller Natur sondern eben Eigenschaften, Stärken, Fähigkeiten, Qualitäten. Der*die Trainer*in selbst eröffnet das Spiel, indem er*sie den Marktplatz betritt und seine*ihre ‛Ware” anbietet. Das könnte zB so aussehen: ‛Ich habe 100 Gramm Ordnungssinn anzubieten. Davon habe ich genug. Wer tauscht mit mir? Ich könnte ein paar Gramm ‛Schlampigkeit” brauchen. Wer hat da vielleicht genug oder gar zuviel davon?”\nFalls sich niemand findet, der zum Tauschen bereit ist, besteht die Möglichkeit, direkt auf jemanden zuzugehen, von dem man annimmt, dass er*sie die gewünschte Qualität besitzt.\nErfahrungsgemäß kommt das Spiel ‛schnell in Fahrt”. Wichtig ist, dass nur Ressourcen und Stärken und nicht ‛Defizite” gehandelt werden, und – wenn möglich – alle TN ins Spiel integriert werden, denn: Stärken zum Anbieten hat jeder (der*die Trainer*in sollte auf die ‛Vergessenen” achten und sie ins Spiel bringen). Zu beachten ist jedoch, dass niemand gegen seinen Willen mitspielen soll. Nach dem ersten Tauschhandel geht es stafettenmäßig weiter: Nun ist der*die zum Tauschen eingeladene TN dran, selbst seine ‛Ware” anzubieten und mit jemand ‛ins Geschäft zu kommen”. \nVariation:\nMit jemandem ‛sofort ins Geschäft zu kommen“, indem man ihm seine ‛Ware“ zeigt und fragt, ob\ner*sie was davon gebrauchen könnte und was er dafür anzubieten habe. Dabei wird Empathiefähigkeit geübt, geht es doch darum, den anderen und seine Stärken zu (er)kennen.",
+        "Purpose": "Eigene Stärken und Stärken von anderen erkennen, Feedback geben, spielerische Auseinandersetzung mit Gemeinsamkeiten und Differenzen, Ressourcen in der Gruppe wahrnehmen ",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Die Übung eignet sich auch gut als Warming-up oder auch Schlusspunkt für und von Gruppenaktivitäten. Weiteres Material wird nicht benötigt.\n30 Min. oder mehr",
+        "Tag 1": "Stärken erkennen",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "70.0",
+        "Name": "Zeitmaschine",
+        "One-sentence description": null,
+        "Description": "1. Blick in die Vergangenheit: Was würdest du dir selbst vor exakt 2 Jahren (kurz vor der Pandemie) raten? Was würdest du der Gruppe raten?\n2. Blick in die Zukunft: Was würdest du deinem zukünftigen Ich gerne sagen? ",
+        "Purpose": null,
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Ressourcenaktivierung",
+        "Tag 2": "Phantasie anregen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "71.0",
+        "Name": "Schere-Stein-Papier bzw. \nSchnick-Schnack-\nSchnuck für Gruppen",
+        "One-sentence description": null,
+        "Description": "Zwei Gruppen stehen einander entlang der Mittellinie (kann imaginär sein) des Spielfeldes gegenüber. Alle gemeinsam zählen bis drei. Auf drei spielt jede Gruppe die Figur (mit Bewegung, Geräusch, etc.), auf die sie sich vorher geeinigt haben. z.B.: Maus, Katze, Mensch. Maus macht miep miep, Katze mach ein Fauchgeräusch und Mensch macht eine Streichel-Geste. Nun fürchtet sich immer eine Figur vor einer anderen und wird so \"geschlagen\", z.B. Maus schlägt Mensch, Katze schlägt Maus, und Mensch schlägt Katze.  Verliert eine Gruppe so muss ein*e Spieler*in aus dieser Gruppe zur anderen wechseln. Am Ende gewinnt die Gruppe mit den meisten Personen. Anmerkung: Die Figuren können entweder vorher durch die Spielleitung festgelegt werden oder die TN erfinden eigene Charaktere!",
+        "Purpose": "Auflockerung, Gruppenspiel, Kreativität, Zusammenhalt",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Wichtig: Den Gruppen genug Tuschelzeit geben, wenn sie sich für eine Figur bzw. Spielzug entscheiden. ggf. dazu schauen, dass sie sich nicht gegenseitig hören  bzw. sehen!",
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Auflockerung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "72.0",
+        "Name": "Klassenbatterie",
+        "One-sentence description": null,
+        "Description": "Trainer*innen zeichnen große leere (Klassen)Batterie an Tafel. TN sollen sich dann überlegen, wie sie einzeln dazu beitragen können, die Batterie wieder zu laden. TN schreiben entweder selbst an der Tafel mit (+Name) oder rufen des den Trainer*innen zu, die dann die Batterie mit den Ressourcen der TN füllen. ",
+        "Purpose": "Klassenresilienz, ",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Visualisierung",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "73.0",
+        "Name": "Egg Drop (outdoor)",
+        "One-sentence description": null,
+        "Description": "In Kleingruppen/outdoor: Jede Gruppe bekommt ein Ei (roh oder gekocht) und die Aufgabe innerhalb einer gewissen Zeitspanne (z.B. 15/20/30 Min.) das Ei mit Materialien/Dingen, die sie draußen finden (z.B. Gras, Zweige, etc.), so einzupacken, damit es bei einen Fall aus einiger Höhe nicht zerbricht. ",
+        "Purpose": "Teamspiel, Kooperation, Geschicklichkeit, Kreativität",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Als Durchführungsort eignet sich ein Park",
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "74.0",
+        "Name": "Wasserflaschen Challenge (outdoor)",
+        "One-sentence description": null,
+        "Description": "TN werden in 2 gleich große Gruppen aufgeteilt. Jede Gruppe erhält 2 gleichgroße Plastikflaschen, eine ist leer und eine voll gefüllt mit Wasser.  Sobald der*die Trainer*in ein \"GO\" gibt müssen beide Gruppen versuchen, die Flaschen so schnell wie möglich rundum umzufüllen. Eine Person beginnt und leert das Wasser der vollen Flasche in die leere Flasche, die die Person links daneben in der Hand hält, diese füllt das Wasser dann in die leere Flasche, die die Person links daneben nun hält, usw. Welche Mannschaft war die schnellste Mannschaft und hat dabei noch das meiste Wasser in der Flasche?",
+        "Purpose": "Teamspiel, Kooperation, Geschicklichkeit, Kreativität",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "Als Durchführungsort eignet sich ein Park",
+        "Tag 1": "Gruppendynamik und Kooperation",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "78.0",
+        "Name": "Superhero",
+        "One-sentence description": null,
+        "Description": "TN kreieren anhand des Superhero Arbeitsblatts einen eigenen Stärken-Superhero\nWelche*r Superherld*in wärt ihr? Wie würde er*sie aussehen? Und welche positiven Eigenschaften hat er*sie? (ggf. TN in einem ersten Schritt eigene Stärken aufschreiben und dann anhand dieser die Superheld*in gestalten lassen)",
+        "Purpose": "Selbstwahrnehmung, Kreativität",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "Arbeitsblatt",
+        "Notes": null,
+        "Tag 1": "Selbstwahrnehmung",
+        "Tag 2": "Stärken erkennen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "79.0",
+        "Name": "In einer Klasse/Freund*innenschaft (etc.) ist mir wichtig, dass...",
+        "One-sentence description": null,
+        "Description": "Variation von Obstsalat bzw. Alle, die...Sitzkreis, es gibt einen Stuhl weniger als anwesende Personen. Eine Person steht in der Mitte und sagt z.B. In der Klasse ist mir wichtig, dass wir einander zuhören --> Alle, auf die das zutrifft, müssen Plätze tauschen, die Person in der Mitte versucht, einen Platz zu erwischen. Nun steht eine neue Person in der Mitte und muss sich überlegen, was ihr wichtig ist. ALTERNATIV: Kann auch zum Thema Freund*innenschaft etc. gemacht werden ",
+        "Purpose": "Aktivierung, Kennenlernen, Teambuilding",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "80.0",
+        "Name": "Begrüßungs-Klischees",
+        "One-sentence description": null,
+        "Description": "Eignet sich gut als Einstiegsübung: TN spazieren durch den Raum und betrachten achtsam, wer ihnen entgegenkommt, wer heute noch da ist, was sie sehen etc. Auf Kommando der WS_Leitung müssen sie sich auf eine bestimmte Art begrüßen: zu Beginn einfach mit einem Händeschütteln, mit einem Handschlag etc., dann wird es schwieriger. Ideen: Begrüßt euch, wie...Geschöftspartner*innen, Tik-Tok-Stars, Influencer, Könige/König*innen, Geheimagent*innen, Beste Freund*innen, die sich seit Jahren nicht gesehen haben...",
+        "Purpose": "Aktivierung, Spaß",
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": "dauert maximal 5 Minuten",
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "81.0",
+        "Name": "Wer ist am stärksten? ",
+        "One-sentence description": null,
+        "Description": "Die TN bilden Kleingruppen (2-4 Personen) und bekommen ein Set an Personen/Situationen vom Arbeitsblatt (in Streifen geschnitten). Ihre Aufgabe ist es, die Situationen je nach Stärke der Personen zu ranken. Nach ca. 10 Minuten präsentieren die Gruppen ihre Reihenfolge. Wichtig: es gibt kein objektives Richtig oder Falsch, eher geht es darum, die Kids zur Reflexion anzuregen, was Stärke in unserer Gesellschaft bedeutet und welche Stärken häufig unsichtbar sind bzw. gemacht werden. ",
+        "Purpose": "Selbstreflexion, Inhalt zum Thema Stärken, Differenzierung des Stärkenbegriffs",
+        "Group Form": "Team",
+        "Time Estimate": null,
+        "Materials": "Arbeitsblatt siehe: Stark, aber wie? Seite 41",
+        "Notes": "Hinweis: das Methodenheft ist für die Bubenarbeit entwickelt, daher finden sich fast nur Bubennamen in den Situationen wieder - ggf. anpassen!",
+        "Tag 1": "Reflexion und Feedback",
+        "Tag 2": "Überleitungen",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "82.0",
+        "Name": "Plakatarbeit",
+        "One-sentence description": null,
+        "Description": "zB auf leeren Plakaten \"Danke\" auf verschiedenen Sprachen sammeln",
+        "Purpose": null,
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Visualisierung",
+        "Tag 2": "Partizipation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "83.0",
+        "Name": "Namensrunde mit Handbewegung",
+        "One-sentence description": null,
+        "Description": "Jede*r TN sagt den Namen und zeigt mit einer Handbewegung/Körpersprache, wie er*sie gerade da ist und wie es ihm*ihr gerade geht. ",
+        "Purpose": null,
+        "Group Form": "Gemeinschaft",
+        "Time Estimate": null,
+        "Materials": null,
+        "Notes": null,
+        "Tag 1": "Warm-Up und Kennenlernen",
+        "Tag 2": "Gruppendynamik und Kooperation",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "84.0",
+        "Name": "Storylauf",
+        "One-sentence description": null,
+        "Description": "Ein Spaziergang durch die Stadt mit vielen Erlebnissen wird beschrieben. Die TN sollen sich dazu durch den Raum bewegen und die Story in Bewegungen umsetzen.",
+        "Purpose": "Ruhe, Achtsamkeit, zu sich selbst finden",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "evtl. Skript",
+        "Notes": null,
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Aktivierung und Bewegung",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      },
+      {
+        "#": "85.0",
+        "Name": "Körperreise",
+        "One-sentence description": null,
+        "Description": "Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. Besonders das Augenschließen wird nicht immer angenommen. Beim Einatmen werden gerne laute Geräusche gemacht.",
+        "Purpose": "Ruhe, Achtsamkeit, zu sich selbst finden",
+        "Group Form": "Einzeln",
+        "Time Estimate": null,
+        "Materials": "evtl. Skript",
+        "Notes": "Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. Besonders das Augenschließen wird nicht immer angenommen. Beim Einatmen werden gerne laute Geräusche gemacht.",
+        "Tag 1": "Achtsamkeit und Konzentration",
+        "Tag 2": "Entspannung, Beruhigung und Cool-Down",
+        "Tag 3": null,
+        "Tag 4": null,
+        "Tag 5": null
+      }
+    ],
+    "methods": [
+      {
+        "method_id": "m001",
+        "legacy_row_id": 1,
+        "name_de": "Pappteller Steckbrief",
+        "short_description": "Jede*r TN bekommt einen Pappteller und Stifte.",
+        "full_description": "Jede*r TN bekommt einen Pappteller und Stifte. WS-Leitung leitet dann Schritt für Schritt an: 1) Schreibe deinen Namen auf den Teller 2) Wie gehts dir gerade? Zeichne einen Smiley (oder Wetter)\n3) Welches Tier wärst du? Zeichne dein Spirit Animal drauf\noptional: 4) Schreibe oder Zeichne dein größtes Hobby drauf 5) Schreibe auf, was du voll langweilig findest, usw.\nDann gehen TN im Raum herum (ggf. Gangart vorgeben! z.B. kleine Schritte, große Schritte, nur nach links, etc.) und finden sich auf Anweisung der WS-Leitung immer zu zweit zusammen und haben dann 2 Minuten Zeit um sich gegenseitig vorzustellen.",
+        "primary_purpose": "Kennenlernen",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Pappteller, Stifte",
+        "facilitator_notes": "Bei jüngeren Kindern: unbedingt Anweisungen zu den Gangarten geben, sonst sind sie nicht mehr zu bändigen :)",
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m002",
+        "legacy_row_id": 2,
+        "name_de": "Stimmung als Wetter",
+        "short_description": "WS-Leitung fragt TN, welches Wetter ihre aktuelle Stimmung am besten beschreibt.",
+        "full_description": "WS-Leitung fragt TN, welches Wetter ihre aktuelle Stimmung am besten beschreibt. ggf. zeichnen lassen",
+        "primary_purpose": "Gefühle",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "ggf. Papier, Stifte",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m003",
+        "legacy_row_id": 3,
+        "name_de": "\"Schön, dass du da bist!\"",
+        "short_description": "TN verteilen sich im Raum und begrüßen sich immer Gegenseitig mit \"Schön, dass du da bist!\" und schauen sich in die Augen (+ ggf.",
+        "full_description": "TN verteilen sich im Raum und begrüßen sich immer Gegenseitig mit \"Schön, dass du da bist!\" und schauen sich in die Augen (+ ggf. Hände schütteln, Handschlag, Ellbogen-Stupser, Verbeugung, etc.). Dafür haben sie aber nur 10 Sekunden Zeit und müssen so viele begrüßen wie möglich!",
+        "primary_purpose": "Warm-Up",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m004",
+        "legacy_row_id": 4,
+        "name_de": "Tauschgesellschaft",
+        "short_description": "Jede*r TN wählt eine Stimmung (+ dazu passende Fortbewegungsart/Mimik/Gestik).",
+        "full_description": "Jede*r TN wählt eine Stimmung (+ dazu passende Fortbewegungsart/Mimik/Gestik). TN gehen im Raum herum und übergeben sich durch Hände schütteln (oder Handschlag, Ellbogen-Stupser, Verbeugung, etc.) die Stimmung.",
+        "primary_purpose": "Warm-Up",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m005",
+        "legacy_row_id": 5,
+        "name_de": "Alle, die... / / Wer von euch...?",
+        "short_description": "Im Sitzkreis: WS-Leitende stellen \"Wer von euch...\"-Fragen und TN stehen auf, wenn sie die Frage mit \"Ich\" beantworten können.",
+        "full_description": "Im Sitzkreis: WS-Leitende stellen \"Wer von euch...\"-Fragen und TN stehen auf, wenn sie die Frage mit \"Ich\" beantworten können. z.B.\nWer von euch ist heute mit dem Bus zur Schule gefahren? Wer von euch spricht 2 Sprachen oder mehr? Wer von euch hat heute schon gelacht? Wer von euch war heute schon freundlich? Wer von euch war heute schon neugierig? Wer von euch macht gern Sport? Wer von euch trifft sich gern mit Freund*innen? Wer von euch spielt gern Computerspiele? etc.\nLetzte Frage: Wer von euch ist stark? Dann fragen, was stark sein bedeutet (körperlich vs. geistig)\nggf. auf einzelne Fragen genauer eingehen: z.B. welche Sportart? welche Sprachen? etc.\nAlternative: TN tauschen die Plätze (vgl. Obstsalat).",
+        "primary_purpose": "Aktivierend",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "TN freuen sich, wenn man bei einzelnen Fragen \"nachbohrt\" und Interesse zeigt",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m006",
+        "legacy_row_id": 6,
+        "name_de": "Roboter",
+        "short_description": "Es steht jede*r TN frei, wann und wie oft er*sie sich erheben will.",
+        "full_description": "Es steht jede*r TN frei, wann und wie oft er*sie sich erheben will. Es sind aber die folgenden Spielregeln einzuhalten:\n• Es wird nicht gesprochen.\n• Jeder darf höchsten fünf Sekunden stehen.\n• Es müssen immer genau vier Spieler stehen.\n• Jeder muss sich mindestens dreimal bewegt haben.\nDas ist gar nicht so einfach, weil nicht nur schnelle Reaktion, sondern auch gute Beobachtung und Abstimmung gefordert ist. Das Spiel eignet sich besonders nach längerem Sitzen.\"",
+        "primary_purpose": "Aktivierend",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m007",
+        "legacy_row_id": 7,
+        "name_de": "In Gruppe bis 10 zählen",
+        "short_description": "In 3 Gruppen teilen und bis 10 zählen lassen, wobei nicht ausgemacht werden darf, wer wann eine Zahl sagt und niemand zwei Zahlen hintereinander sagen darf",
+        "full_description": "In 3 Gruppen teilen und bis 10 zählen lassen, wobei nicht ausgemacht werden darf, wer wann eine Zahl sagt und niemand zwei Zahlen hintereinander sagen darf",
+        "primary_purpose": "Kooperationsspiel",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m008",
+        "legacy_row_id": 8,
+        "name_de": "Der wandernde Tennisball",
+        "short_description": "(Kleingruppen mit mind.",
+        "full_description": "(Kleingruppen mit mind. 5 TN) Aufgabe: \"der Tennisball muss innerhalb von X Sekunden durch alle Hände gegangen sein\" (z.B. bei 10 TN --> 10 Sekunden) Die Gruppe hat 1 Min. Zeit um zu überlegen, bevor sie den Ball bekommen. Nach erfolgreicher Absolvierung wird die Zeit halbiert. Dann wird die Zeit immer weiter verkürzt, bis nur noch 1 Sekunde pro Gruppe bleibt. Einfachste Lösung: alle TN formen mit Zeigefinder und Daumen einen Kreis und halten sie untereinander. 1 TN lässt den Ball von oben durchfallen...",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Tennisbälle",
+        "facilitator_notes": null,
+        "source_notes": "Gruppengroesse mind. 5 TN explizit genannt. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": 5,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m009",
+        "legacy_row_id": 9,
+        "name_de": "Achtung hier kommt ein Karton!",
+        "short_description": "(Kleingruppen mit mind.",
+        "full_description": "(Kleingruppen mit mind. 5 TN) Die Gruppe erhält einen Karton (Bananenkarton, Umzugskarton). Auf diesem sollen alle Platz finden - egal wie es die Gruppe anstellt. Welche Möglichkeiten die Gruppe hat, wird der Gruppe nicht mitgeteilt.",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Karton",
+        "facilitator_notes": null,
+        "source_notes": "Gruppengroesse mind. 5 TN explizit genannt. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": 5,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m010",
+        "legacy_row_id": 10,
+        "name_de": "Hai-Attacke (wie Hangman)",
+        "short_description": "WS-Leitende überlegt sich ein oder mehrere Wörter und schreibt nur den 1.",
+        "full_description": "WS-Leitende überlegt sich ein oder mehrere Wörter und schreibt nur den 1. Buchstaben an die Tafel. Die anderen Buchstaben werden durch Striche markiert. Die TN können nun Buchstaben nennen, wenn der Buchstabe im Wort nicht vorkommt, beginnen die WS-Leitenden die Hai-Attacke zu zeichnen.\nEignet sich z.B., um den TN Feedback zu geben (gesuchtes Wort = Feedback)",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Tafel/Whiteboard",
+        "facilitator_notes": "Wenn es Zeit gibt: TN freuen sich, selber Leitungsrolle zu übernehmen und gegen die Klasse zu spielen",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m011",
+        "legacy_row_id": 11,
+        "name_de": "Murmelbahn",
+        "short_description": "TN werden in Kleingruppen eingeteilt (max.",
+        "full_description": "TN werden in Kleingruppen eingeteilt (max. 5 TN). Dann werden Ziele/Regeln erklärt: Jede Gruppe baut eine Murmelbahn mit den mitgebrachten Materialien. Regeln: Wer die längste Bahn baut, gewinnt. Wichtig: Pro Gruppe dürfen nur 5 Stück der Materialien benutzt werden (dürfen auch ausgetauscht werden). Es dürfen keine anderen Materialien verwendet werden (außer ggf. Tische und Stühle). Die Murmel muss von alleine rollen, d.h. sie darf nicht angeschubst werden. Die Murmel darf nicht auf dem Boden/Tisch rollen (bzw. wird diese Strecke nicht gemessen). Die Gruppen haben dafür 10 Minuten Zeit! -> evtl. um 5 Minuten verlängern lassen!\nWS-Leitungen betreuen Gruppen während der Bauphase. Ggf. wird den Gruppen der Tipp gegeben, dass sie die Materialien auch mit den Händen halten dürfen! Nach 10-15 Minuten stellen sich die Gruppen die Bahnen gegenseitig vor (jede Gruppe hat 3 Versuche). Die Länge der Bahnen wird mit Maßband gemessen und an Tafel geschrieben.\nWenn danach noch Zeit ist kann auch noch eine lange Bahn mit der ganzen Gruppe gebaut werden. Dazu bekommt jede*r TN eine Holzleiste, stellt sich der Reihe nach auf und hält die Leisten so aneinander, dass die Murmel von alleine von A nach B rollt.",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": 10,
+        "duration_max": 15,
+        "materials": "Murmeln, verschiedene Utensilien (Holzleisten, Werkzeuge, etc.), Maßband",
+        "facilitator_notes": "Alternativen: Gegenstände in der Klasse dürfen auch verwendet werden.",
+        "source_notes": "Arbeitszeit 10-15 Minuten explizit in der Beschreibung; Vorstellungsphase nicht separat ausgewiesen. | Gruppengroesse max. 5 TN explizit genannt. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": 5,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Dauer aus der Beschreibung abgeleitet; Gesamtzeit kann durch Praesentation laenger sein."
+      },
+      {
+        "method_id": "m012",
+        "legacy_row_id": 12,
+        "name_de": "Marshmellow Challenge",
+        "short_description": "Man spielt die Marshmallow Challenge in Gruppen von vier bis fünf Spielern.",
+        "full_description": "Man spielt die Marshmallow Challenge in Gruppen von vier bis fünf Spielern. Jede Gruppe erhält 20 Spaghetti, einen Meter Kreppband und einen Marshmallow. Dann haben die Gruppen 18 Minuten Zeit um mit den Materialien, einen Turm zu bauen. Am Ende wird bei jedem Turm die Höhe des Marshmallows gemessen und der Turm mit dem höchsten Marshmallow gewinnt.",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": 18,
+        "duration_max": 18,
+        "materials": "Kreppband, Spagehtti, Marshmellows",
+        "facilitator_notes": null,
+        "source_notes": "18 Minuten explizit in der Beschreibung. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m013",
+        "legacy_row_id": 13,
+        "name_de": "Da Vinci Code Brücke",
+        "short_description": "Kleingruppen bekommen die Aufgabe eine Leonardo-Brücke zu errichten.",
+        "full_description": "Kleingruppen bekommen die Aufgabe eine Leonardo-Brücke zu errichten. Dafür bekommen sie nur die Stäbchen, keine weiteren Hilfsmittel!\nWichtig: Dauer und mind. Länge der Brücke vorab festlegen!",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Gleichförmige, lange Holzstäbchen (z.B. große Streichhölzer oder Ess-Stäbchen)",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m014",
+        "legacy_row_id": 14,
+        "name_de": "Faule Ausrede",
+        "short_description": "Die TN sitzen im Kreis.",
+        "full_description": "Die TN sitzen im Kreis. „Ich konnte gestern nicht zur Schule kommen, weil ich unter Atemnot gelitten habe.“ - „Ich konnte gestern nicht zur Schule kommen, weil ich wegen der Deutscharbeit Bauchschmerzen hatte.“ - Jeder muss sich eine Krankheit als Entschuldigung ausdenken, die immer mit dem nächsten Buchstaben des Alphabets beginnen muss. Diese Übung ist eine gute Gelegenheit, der Phantasie freien Lauf zu lassen und lustige und ausgefallene Krankheiten zu erfinden, die als faule Ausreden herhalten müssen. Varianten: Statt einzeln in Zweiergruppen spielen - Gemischter Salat oder Fruchtsalat mit Zutaten von A bis Z",
+        "primary_purpose": "Phantasieanregend",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m015",
+        "legacy_row_id": 15,
+        "name_de": "Aufstellungen",
+        "short_description": "TN müssen sich in einer Reihe aufstellen: nach Alter, Alphabetisch (Anfangsbuchstabe Vorname), .....",
+        "full_description": "TN müssen sich in einer Reihe aufstellen: nach Alter, Alphabetisch (Anfangsbuchstabe Vorname), ..... Möglichkeit: kein Sprechen erlaubt, nur Pantomime.",
+        "primary_purpose": "Bewegungsfördernd",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m016",
+        "legacy_row_id": 16,
+        "name_de": "4-Ecken-Aufstellung (oder 3-Ecken)",
+        "short_description": "TN stellen sich im Raum auf.",
+        "full_description": "TN stellen sich im Raum auf. WS-Leitung stellt Fragen; jede Frage hat 4 Antwortmöglichkeiten (je Ecke eine Antwort). TN stellen sich in die passende Ecke. 4 Ecken kann offen gehalten werden und TN können individuelle Antworten nennen.\nz.B: Wie viele Geschwister hast du? 0, 1, 2, 3 oder mehr.\nWas ist dein Lieblingssnack? Eis, Gummibärchen, Schokolade, Kekse.\nWas machst du am liebsten in deiner Freizeit? Computer spielen, Sport machen, mit Freund*innen treffen, was anderes\nIn welchem Arbeitsbereich möchtest du mal arbeiten? Sozial/mit Menschen, Handwerklich/technisch, Kreativ/gestalterisch, was anderes",
+        "primary_purpose": "Kennenlernen",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m017",
+        "legacy_row_id": 17,
+        "name_de": "Kommando",
+        "short_description": "Hier sind gute Reaktionen der TN und schnelles Agieren der WS-Leitung gefragt.",
+        "full_description": "Hier sind gute Reaktionen der TN und schnelles Agieren der WS-Leitung gefragt. Die WS-Leitung steht frontal zu den TN und erklärt zunächst die vier Kommandos mit den dazugehörenden Aufgaben: z.B. Kommando Fuß – auf der Stelle trippeln, Kommando Bauch – Hände auf den Bauch legen, Kommando Hand – Arme hoch in die Luft strecken, Kommando Knie – in leichter Hocke Hände auf die Knie legen. Die Kommandos werden ein paar Mal geprobt. Danach beginnt das eigentliche Spiel, denn jetzt kommt es darauf an, richtig zu reagieren – immer, wenn das Wort „Kommando!“ nicht vorweg genannt wird, darf die dazugehörige Aufgabe nicht ausgeführt werden, die TN müssen in der vorherigen Stellung verharren. Dabei darf die WS-Leitung selbst Fehler machen, um die TN zu verwirren. Jede*r, die*der einen Fehler macht, wechselt auf die Seite der WS-Leitung und darf nun auch falsche Sachen machen, die Kommandos kommen aber nur von der WS-Leitung – schafft er es, alle auf seine Seite zu bekommen? Dabei kommt es darauf an, dass die Kommandos schnell hintereinander kommen!",
+        "primary_purpose": "Bewegungsfördernd",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m018",
+        "legacy_row_id": 18,
+        "name_de": "Stühle kippen",
+        "short_description": "Stühle werden im Kreis aufgestellt.",
+        "full_description": "Stühle werden im Kreis aufgestellt. Hinter jedem Stuhl steht eine Person und kippt den Stuhl soweit nach hinten, dass er gerade nocht hält und nicht umkippt (Lehne wird festgehalten). Wenn WS-Leitung HOPP sagt, müssen TN im Uhrzeigersinn weiter zum nächsten Stuhl, ohne dass dieser umkippt.",
+        "primary_purpose": "Bewegungsfördernd",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Stühle",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m019",
+        "legacy_row_id": 19,
+        "name_de": "Stärken-Tiere",
+        "short_description": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt.",
+        "full_description": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt. Danach Einzelne der Reihe um fragen: Wie heißt du? Warum wärst du dieses Tier? Welche Eigenschaften/Stärken hat dieses Tier? Hast du die auch? Bei einzelnen TN auf jew. Stärken genauer eingehen bzw. bestimmte Stärken erklären; ggf. Klasse in 2 Gruppen teilen (bei großen Klassen)\n\nAlternativ: TN erhalten Papier und malen das Tier selbst. Alternative II: es muss kein reales Tier sein, sondern darf auch ein Fantasietier oder ein*e Superheld*in sein.",
+        "primary_purpose": "Selbstwahrnehmung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Tier Bilder (Fotos)",
+        "facilitator_notes": "Bei großen Gruppen oft träge, wenn möglich zwei kleinere Gruppen bilden, bei der jeweils 1 WSL dabei bleibt.",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Doppelter Methodentitel im Import; als eigener Datensatz belassen, weil sich Details unterscheiden."
+      },
+      {
+        "method_id": "m020",
+        "legacy_row_id": 20,
+        "name_de": "Schnelles Feedback",
+        "short_description": "Twitter-Feedback: Feedback als Hashtag aufschreiben #langweilig",
+        "full_description": "Twitter-Feedback: Feedback als Hashtag aufschreiben #langweilig\noder Hoch-Gleich-Tief: auf die Frage, ob der WS gefallen hat: nicht gefallen (TN setzen sich auf Boden), war okay (sitzen bleiben), gut gefallen (aufstehen), sehr gut gefallen (auf Stuhl stehen)\noder mit Daumen angeben ob gut/okay/schlecht",
+        "primary_purpose": "Feedback geben",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m021",
+        "legacy_row_id": 21,
+        "name_de": "Feedbackplakat (Rücken)",
+        "short_description": "Jede*r TN bekommt ein Plakat/Papier, das am Rücken befestigt wird, und einen Stift.",
+        "full_description": "Jede*r TN bekommt ein Plakat/Papier, das am Rücken befestigt wird, und einen Stift. Dann bewegen sich TN im Raum und wenn sie jemandem Feedback geben wollen bleiben sie stehen und schreiben sie das Feedback auf den Rücken der jew. Person. Wichtig: Feedback sollte begründet werden (z.B. mit Beispielen).",
+        "primary_purpose": "Feedback geben",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Papier, Stifte",
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m022",
+        "legacy_row_id": 22,
+        "name_de": "Kraftposition",
+        "short_description": "TN werden ermutigt, sich eine \"Kraftposition\" vorzustellen: \"Schließe die Augen und erinnere dich an eine Situation in der du dich richtig gut gefühlt hast (z.B.",
+        "full_description": "TN werden ermutigt, sich eine \"Kraftposition\" vorzustellen: \"Schließe die Augen und erinnere dich an eine Situation in der du dich richtig gut gefühlt hast (z.B. eine Situation in der dir was gut gelungen ist, in der du mutig warst, ein tolles Erlebnis mit Freund*innen, etc.). Überlege was in dieser Situation passiert ist. Was hast du alles gefühlt? Was hast du gerochen, gespürt, gesehen, gehört? Wie war dein Körpergefühl? Jetzt spürst du vielleicht das selbe Gefühl wie in dieser Situation! Wenn es dir mal schlecht geht oder du in einer herausfordernden Situation bist, dann erinnere dich an dieses positive Erlebnis und die Gefühle und Körperempfindungen die du dabei hattest!\"",
+        "primary_purpose": "Ressourcenaktivierung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m023",
+        "legacy_row_id": 23,
+        "name_de": "Rosinen-Übung",
+        "short_description": "Jede*r TN bekommt eine Rosine/getrocknete Mango o.ä..",
+        "full_description": "Jede*r TN bekommt eine Rosine/getrocknete Mango o.ä.. Anleitung: Wir versuchen jetzt die einzelnen Sinne zu erleben. Konzentriert euch bei jedem Sinn nur auf diesen und versucht die anderen Sinne \"auszuschalten\". 1) Nimm eine Rosine in die Hand und betrachte sie aufmerksam. Wie schaut die Rosine aus? wie ist ihre Oberfläche beschaffen? welche Farbe hat sie? (Nach kurzer Zeit TN fragen, was sie gesehen haben)\n2) Was hörst du, wenn du sie neben dein Ohr gibst und drückst? (nach kurzer Zeit TN fragen, was sie gehört haben)\n3) Wie fühlt sie sich an? Wie fühlt sich die Oberfläche an? (nach kurzer Zeit TN fragen, wie sich die Rosine anfühlt)\n4) Wie riecht die Rosine, wenn du sie unter die Nase hältst? (nach kurzer Zeit TN fragen, wie sie riecht)\n5) Wie schmeckt sie, wenn du sie isst? (nach kurzer Zeit TN fragen, wie sie schmeckt)",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Rosinen oder getrocknete Mango",
+        "facilitator_notes": "Übung kann entweder in Stille ausgeführt werden oder TN dürfen dazwischen reden",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m024",
+        "legacy_row_id": 24,
+        "name_de": "5-Finger-Methode",
+        "short_description": "Anleitung: Strecke eine Hand aus und schau dir alle 5 Finger genau an.",
+        "full_description": "Anleitung: Strecke eine Hand aus und schau dir alle 5 Finger genau an. Gehe in Gedanken einzeln alle 5 Finger durch und stelle dir jeweils folgende Fragen: 1) was sehe ich gerade? was sehe ich, wenn ich nach vorne, nach unten, nach rechts und nach links schaue? 2) was höre ich gerade? welche Geräusche (in der Nähe und in der Ferne) nehme ich wahr? 3) was spüre und taste ich gerade? was spüre ich in/an meinem Körper? wie ist die Temperatur um mich herum? wie fühlen sich Gegenstände um mich herum an? 4) was schmecke ich gerade? was schmecke ich in meinem Mund, auf meiner Zunge? 5) Finger: was rieche ich gerade? welche Gerüche um mich herum nehme ich wahr?",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m025",
+        "legacy_row_id": 25,
+        "name_de": "Offenes Ohr",
+        "short_description": "Anleitung: Überlege dir 1) was dich gerade stresst und 2) auf was du dich gerade freust.",
+        "full_description": "Anleitung: Überlege dir 1) was dich gerade stresst und 2) auf was du dich gerade freust. Teile dann deine Überlegungen mit der Gruppe und achte dabei darauf, wie es sich für dich anfühlt, wenn du über was Negatives sprichst und wenn du über was Positives sprichst. Sobald die nächste Person an der Reihe ist, höre gut zu und achte darauf, wie sich die Person verhält, wenn sie über was Negatives spricht und wenn sie über was Positives spricht. Verändert sich ihre Körperhaltung, ihre Mimik/Gestik oder ihre Stimme? Was fällt dir auf? Tauscht euch im Anschluss in der Gruppe aus, wie es euch bei der Übung ergangen ist.",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m026",
+        "legacy_row_id": 26,
+        "name_de": "Body-Scan",
+        "short_description": "Anleitung: Achte darauf, dass du bequem sitzt oder liegst, die Arme liegen neben dem Körper oder liegen bequem auf den Oberschenkeln.",
+        "full_description": "Anleitung: Achte darauf, dass du bequem sitzt oder liegst, die Arme liegen neben dem Körper oder liegen bequem auf den Oberschenkeln. Beginne, tief ein und aus zu atmen. Schließe mit dem Ausatmen die Augen und komm langsam zur Ruhe. Sobald du merkst, dass deine Gedanken abschweifen, komme mit deiner Aufmerksamkeit und deiner Konzentration wieder zurück zur jeweiligen Körperregion. Beginne mit deinen Füßen. Fühle, an welchen Stellen die Füße den Boden oder die Unterlagen berühren und nimm deine Fersen, die Fußsohlen, die Zehen und den Fußspann ganz bewusst wahr. Spüre dann in deine Unterschenkel hinein, die Waden und die Schienbeine. Wandere dann mit deiner Aufmerksamkeit in die Knie, die Oberschenkel und fühle, wo die Oberschenkel die Unterlage oder den Stuhl berühren. Wandere dann mit deiner Konzentration in deinen Bauch. Atme tief in den Bauch hinein und dann spüre, wie sich deine Bauchdecke beim Atmen hebt und senkt. Fühle, wo der Rücken anliegt. Sind die unteren Rückenmuskeln entspannt? Überprüfe, ob die Schultern locker nach unten hängen. Dann lässt du die Gesichtsmuskeln entspannen, überprüfe, ob der Unterkiefer locker ist, ob die Augenlider ganz locker aufeinander aufliegen. Spüre danach in deine Arme hinein. Nimm wahr, an welchen Stellen deine Arme aufliegen und fühle in die Oberarme, die Ellenbogen, die Unterarme und in deine Finger hinein. Bereite dich dann darauf vor, die Übung abzuschließen. Mit einer der nächsten Ausatmungen öffnest du deine Augen wieder. Nimm einige tiefe Atemzüge und strecke und räkel dich.",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Ähnlich wie die Körperreise (#85), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. Besonders das Augenschließen wird nicht immer angenommen. Beim Einatmen werden gerne laute Geräusche gemacht.",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m027",
+        "legacy_row_id": 27,
+        "name_de": "Orchester (Body Percussion)",
+        "short_description": "TN stehen im Kreis.",
+        "full_description": "TN stehen im Kreis. Jedes Kind überlegt sich und übt als erstes einen Rythmus mit dem eigenen Körper (Body Percussion). Im Anschluss beginnt ein Kind im Kreis den Rythmus/Klang zu spielen und das Kind daneben steigt kurze Zeit später ein. Dies wird im Uhrzeigersinn weitergeführt, bis alle Kinder gemeinsam musizieren. Danach hören die Kinder der Reihe nach auf.\nVariation: Kinder, die aufhören zu spielen, schließen die Augen.",
+        "primary_purpose": "Konzentration",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m028",
+        "legacy_row_id": 28,
+        "name_de": "Dirigent*in",
+        "short_description": "1 Kind ist das Ratekind und geht aus dem Raum.",
+        "full_description": "1 Kind ist das Ratekind und geht aus dem Raum. 1 Kind ist Dirigent*in und gibt den anderen Kindern unauffällig Zeichen (wie ein*e Dirigent*in, z.B. mit den Armen kreisen). Alle anderen Kinder machen der Dirigent*in die Bewegungen nach (ohne zu offensichtlich auf die Dirigent*in zu schauen). Ratekind kommt zurück und muss raten, wer Dirigent*in ist.",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m029",
+        "legacy_row_id": 29,
+        "name_de": "Stille Reaktion",
+        "short_description": "TN sitzen auf ihren Stühlen (wichtig: genügend Platz).",
+        "full_description": "TN sitzen auf ihren Stühlen (wichtig: genügend Platz). WS-Leitung gibt verschiedene Anweisungen (z.B. Es stehen nur 5 Kinder, Es sitzen alle Kinder bis auf 2, etc.). TN müssen selbst entscheiden, wann sie aufstehen (können sich auch absprechen).",
+        "primary_purpose": "Kooperationsspiel",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m030",
+        "legacy_row_id": 30,
+        "name_de": "Wo bin ich?",
+        "short_description": "TN schließen Augen.",
+        "full_description": "TN schließen Augen. Timer (z.B. am Handy) wird auf ein paar Sekunden eingestellt und irgendwo im Raum hingestellt. Sobald Timer abgeht müssen TN mit geschlossenen Augen raten, wo der Timer steht.",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Timer",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m031",
+        "legacy_row_id": 31,
+        "name_de": "Ohrenspitzer",
+        "short_description": "TN schließen Augen.",
+        "full_description": "TN schließen Augen. WS-Leitung macht ein Geräusch (z.B. Papier zerknüllen, schnipsen, etc.). TN, die glauben zu wissen, was es ist, melden sich leise und mit geschlossenen Augen. Wenn TN richtig liegt, darf er*sie ein neues Geräusch machen.",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m032",
+        "legacy_row_id": 32,
+        "name_de": "Klassendedektiv*in",
+        "short_description": "1 Kind ist Dedektiv*in, muss sich im Raum alles genau anschauen und dann den Raum verlassen.",
+        "full_description": "1 Kind ist Dedektiv*in, muss sich im Raum alles genau anschauen und dann den Raum verlassen. Dann werden im Raum 3 Dinge um Raum bzw. an den TN verändert. Dedektiv*in kommt zurück und muss eraten, was verändert wurde.",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Gut funktioniert das auch mit Dedektiv-Teams aus 2 oder 3 Personen",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m033",
+        "legacy_row_id": 33,
+        "name_de": "Ich packe meinen Koffer (Stärken Edition)",
+        "short_description": "WS-Leitung beginnt mit: \"Ich packe meinen Koffer und nehme Ehrlichkeit mit\".",
+        "full_description": "WS-Leitung beginnt mit: \"Ich packe meinen Koffer und nehme Ehrlichkeit mit\". Nächste*r TN: \"Ich packe meinen Koffer und nehme Ehrlichkeit und Kreativität mit\" usw.",
+        "primary_purpose": "Konzentration",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m034",
+        "legacy_row_id": 34,
+        "name_de": "Zungenmörder*in",
+        "short_description": "1 Kind ist Ratekind und verlässt Raum.",
+        "full_description": "1 Kind ist Ratekind und verlässt Raum. 1 Kind ist Zungenmörder*n und mordet indem er*sie anderen die Zunge rausstreckt. Ratekind kommt zurück und muss raten, wer Zungenmörder*in ist.",
+        "primary_purpose": "Konzentration",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m035",
+        "legacy_row_id": 35,
+        "name_de": "Motzmauer / Klagemauer",
+        "short_description": "Als erstes wird eine Leitfrage formuliert, zu der Kritik gesammelt werden soll (z.B.",
+        "full_description": "Als erstes wird eine Leitfrage formuliert, zu der Kritik gesammelt werden soll (z.B. Was nervt euch, wenn ihr an eure Zukunft denkt? Was nervt euch an eurer Schule etc.). An die Tafel wird groß \"Motzmauer\" geschrieben. TN werden in Kleingruppen geteilt und erhalten Karteikarten. im ersten Durchlauf kann jede*r TN für sich Kritikpunkte aufschreiben (ein Kritikpunkt je Karteikarte). im zweiten Durchlauf tauschen sich TN in der Kleingruppe über die einzelnen Kritikpunkte aus und kleben sie anschließend an die Tafel.",
+        "primary_purpose": "Sammlung/Nennung von Kritik/Problemen/Negativem",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "mittel",
+        "preparation_level_source": "DESCRIPTION_EXPLICIT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m036",
+        "legacy_row_id": 36,
+        "name_de": "Entscheidungspyramide",
+        "short_description": "Die Methode filtert Themen, Bedürfnisse und Ideen.",
+        "full_description": "Die Methode filtert Themen, Bedürfnisse und Ideen. Teilnehmer/innen (TN) haben die Chance, eigne Ideen einzubringen. Sie können neue Blickwinkel entdecken und sind dadurch in der Lage, neue Ansichten und Per- spektiven zu entwickeln. Jede Person sammelt für sich Ideen zu einer bestimmten Fragestellung. Daraus sollen die drei für die einzelne Person wichtigsten Ideen aufgeschrieben werden. Nun finden sich die TN in Zweiergruppen zusammen. In den Pärchen werden aus den sechs Ideen die drei Wichtigsten ausgewählt, wobei die Entscheidung durch Diskussion und neue Meinungsbilder gefällt werden soll. Falls eine Synthese zweier Ideen sinnvoll ist, ist das durchaus möglich. Nur sollte darauf geachtet werden, unkompatible Ideen nicht gezwun- gen verschmelzen zu lassen.\nDieser Ablauf wird wiederholt, diesmal in einer Vierergruppe. Dabei werden wieder die drei wichtigsten Ideen ausgewählt. Das setzt sich solange fort, bis die komplette Gruppe die drei wichtigsten Ideen ausdiskutiert hat.",
+        "primary_purpose": "Die Methode unterstützt Gruppen bei Einigungsprozes- sen. Sie filtert aus einer Masse von Ideen",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m037",
+        "legacy_row_id": 37,
+        "name_de": "Entscheidungskreis",
+        "short_description": "Mit Hilfe des Entscheidungskreises werden gesammelte Ideen und Vorschläge anhand verschiedener Kriterien auf ihre Umsetzbarkeit geprüft.",
+        "full_description": "Mit Hilfe des Entscheidungskreises werden gesammelte Ideen und Vorschläge anhand verschiedener Kriterien auf ihre Umsetzbarkeit geprüft. In sechs Entscheidungsringen wird zu jedem Vorschlag jeweils eine Prüffrage gestellt. Bei positiver Beantwortung rückt der Vorschlag einen Ring weiter.\n- Ist diese Idee gut für Kinder?\n- Nützt sie uns Kindern?\n- Finden wir diese Idee sinnvoll?\n- Geht das?\n- Kann diese Idee funktionieren?(Ist diese Idee grundsätzlich technisch/fachlich realisierbar?)\n- Dürfen wir das? Ist das erlaubt? (Ist diese Idee grundsätzlich rechtlich machbar?)\n- Können wir (z.B. Gemeinde) das bezahlen? Haben wir dafür genug Geld? (Ist diese Idee grundsätzlich finanziell machbar?)\n- Schaffen wir das? Sind wir genug Leute? (Ist diese Idee personell machbar?)\n- Haben wir genug Zeit? Haben wir noch etwas davon oder erst die Kinder nach uns? (Ist diese Idee grundsätzlich zeitlich machbar?)",
+        "primary_purpose": "Ideen werden auf ihre Durchführbarkeit überprüft",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m038",
+        "legacy_row_id": 38,
+        "name_de": "Zukunftswerkstatt / Ideenwerkstatt",
+        "short_description": "Ich will genauer wissen, was Zukunftswerkstätten sind!",
+        "full_description": "Ich will genauer wissen, was Zukunftswerkstätten sind! – Robert Jungk Bibliothek JBZ",
+        "primary_purpose": "Ideen für Zukunft entwickeln",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m039",
+        "legacy_row_id": 39,
+        "name_de": "Der Weg in die Zukunft/Wunschvorstellung (für jüngere Kids)",
+        "short_description": "TN schreiben ihre Wünsche, Visionen, Ziele auf große Füße (Papier-Vorlage) - diese werden anschließend als \"Weg in die Zukunft auf den Bogen gelegt\".",
+        "full_description": "TN schreiben ihre Wünsche, Visionen, Ziele auf große Füße (Papier-Vorlage) - diese werden anschließend als \"Weg in die Zukunft auf den Bogen gelegt\". Wichtig: auf gleiche Anzahl an linken und rechten Füßen achten.",
+        "primary_purpose": "eigene Visionen festhalten",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m040",
+        "legacy_row_id": 40,
+        "name_de": "Zoo der Stärken",
+        "short_description": "Anleitung: Ich will, dass sich jetzt jeder von euch folgendes vorstellt: Ihr steht vor einem riesigen goldenen Tor.",
+        "full_description": "Anleitung: Ich will, dass sich jetzt jeder von euch folgendes vorstellt: Ihr steht vor einem riesigen goldenen Tor. Und auf diesem Tor ist ein grooooßes Schild auf dem steht „Zoo der Stärken“. Also ihr wisst schon mal, dass ihr in einen Zoo geht. Ihr macht das Tor auf, geht hinein und sieht den schönsten Zoo den ihr je gesehen habt, das kann im Winter, Sommer, Frühling oder Herbst sein. Ihr seht euch ein wenig um und bemerkt, dass genau in der Mitte des Zoos ein riesiger Ausstellungsraum ist. Ihr geht in den Ausstellungsraum und merkt sofort, dieser Raum ist nicht so wie man sich einen Ausstellungsraum vorstellt. Hier hängt nämlich kein Bild und es steht auch keine Statue, sondern in diesem Raum ist das Ausstellungsstück die Person, die neben euch sitzt. Und er*sie kann machen was auch immer ihr euch vorstellt. Wie bei jedem Ausstellungsstück, gibt es auch bei eurem*eurer Sitznachbar*in ein Schild, dass sie*ihn beschreibt. Und ich will jetzt von euch, dass ihr euch vorstellt, welche von den 24 Charakterstärken am besten in diese Beschreibung passen. Und während ihr über die Stärken nachdenkt, sucht euch für jede Stärke ein genaues Beispiel aus, wann eure*eurer Sitznachbar*in diese Stärke gezeigt hat. Wann war er*sie umsichtig oder ehrlich? Ich gebe euch noch ein bisschen Zeit darüber nachzudenken und dann wecke ich euch wieder auf",
+        "primary_purpose": "Phantasieanregend",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Wichtig: Erst TN dazu bringen, eine angenehme Sitzposition einzunehmen (z.B. \"Stelle als erstes beide Beine auf den Boden und spüre den Boden, lege dann beide Ellbogen auf den Tisch, verschränke deine Arme und leg deinen Kopf auf die verschränkten Arme. Atme einmal tief ein und aus. und schließe dann die Augen\")",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m041",
+        "legacy_row_id": 41,
+        "name_de": "Museum der Stärken",
+        "short_description": "Anleitung: Im folgenden Gedächtnisexperiment habt ihr die Möglichkeit herauszufinden, was eure Stärken sind.",
+        "full_description": "Anleitung: Im folgenden Gedächtnisexperiment habt ihr die Möglichkeit herauszufinden, was eure Stärken sind. Schließt dazu bitte die Augen und entspannt euch. [Licht wird ausgemacht und TN schließen Augen] Atmet einmal tief ein und aus. Stellt euch vor ihr geht ins Museum. In diesem Museum hängen viele schöne Bilder von berühmten Künstler*innen. Ihr spaziert gemütlich rum und bleibt plötzlich vor einem Portrait stehen, weil euch die Person die auf dem Bild abgebildet ist bekannt vor kommt. Ihr schaut genauer und seht dann, dass es ein Portrait der Person ist, die gerade neben euch in der Klasse sitzt! Unter dem Bild seht ihr eine kleine Beschreibung hängen, auf der nicht nur der Name der Person, sondern auch drauft steht, was die Person gut kann, also ihre Stärken! Was steht da drauf? Überlegt mal! ...\nÖffnet die Augen und schreibt den Namen von der Person neben euch auf die Karte und kringelt dann ihre Stärken (max. 5) auf der Hinterseite ein. Im Anschluss tauscht ihr die Karten aus und erklärt, warum ihr diese oder jene Stärke eingekringelt habt.",
+        "primary_purpose": "Phantasieanregend",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m042",
+        "legacy_row_id": 42,
+        "name_de": "Obstsalat",
+        "short_description": "Wir setzen oder stellen uns auf markierten Plätzen im Kreis.",
+        "full_description": "Wir setzen oder stellen uns auf markierten Plätzen im Kreis. Jeder erhält eine Obstsorte, beispielsweise durch Abzählen. Ein*e Spieler*in stellt sich in die Mitte und ruft eine dieser Obstsorten. Jeder betroffene Mitspieler*in verlässt seinen Platz und sucht sich einen anderen freien. Wer keinen Platz ergattert, geht in die Mitte und ruft das nächste Obst auf.\nVariationen: Gemeinsamkeiten, Eigenschaften, Interessen, Tiere,....",
+        "primary_purpose": "Warm-Up",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "ggf. Karten mit Obstsorten (kann aber auch mündlcih zugeteilt werden)",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m043",
+        "legacy_row_id": 43,
+        "name_de": "Stofftier weitergeben Spiel",
+        "short_description": "im Sitzkreis: TN müssen sich mit den Füßen ein Stofftier weitergeben, ohne dass dieses auf den Boden fällt.",
+        "full_description": "im Sitzkreis: TN müssen sich mit den Füßen ein Stofftier weitergeben, ohne dass dieses auf den Boden fällt. Ansonsten muss wieder von vorne gestartet werden. Variation: die ganze Gruppe darf mithelfen.",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Stofftier",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m044",
+        "legacy_row_id": 44,
+        "name_de": "Komplimentekette",
+        "short_description": "Im Plenum klären was ein Kompliment ist und wie es sicht anfühlt, eines zu bekommen.",
+        "full_description": "Im Plenum klären was ein Kompliment ist und wie es sicht anfühlt, eines zu bekommen.\nStärken-als-Adjektive-Karten und leere Zettel und Stifte in Mitte legen. Dann haben TN Zeit, für die Person neben ihnen ein Adjektiv auszusuchen und zu überlegen, warum diese Karte zu ihm*ihr passt. Danach geben sich TN im Kreis der Reihe nach Feedback. Mögliche Satzanfänge: \"Ich finde, du warst in diesem WS sehr XX (z.B. mutig), weil,... Ich mag an dir, dass..., Schön dass du in dieser Gruppe bist, weil..., (ggf. auf Tafel mitschreiben)\nReflexion im Plenum: Wie war ein ein Kompliment zu bekommen?",
+        "primary_purpose": "Feedback geben",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Stärken als Adjektive-\nKarten,\nleere Zettel,\nStifte",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m045",
+        "legacy_row_id": 45,
+        "name_de": "Stärken-Tiere",
+        "short_description": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt.",
+        "full_description": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt. Danach Einzelne der Reihe um fragen: Wie heißt du? Warum wärst du dieses Tier? Welche Eigenschaften/Stärken hat dieses Tier? Hast du die auch? Bei einzelnen TN auf jew. Stärken genauer eingehen bzw. bestimmte Stärken erklären; ggf. Klasse in 2 Gruppen teilen (bei großen Klassen)",
+        "primary_purpose": "Selbstwahrnehmung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Tier-Bilder (Fotos)",
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Doppelter Methodentitel im Import; als eigener Datensatz belassen, weil sich Details unterscheiden."
+      },
+      {
+        "method_id": "m046",
+        "legacy_row_id": 46,
+        "name_de": "Klatschspiel",
+        "short_description": "Eine WS-Leitung stellt sich vor die Gruppe und erklärt das Ziel: Alle TN müssen es schaffen gleichzeitig mit der WS-Leitung zu klatschen.",
+        "full_description": "Eine WS-Leitung stellt sich vor die Gruppe und erklärt das Ziel: Alle TN müssen es schaffen gleichzeitig mit der WS-Leitung zu klatschen. Schaffen sie es, gewinnen sie.",
+        "primary_purpose": "Konzentration",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "TN freuen sich, selber die Leitungsrolle einzunehmen",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m047",
+        "legacy_row_id": 47,
+        "name_de": "Gefühlskarten",
+        "short_description": "Gefühlskarten (z.B.",
+        "full_description": "Gefühlskarten (z.B. Gefühlsmonster) werden auf dem Boden verteilt und TN werden aufgefordert, sich zu der Karte zu stellen, die ihren Gemütszustand beschreibt. Dann einzelne TN fragen, ob sie sich dazu äußern wollen.",
+        "primary_purpose": "Gefühle einordnen und benennen",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Gefühlskarten (z.B. Gefühlsmonster)",
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m048",
+        "legacy_row_id": 48,
+        "name_de": "Befindlichkeitsrunde mit Gegenständen",
+        "short_description": "TN werden aufgefordert einen Gegenstand zu suchen, der zu ihrem derzeitigen Gemütszustand passt.",
+        "full_description": "TN werden aufgefordert einen Gegenstand zu suchen, der zu ihrem derzeitigen Gemütszustand passt. Danach können einzelne TN was dazu sagen, wenn sie wollen.",
+        "primary_purpose": "Befindlichkeitsrunde",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m049",
+        "legacy_row_id": 49,
+        "name_de": "Anspannung mit Gummiband",
+        "short_description": "Jede*r TN erhält ein Gummiband und soll anhand diesem seine*ihre Anspannung visualisieren (z.B.",
+        "full_description": "Jede*r TN erhält ein Gummiband und soll anhand diesem seine*ihre Anspannung visualisieren (z.B. voll angespannt, oder springt weg oder lasch)",
+        "primary_purpose": "Gefühle/Anspannung einordnen und benennen",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Gummibänder",
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m050",
+        "legacy_row_id": 50,
+        "name_de": "Ressourcenlandkarte / Kraftlandkarte",
+        "short_description": "TN erhalten ein großes Batt Papier (z.B.",
+        "full_description": "TN erhalten ein großes Batt Papier (z.B. A3) und werden ermutigt, auf dieses alles zu schreiben/malen, was ihnen Kraft gibt (bzw. Dinge, die in ihnen stecken und die ihnen helfen, das Leben zu meistern, z.B. Fähigkeiten, Erfahrungen, Kenntnisse, Menschen, Tiere, uvm.). Bei der Gestaltung gibt es keine Grenzen. Bei Bedarf kann in die Mitte \"Meine Kraftlandkarte\" o.ä. geschrieben werden",
+        "primary_purpose": "Ressourcenaktivierung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Papier, Stifte",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m051",
+        "legacy_row_id": 51,
+        "name_de": "Ressourcendusche",
+        "short_description": "TN werden ermutigt, auf kleine Papierschnipsel (oder Post-its) zu schreiben, wer oder was ihnen Kraft spendet, z.B.",
+        "full_description": "TN werden ermutigt, auf kleine Papierschnipsel (oder Post-its) zu schreiben, wer oder was ihnen Kraft spendet, z.B. persönliche Stärken/Fähigkeiten, Dinge, die man gerne tut, Menschen, die für einen da sind, etc. (ein Gedanke je Post-it!). Danach werden TN in 2er-Teams eingeteilt. 1 TN nimmt die Post-its der anderen Person, stellt sich auf einen Stuhl und lässt die Post-its einzln auf die andere Person \"regnen\" (liest sie dabei ggf. laut vor).",
+        "primary_purpose": "Ressourcenaktivierung",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Papier, Stifte, Scheren",
+        "facilitator_notes": null,
+        "source_notes": "Arbeit in 2er-Teams explizit genannt.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": 2,
+        "group_size_max": 2,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m052",
+        "legacy_row_id": 52,
+        "name_de": "Buch über mein Leben",
+        "short_description": "Ein Buch/Comic über dein Leben - wie würde der Titel lauten?",
+        "full_description": "Ein Buch/Comic über dein Leben - wie würde der Titel lauten?\nWenn du ein*e Superheld*in wärst - wie würdest du heißen?\nWenn du in einer Band spielen würdest - wie würde sie heißen?\nEin Werbeplakat über dich - wie würde es aussehen? (kann auch gestaltet werden)",
+        "primary_purpose": "Selbstwahrnehmung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "DESCRIPTION_EXPLICIT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m053",
+        "legacy_row_id": 53,
+        "name_de": "Steckbrief / Kraft-Namen Generator",
+        "short_description": "TN benötigen Papier und Stifte.",
+        "full_description": "TN benötigen Papier und Stifte. Trainer*innen leiten TN an, folgende Dinge aufzuschreiben:\n1. Wie heißt du? Was ist dein Spitzname? Wie willst du genannt werden? Hat dein Namen eine Bedeutung?\n2. Was ist deine Lieblingsfarbe?\n3. Welche positive Eigenschaft macht dich aus? (können auch mehrere sein)\n4. Was für ein Tier wärst du? (kann auch gezeichnet werden)\n5. Was sind deine Hobbys?\n(6. Was findest du voll langweilig?)\n\nIm Anschluss werden TN ermutigt, aus all diesen Begriffen einen eigenen Kraftnamen bzw. Superheld*innen-Namen zu entwickeln (Beispiel: \"Selma, die mutige Löwin\"). Dabei ist der Kreativität keine Grenzen gesetzt. Die Begriffe können auch auf Englisch sein. Oder es wird ein neues Wort erfunden.\nEinzelne TN können freiwillig ihre Namen vorstellen.",
+        "primary_purpose": "Stärken an sich selber entdecken",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Papier, Stifte",
+        "facilitator_notes": "Alternativ: TN gestalten eigenes Wappen mit den Begriffen",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m054",
+        "legacy_row_id": 54,
+        "name_de": "Spiel des Lebens (Bilder verunstalten)",
+        "short_description": "TN erhalten ein Blatt Papier und werden aufgefordert ein Bild zu zeichnen, das ihnen gefällt (oder einen Gegenstand zu zeichnen, der ihnen gefällt).",
+        "full_description": "TN erhalten ein Blatt Papier und werden aufgefordert ein Bild zu zeichnen, das ihnen gefällt (oder einen Gegenstand zu zeichnen, der ihnen gefällt). Im nächsten Schritt sollen sie es komplett verunstalten. Und dann wieder versuchen, was schönes daraus zu malen.\nAlternativ: TN arbeiten in 2er Gruppen und tauschen Bilder nach jedem Schritt aus; WS-Leitung malt etwas an die Tafel, das TN dann verunstalten und wieder verschönern können.",
+        "primary_purpose": "Lösungsorientierung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Funktioniert gut, wenn es funktioniert!",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m055",
+        "legacy_row_id": 55,
+        "name_de": "Soziales Gefüge Landkarte",
+        "short_description": "TN erhalten ein großes Blatt Papier und werden ermutigt, das eigene soziale Gefüge zu visualisieren.",
+        "full_description": "TN erhalten ein großes Blatt Papier und werden ermutigt, das eigene soziale Gefüge zu visualisieren. Leitfragen könnten z.B. sein: Welche Personen gibt es in deinem Leben? Welche Personen sind da, wenn es dir schlecht geht? Bei wem kannst du Hilfe holen? etc.",
+        "primary_purpose": "Soziales Netzwerk visualisieren",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "DESCRIPTION_EXPLICIT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m056",
+        "legacy_row_id": 56,
+        "name_de": "Gordischer Knoten",
+        "short_description": "Beim Teamspiel Gorderischer Knoten steht eine Gruppe von Spieler*innen dicht beisammen im Kreis, jeder streckt die Arme nach vorne aus und gibt einem anderen aufs Geratewohl die Hände; au...",
+        "full_description": "Beim Teamspiel Gorderischer Knoten steht eine Gruppe von Spieler*innen dicht beisammen im Kreis, jeder streckt die Arme nach vorne aus und gibt einem anderen aufs Geratewohl die Hände; auf diese Weise ist die ganze Gruppe miteinander „verknotet“. Jetzt heißt es „entknoten“, aber ohne dass irgendjemand irgendwann die gefasste Hand loslassen würde. Die Aufgabe ist gelöst, wenn sämtliche Spieler*innen wieder im Kreis stehen und die (beim Verknoten erwischten) Hände gefasst halten.\nBeim Verknoten darf nicht die Hand des*der Nachbar*in genommen werden. Und es dürfen die eigenen Hände bzw. Unterarme selbst nicht über Kreuz gereicht werden.",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Nicht besonders Covid-freundlich :)",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m057",
+        "legacy_row_id": 57,
+        "name_de": "Resilienz-Stories",
+        "short_description": "WS-Leitung liest eine Geschichte vor, in der eine Person resilient ist.",
+        "full_description": "WS-Leitung liest eine Geschichte vor, in der eine Person resilient ist. Anhand dieser wird in der Klasse eine Diskussion angeregt.\nAlternativ: Resilienz-Geschichte aus der Natur.",
+        "primary_purpose": null,
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Purpose-Spalte im Import leer; Inhalt und Tags sind vorhanden."
+      },
+      {
+        "method_id": "m058",
+        "legacy_row_id": 58,
+        "name_de": "Gute Laune/miese Laune Plakat / Sonne/Regen Plakat",
+        "short_description": "TN erhalten ein Blatt Papier.",
+        "full_description": "TN erhalten ein Blatt Papier. Auf dieses zeichnen sie auf der linken Seite eine Regenwolke und auf die rechte Seite eine Sonne. Dann schreiben sie erst auf die linke Seite alles auf, was ihnen miese Laune macht. Danach schreiben sie auf dir rechte Seite alles auf, was ihnen gute Laune macht.",
+        "primary_purpose": "Gefühle benennen",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "DESCRIPTION_EXPLICIT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m059",
+        "legacy_row_id": 59,
+        "name_de": "Froh und traurig Runde",
+        "short_description": "TN bilden einen Kreis.",
+        "full_description": "TN bilden einen Kreis. 1 TN beginngt und sagt etwas, das sie*ihn besonders fröhlich/glücklich macht. Im Uhrzeigersinn sagt dann jede*r TN etwas, was sie*ihn glücklich macht. Das geht so lange weiter, bis eine*r TN nichts mehr einfällt. Dann startet die nächste Runde mit Dingen, die traurig machen.\nIm Anschluss Reflexionsrunde: Gibt es Dinge, die manche fröhlich machen und manche gar nicht? --> alle Gefühle sind legitim, sowohl die positiven als auch die negativen und es ist wichtig, sie auszusprechen",
+        "primary_purpose": "Gefühle benennen",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m060",
+        "legacy_row_id": 60,
+        "name_de": "Resilienz Schwamm/ / Wackel-/Drückfiguren",
+        "short_description": "Anhand von einem Schwamm oder einer Wackelfigur wird abstrakt Resilienz erklärt: Resilienz kommt aus dem Lateinischen und heißt \"zurückspringen\".",
+        "full_description": "Anhand von einem Schwamm oder einer Wackelfigur wird abstrakt Resilienz erklärt: Resilienz kommt aus dem Lateinischen und heißt \"zurückspringen\". In der Werkstoffkunde sind Materialien resilient, wenn sie in den ursprünglichen Zustand zurückkehren können, wie z.B. dieser Schwamm/diese Wackelfigur.",
+        "primary_purpose": "Resilienz erklären",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m061",
+        "legacy_row_id": 61,
+        "name_de": "Vertrauensübungen",
+        "short_description": "Die Teilnehmenden stellen sich in Kreisen zu 5-8 Personen auf.",
+        "full_description": "Die Teilnehmenden stellen sich in Kreisen zu 5-8 Personen auf. Eine Person stellt sich in die Mitte, schließt die Augen, und lässt sich in eine beliebige Richtung fallen. Die im Kreis verbleibenden TN stoßen die fallende Person sanft zurück in die Mitte. Funktioniert nur, wenn die Person in der Mitte wirklich loslässt und vertraut. Achtung, Kreis nicht zu weit machen! Variante: zu zweit, dann nach hinten fallen lassen, abwechseln.",
+        "primary_purpose": "Vertrauen in andere",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Ausreichend Platz",
+        "facilitator_notes": null,
+        "source_notes": "Gruppengroesse 5-8 Personen explizit genannt. | Kreisgroesse 5-8 Personen explizit genannt. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal. | Kreisgroesse 5-8 Personen explizit in der Beschreibung.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": 5,
+        "group_size_max": 8,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m062",
+        "legacy_row_id": 62,
+        "name_de": "Selbstvertrauen Körperübungen",
+        "short_description": null,
+        "full_description": null,
+        "primary_purpose": null,
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "unvollstaendig",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Beschreibung, Zweck und Material fehlen im Import."
+      },
+      {
+        "method_id": "m063",
+        "legacy_row_id": 63,
+        "name_de": "Die 5-4-3-2-1-Übung",
+        "short_description": "TN werden ermutigt, es sich bequem zu machen.",
+        "full_description": "TN werden ermutigt, es sich bequem zu machen. Anleitung durch WS-Leitung: Konzentriere dich nun auf alles, was gerade um dich herum passiert, was du siehst, hörst und spürst. Fange jetzt damit an dir 5 mal im Kopf zu sagen, was du siehst, danach sagst du dir 5 mal im Kopf was du hörst (...5 mal spüren/anfassen...5 mal riechen....5 mal schmecken). Dann machst du dasselbe 4 mal, dann 3 mal, dann 2 mal, dann einmal. Es ist wurst, wenn du dieselben Dinge siehst, hörst, riechst etc.\n(Manche Bereiche fallen einfacher, als andere, das ist normal. TN können auch Augen schließen, wenn sie wollen)",
+        "primary_purpose": "Achtsamkeit",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m064",
+        "legacy_row_id": 64,
+        "name_de": "Innere hilfreiche Wesen",
+        "short_description": "Anleitung: Was passiert in deinem Körper, wenn du dich verletzt und eine Wunde hast?",
+        "full_description": "Anleitung: Was passiert in deinem Körper, wenn du dich verletzt und eine Wunde hast? Dein Körper schafft es ganz von alleine, diese wieder zu reparieren. Denn dein Körper ist ein Wunderwerk, überlege mal, zu was er alles fähig ist! Er wächst von einem kleinen, hilflosen Baby zu einem erwachsenen Menschen heran, er kann gehen, sprechen, das Herz schlägt von alleine etc. Stell dir nun vor, dass in deinem Körper viele kleine hilfreiche Wesen sind, die all dies möglich machen. Wie sehen diese aus? Könntest du auch bei anderen Probleme diese kleine Wesen um Hilfe bitten? Überlege dir, wie sie dir helfen könnten, welchen Rat sie dir geben würden! überlege auch, wie du die kleinen Wesen unterstützen könntest.",
+        "primary_purpose": "Vertrauen in den eigenen Körper",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m065",
+        "legacy_row_id": 65,
+        "name_de": "Ich werd's schaffen",
+        "short_description": "TN werden aufgefordert, sich zu überlegen, welche Herausforderungen oder Krisen (klein und groß) sie im Leben schon erlebt haben.",
+        "full_description": "TN werden aufgefordert, sich zu überlegen, welche Herausforderungen oder Krisen (klein und groß) sie im Leben schon erlebt haben. Als nächstes sollen sie sich überlegen, was ihnen dabei geholfen hat diese zu meistern. Dabei sollen sie die Überlegungen auf beliebige Art auf Papier bringen (z.B. A4 Blatt gestalten).",
+        "primary_purpose": "Selbstvertrauen",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Papier, Stifte",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m066",
+        "legacy_row_id": 66,
+        "name_de": "Wer hat Recht?",
+        "short_description": "TN arbeiten in 2er Teams.",
+        "full_description": "TN arbeiten in 2er Teams. WSL hat mehrere (einfache) Begriffe zur Auswahl und wählt einen davon aus (z.B. Haus, Blume, ...). TN müssen sich dann gegenseitig anleiten, den Begriff zu zeichnen. Dabei hat immer 1 TN ein Blatt Papier vor sich und der*die andere TN sagt an, z.B: \"Zeichne einen Strich unten rechts, der von oben nach unten geht\". Dann wechseln sie die Rollen. Wichtig: Es dürfen nur einzelne Zeichen, wie Striche, Bögen, Ecken, etc. angesagt werden, keine vollständigen Symbole.\nReflexion: Wie ist es euch dabei gegangen? Wer hatte Recht?",
+        "primary_purpose": "Lösungsorientierung",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Papier, Stifte",
+        "facilitator_notes": null,
+        "source_notes": "Arbeit in 2er-Teams explizit genannt. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": 2,
+        "group_size_max": 2,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m067",
+        "legacy_row_id": 67,
+        "name_de": "Handgelenk an Handgelenk",
+        "short_description": "TN stehen sich gegenüber, sodass sich sich gut an den Handgelenken fassen können.",
+        "full_description": "TN stehen sich gegenüber, sodass sich sich gut an den Handgelenken fassen können. Dabei sollten sie nicht zu nah und nicht zu weit weg voneinander stehen. Dann greifen sie sich Handgelenk an Handgelenk und lehnen sich soweit zurück wie möglich. Wichtig: sie müssen sich noch gut halten können. Variation: TN versuchen, sich nur mit einer Hand in Balance zu halten.",
+        "primary_purpose": "Vertrauen in andere",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "DESCRIPTION_EXPLICIT",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m068",
+        "legacy_row_id": 68,
+        "name_de": "Finde jemanden....",
+        "short_description": "TN erhalten Arbeitsblatt mit verschiedenen Beispielen (z.B.",
+        "full_description": "TN erhalten Arbeitsblatt mit verschiedenen Beispielen (z.B. Finde jemanden, der*die im März Geburtstag hat; ... lustige Witze erzählt; ....gut in Mathe ist;... etc etc). Dann begeben sie sich, durch das Klassenzimmer wandernd, auf die Suche nach einem\nanderen Kind, das bestimmte Dinge hat, tut, sieht, spielt ... Wenn sie ein Kind gefunden haben, auf das diese Aussage zutrifft, schreiben sie dessen Namen in den jeweiligen Rahmen.\nDanach fragen sie weitere Kinder, so lange bis sie alle Rahmen mit Namen gefüllt haben.\nReflexion: z.B. Wie erkennt man, dass jemand XY kann, hat, gerne macht? (Thema Gruppenzugehörigkeit)",
+        "primary_purpose": "Visualisierung von Ressourcen in der Klasse",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Arbeitsblatt",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m069",
+        "legacy_row_id": 69,
+        "name_de": "Tauschmarkt der Talente",
+        "short_description": "Im Sesselkreis: Im ersten Schritt überlegt sich jede*r TN für sich, welche Fähigkeiten und Stärken er*sie zu haben glaubt oder einfach, was er*sie besonders gut kann.",
+        "full_description": "Im Sesselkreis: Im ersten Schritt überlegt sich jede*r TN für sich, welche Fähigkeiten und Stärken er*sie zu haben glaubt oder einfach, was er*sie besonders gut kann. Der*die Trainer*in sollte erwähnen, dass es dabei vielleicht auch um Qualitäten wie ‛zuhören können”, ‛über sich selbst lachen können”, ‛Hilfsbereitschaft” etc. geht. In der Mitte des Sesselkreises wird nun ein ganz spezieller Markt (Basar) eröffnet: Da gibt es nichts zu kaufen sondern nur zu tauschen. Diese Tauschgüter sind allerdings nicht materieller Natur sondern eben Eigenschaften, Stärken, Fähigkeiten, Qualitäten. Der*die Trainer*in selbst eröffnet das Spiel, indem er*sie den Marktplatz betritt und seine*ihre ‛Ware” anbietet. Das könnte zB so aussehen: ‛Ich habe 100 Gramm Ordnungssinn anzubieten. Davon habe ich genug. Wer tauscht mit mir? Ich könnte ein paar Gramm ‛Schlampigkeit” brauchen. Wer hat da vielleicht genug oder gar zuviel davon?”\nFalls sich niemand findet, der zum Tauschen bereit ist, besteht die Möglichkeit, direkt auf jemanden zuzugehen, von dem man annimmt, dass er*sie die gewünschte Qualität besitzt.\nErfahrungsgemäß kommt das Spiel ‛schnell in Fahrt”. Wichtig ist, dass nur Ressourcen und Stärken und nicht ‛Defizite” gehandelt werden, und – wenn möglich – alle TN ins Spiel integriert werden, denn: Stärken zum Anbieten hat jeder (der*die Trainer*in sollte auf die ‛Vergessenen” achten und sie ins Spiel bringen). Zu beachten ist jedoch, dass niemand gegen seinen Willen mitspielen soll. Nach dem ersten Tauschhandel geht es stafettenmäßig weiter: Nun ist der*die zum Tauschen eingeladene TN dran, selbst seine ‛Ware” anzubieten und mit jemand ‛ins Geschäft zu kommen”.\nVariation:\nMit jemandem ‛sofort ins Geschäft zu kommen“, indem man ihm seine ‛Ware“ zeigt und fragt, ob\ner*sie was davon gebrauchen könnte und was er dafür anzubieten habe. Dabei wird Empathiefähigkeit geübt, geht es doch darum, den anderen und seine Stärken zu (er)kennen.",
+        "primary_purpose": "Eigene Stärken und Stärken von anderen erkennen",
+        "group_form": "Gemeinschaft",
+        "duration_min": 30,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Die Übung eignet sich auch gut als Warming-up oder auch Schlusspunkt für und von Gruppenaktivitäten. Weiteres Material wird nicht benötigt.\n30 Min. oder mehr",
+        "source_notes": "Quelle nennt 30 Min. oder mehr; nur die Untergrenze 30 wurde uebernommen. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Dauer in der Quelle offen nach oben."
+      },
+      {
+        "method_id": "m070",
+        "legacy_row_id": 70,
+        "name_de": "Zeitmaschine",
+        "short_description": "1.",
+        "full_description": "1. Blick in die Vergangenheit: Was würdest du dir selbst vor exakt 2 Jahren (kurz vor der Pandemie) raten? Was würdest du der Gruppe raten?\n2. Blick in die Zukunft: Was würdest du deinem zukünftigen Ich gerne sagen?",
+        "primary_purpose": null,
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Purpose-Spalte im Import leer; Zuordnung nur ueber Tags und Beschreibung."
+      },
+      {
+        "method_id": "m071",
+        "legacy_row_id": 71,
+        "name_de": "Schere-Stein-Papier bzw. / Schnick-Schnack- / Schnuck für Gruppen",
+        "short_description": "Zwei Gruppen stehen einander entlang der Mittellinie (kann imaginär sein) des Spielfeldes gegenüber.",
+        "full_description": "Zwei Gruppen stehen einander entlang der Mittellinie (kann imaginär sein) des Spielfeldes gegenüber. Alle gemeinsam zählen bis drei. Auf drei spielt jede Gruppe die Figur (mit Bewegung, Geräusch, etc.), auf die sie sich vorher geeinigt haben. z.B.: Maus, Katze, Mensch. Maus macht miep miep, Katze mach ein Fauchgeräusch und Mensch macht eine Streichel-Geste. Nun fürchtet sich immer eine Figur vor einer anderen und wird so \"geschlagen\", z.B. Maus schlägt Mensch, Katze schlägt Maus, und Mensch schlägt Katze. Verliert eine Gruppe so muss ein*e Spieler*in aus dieser Gruppe zur anderen wechseln. Am Ende gewinnt die Gruppe mit den meisten Personen. Anmerkung: Die Figuren können entweder vorher durch die Spielleitung festgelegt werden oder die TN erfinden eigene Charaktere!",
+        "primary_purpose": "Auflockerung",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Wichtig: Den Gruppen genug Tuschelzeit geben, wenn sie sich für eine Figur bzw. Spielzug entscheiden. ggf. dazu schauen, dass sie sich nicht gegenseitig hören bzw. sehen!",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m072",
+        "legacy_row_id": 72,
+        "name_de": "Klassenbatterie",
+        "short_description": "Trainer*innen zeichnen große leere (Klassen)Batterie an Tafel.",
+        "full_description": "Trainer*innen zeichnen große leere (Klassen)Batterie an Tafel. TN sollen sich dann überlegen, wie sie einzeln dazu beitragen können, die Batterie wieder zu laden. TN schreiben entweder selbst an der Tafel mit (+Name) oder rufen des den Trainer*innen zu, die dann die Batterie mit den Ressourcen der TN füllen.",
+        "primary_purpose": "Klassenresilienz",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m073",
+        "legacy_row_id": 73,
+        "name_de": "Egg Drop (outdoor)",
+        "short_description": "In Kleingruppen/outdoor: Jede Gruppe bekommt ein Ei (roh oder gekocht) und die Aufgabe innerhalb einer gewissen Zeitspanne (z.B.",
+        "full_description": "In Kleingruppen/outdoor: Jede Gruppe bekommt ein Ei (roh oder gekocht) und die Aufgabe innerhalb einer gewissen Zeitspanne (z.B. 15/20/30 Min.) das Ei mit Materialien/Dingen, die sie draußen finden (z.B. Gras, Zweige, etc.), so einzupacken, damit es bei einen Fall aus einiger Höhe nicht zerbricht.",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Als Durchführungsort eignet sich ein Park",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "aussen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Zeitspanne in der Beschreibung nur als variables Beispiel 15/20/30 Min. genannt."
+      },
+      {
+        "method_id": "m074",
+        "legacy_row_id": 74,
+        "name_de": "Wasserflaschen Challenge (outdoor)",
+        "short_description": "TN werden in 2 gleich große Gruppen aufgeteilt.",
+        "full_description": "TN werden in 2 gleich große Gruppen aufgeteilt. Jede Gruppe erhält 2 gleichgroße Plastikflaschen, eine ist leer und eine voll gefüllt mit Wasser. Sobald der*die Trainer*in ein \"GO\" gibt müssen beide Gruppen versuchen, die Flaschen so schnell wie möglich rundum umzufüllen. Eine Person beginnt und leert das Wasser der vollen Flasche in die leere Flasche, die die Person links daneben in der Hand hält, diese füllt das Wasser dann in die leere Flasche, die die Person links daneben nun hält, usw. Welche Mannschaft war die schnellste Mannschaft und hat dabei noch das meiste Wasser in der Flasche?",
+        "primary_purpose": "Teamspiel",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": "Als Durchführungsort eignet sich ein Park",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "aussen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m078",
+        "legacy_row_id": 78,
+        "name_de": "Superhero",
+        "short_description": "TN kreieren anhand des Superhero Arbeitsblatts einen eigenen Stärken-Superhero",
+        "full_description": "TN kreieren anhand des Superhero Arbeitsblatts einen eigenen Stärken-Superhero\nWelche*r Superherld*in wärt ihr? Wie würde er*sie aussehen? Und welche positiven Eigenschaften hat er*sie? (ggf. TN in einem ersten Schritt eigene Stärken aufschreiben und dann anhand dieser die Superheld*in gestalten lassen)",
+        "primary_purpose": "Selbstwahrnehmung",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Arbeitsblatt",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "mittel",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m079",
+        "legacy_row_id": 79,
+        "name_de": "In einer Klasse/Freund*innenschaft (etc.) ist mir wichtig, dass...",
+        "short_description": "Variation von Obstsalat bzw.",
+        "full_description": "Variation von Obstsalat bzw. Alle, die...Sitzkreis, es gibt einen Stuhl weniger als anwesende Personen. Eine Person steht in der Mitte und sagt z.B. In der Klasse ist mir wichtig, dass wir einander zuhören --> Alle, auf die das zutrifft, müssen Plätze tauschen, die Person in der Mitte versucht, einen Platz zu erwischen. Nun steht eine neue Person in der Mitte und muss sich überlegen, was ihr wichtig ist. ALTERNATIV: Kann auch zum Thema Freund*innenschaft etc. gemacht werden",
+        "primary_purpose": "Aktivierung",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "DESCRIPTION_EXPLICIT",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m080",
+        "legacy_row_id": 80,
+        "name_de": "Begrüßungs-Klischees",
+        "short_description": "Eignet sich gut als Einstiegsübung: TN spazieren durch den Raum und betrachten achtsam, wer ihnen entgegenkommt, wer heute noch da ist, was sie sehen etc.",
+        "full_description": "Eignet sich gut als Einstiegsübung: TN spazieren durch den Raum und betrachten achtsam, wer ihnen entgegenkommt, wer heute noch da ist, was sie sehen etc. Auf Kommando der WS_Leitung müssen sie sich auf eine bestimmte Art begrüßen: zu Beginn einfach mit einem Händeschütteln, mit einem Handschlag etc., dann wird es schwieriger. Ideen: Begrüßt euch, wie...Geschöftspartner*innen, Tik-Tok-Stars, Influencer, Könige/König*innen, Geheimagent*innen, Beste Freund*innen, die sich seit Jahren nicht gesehen haben...",
+        "primary_purpose": "Aktivierung",
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": 5,
+        "materials": null,
+        "facilitator_notes": "dauert maximal 5 Minuten",
+        "source_notes": "Notiz nennt dauert maximal 5 Minuten; nur die Obergrenze wurde uebernommen. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": true,
+        "uncertainty_note": "Quelle beschreibt eine Maximaldauer, keine exakte Standarddauer."
+      },
+      {
+        "method_id": "m081",
+        "legacy_row_id": 81,
+        "name_de": "Wer ist am stärksten?",
+        "short_description": "Die TN bilden Kleingruppen (2-4 Personen) und bekommen ein Set an Personen/Situationen vom Arbeitsblatt (in Streifen geschnitten).",
+        "full_description": "Die TN bilden Kleingruppen (2-4 Personen) und bekommen ein Set an Personen/Situationen vom Arbeitsblatt (in Streifen geschnitten). Ihre Aufgabe ist es, die Situationen je nach Stärke der Personen zu ranken. Nach ca. 10 Minuten präsentieren die Gruppen ihre Reihenfolge. Wichtig: es gibt kein objektives Richtig oder Falsch, eher geht es darum, die Kids zur Reflexion anzuregen, was Stärke in unserer Gesellschaft bedeutet und welche Stärken häufig unsichtbar sind bzw. gemacht werden.",
+        "primary_purpose": "Selbstreflexion",
+        "group_form": "Team",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "Arbeitsblatt siehe: Stark, aber wie? Seite 41",
+        "facilitator_notes": "Hinweis: das Methodenheft ist für die Bubenarbeit entwickelt, daher finden sich fast nur Bubennamen in den Situationen wieder - ggf. anpassen!",
+        "source_notes": "Gruppengroesse 2-4 Personen explizit genannt. | Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": 2,
+        "group_size_max": 4,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "hoch",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "niedrig",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "hoch",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": "ja",
+        "safeguarding_flag_source": "HEURISTIC_KEYWORD_MAPPING",
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m082",
+        "legacy_row_id": 82,
+        "name_de": "Plakatarbeit",
+        "short_description": "zB auf leeren Plakaten \"Danke\" auf verschiedenen Sprachen sammeln",
+        "full_description": "zB auf leeren Plakaten \"Danke\" auf verschiedenen Sprachen sammeln",
+        "primary_purpose": null,
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "mittel",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "mittel",
+        "preparation_level_source": "DESCRIPTION_EXPLICIT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m083",
+        "legacy_row_id": 83,
+        "name_de": "Namensrunde mit Handbewegung",
+        "short_description": "Jede*r TN sagt den Namen und zeigt mit einer Handbewegung/Körpersprache, wie er*sie gerade da ist und wie es ihm*ihr gerade geht.",
+        "full_description": "Jede*r TN sagt den Namen und zeigt mit einer Handbewegung/Körpersprache, wie er*sie gerade da ist und wie es ihm*ihr gerade geht.",
+        "primary_purpose": null,
+        "group_form": "Gemeinschaft",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": null,
+        "facilitator_notes": null,
+        "source_notes": null,
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "mittel",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": null,
+        "indoor_outdoor_source": null,
+        "preparation_level": "gering",
+        "preparation_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m084",
+        "legacy_row_id": 84,
+        "name_de": "Storylauf",
+        "short_description": "Ein Spaziergang durch die Stadt mit vielen Erlebnissen wird beschrieben.",
+        "full_description": "Ein Spaziergang durch die Stadt mit vielen Erlebnissen wird beschrieben. Die TN sollen sich dazu durch den Raum bewegen und die Story in Bewegungen umsetzen.",
+        "primary_purpose": "Ruhe",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "evtl. Skript",
+        "facilitator_notes": null,
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "hoch",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "hoch",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "hoch",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "method_id": "m085",
+        "legacy_row_id": 85,
+        "name_de": "Körperreise",
+        "short_description": "Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten.",
+        "full_description": "Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. Besonders das Augenschließen wird nicht immer angenommen. Beim Einatmen werden gerne laute Geräusche gemacht.",
+        "primary_purpose": "Ruhe",
+        "group_form": "Einzeln",
+        "duration_min": null,
+        "duration_max": null,
+        "materials": "evtl. Skript",
+        "facilitator_notes": "Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. Besonders das Augenschließen wird nicht immer angenommen. Beim Einatmen werden gerne laute Geräusche gemacht.",
+        "source_notes": "Mehrfach-Purpose im Import; primary_purpose konservativ auf das erste Rohfragment reduziert. Weitere Signale liegen in Method_Tags als purpose_signal.",
+        "age_min": null,
+        "age_max": null,
+        "group_size_min": null,
+        "group_size_max": null,
+        "energy_level": "niedrig",
+        "energy_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "intensity": "niedrig",
+        "intensity_source": "HEURISTIC_KEYWORD_MAPPING",
+        "movement_level": "mittel",
+        "movement_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "noise_level": "niedrig",
+        "noise_level_source": "HEURISTIC_KEYWORD_MAPPING",
+        "indoor_outdoor": "innen",
+        "indoor_outdoor_source": "HEURISTIC_KEYWORD_MAPPING",
+        "preparation_level": "mittel",
+        "preparation_level_source": "RAW_IMPORT",
+        "safeguarding_flag": null,
+        "safeguarding_flag_source": null,
+        "status": "aktiv",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      }
+    ],
+    "methodTags": [
+      {
+        "method_id": "m001",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m001",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "raw_tag",
+        "tag_value": "Gefühle erkennen und einordnen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "purpose_signal",
+        "tag_value": "Warm-Up",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m002",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kennenlernen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m003",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kennenlernen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "purpose_signal",
+        "tag_value": "Bewegung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "purpose_signal",
+        "tag_value": "Achtsamkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gefühle wahrnehmen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m004",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "purpose_signal",
+        "tag_value": "Warm-Up",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kennenlernen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m005",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m006",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m007",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "raw_tag",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperationsspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m008",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "raw_tag",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperationsspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m009",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperationsspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m010",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperationsspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m011",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperationsspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "purpose_signal",
+        "tag_value": "Bauen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "purpose_signal",
+        "tag_value": "Planen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m012",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperationsspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gruppendynamik",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m013",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "raw_tag",
+        "tag_value": "Phantasie anregen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m014",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "purpose_signal",
+        "tag_value": "Warm-Up",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kennenlernen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m015",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "purpose_signal",
+        "tag_value": "Einstieg",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "purpose_signal",
+        "tag_value": "Bewegung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m016",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m017",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m018",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbsteinschätzung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m019",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "raw_tag",
+        "tag_value": "Reflexion und Feedback",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m020",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "raw_tag",
+        "tag_value": "Reflexion und Feedback",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m021",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "purpose_signal",
+        "tag_value": "Achtsamkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m022",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "purpose_signal",
+        "tag_value": "5 Sinne schulen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "purpose_signal",
+        "tag_value": "Cool Down",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m023",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "purpose_signal",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m024",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "raw_tag",
+        "tag_value": "Vertrauen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "purpose_signal",
+        "tag_value": "Umgang mit Stress",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m025",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "raw_tag",
+        "tag_value": "Entspannung, Beruhigung und Cool-Down",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "purpose_signal",
+        "tag_value": "Entspannung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "purpose_signal",
+        "tag_value": "Cool Down",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m026",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "purpose_signal",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m027",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m028",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "purpose_signal",
+        "tag_value": "Achtsamkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gruppendynamik",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m029",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m030",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m031",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "purpose_signal",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m032",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m033",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "purpose_signal",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m034",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kopf frei zu bekommen für die Phantasiephase",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "purpose_signal",
+        "tag_value": "unkommentierte Freisetzung von Kritik und Frustration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "purpose_signal",
+        "tag_value": "Einstiegsmethode bei Planungsprozessen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "topic",
+        "tag_value": "Zukunftsperspektiven",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "use_case",
+        "tag_value": "Zukunft erkunden",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m035",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "raw_tag",
+        "tag_value": "Zukunft und Entscheidungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "purpose_signal",
+        "tag_value": "gezielt Punkte heraus",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "purpose_signal",
+        "tag_value": "die der Gruppe wichtig sind.",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "topic",
+        "tag_value": "Zukunftsperspektiven",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "skill",
+        "tag_value": "Partizipation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "use_case",
+        "tag_value": "Zukunft erkunden",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m036",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "raw_tag",
+        "tag_value": "Zukunft und Entscheidungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "raw_tag",
+        "tag_value": "Partizipation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "topic",
+        "tag_value": "Zukunftsperspektiven",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "skill",
+        "tag_value": "Partizipation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "use_case",
+        "tag_value": "Zukunft erkunden",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "use_case",
+        "tag_value": "Partizipation ermoeglichen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m037",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "raw_tag",
+        "tag_value": "Zukunft und Entscheidungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "raw_tag",
+        "tag_value": "Partizipation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "topic",
+        "tag_value": "Zukunftsperspektiven",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "skill",
+        "tag_value": "Partizipation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "use_case",
+        "tag_value": "Zukunft erkunden",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "use_case",
+        "tag_value": "Partizipation ermoeglichen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m038",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "raw_tag",
+        "tag_value": "Zukunft und Entscheidungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "raw_tag",
+        "tag_value": "Partizipation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "topic",
+        "tag_value": "Zukunftsperspektiven",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "skill",
+        "tag_value": "Partizipation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "use_case",
+        "tag_value": "Zukunft erkunden",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "use_case",
+        "tag_value": "Partizipation ermoeglichen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m039",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "purpose_signal",
+        "tag_value": "Entspannungsreise",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m040",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "purpose_signal",
+        "tag_value": "Entspannungsreise",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m041",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kennenlernenen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "purpose_signal",
+        "tag_value": "Aktivierung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m042",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gruppenspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m043",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "raw_tag",
+        "tag_value": "Femdwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "purpose_signal",
+        "tag_value": "Komplimente geben",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "purpose_signal",
+        "tag_value": "Fremdwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m044",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m045",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "purpose_signal",
+        "tag_value": "Teamspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m046",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "raw_tag",
+        "tag_value": "Gefühle erkennen und einordnen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m047",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "raw_tag",
+        "tag_value": "Gefühle erkennen und einordnen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gefühle einordnen und benennen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m048",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "raw_tag",
+        "tag_value": "Gefühle erkennen und einordnen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m049",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "purpose_signal",
+        "tag_value": "Lösungsorientierung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstvertrauen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m050",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "raw_tag",
+        "tag_value": "Reflexion und Feedback",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m051",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "raw_tag",
+        "tag_value": "Reflexion und Feedback",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m052",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m053",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "raw_tag",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "purpose_signal",
+        "tag_value": "Probleme lösen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m054",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "purpose_signal",
+        "tag_value": "soziale Ressourcen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m055",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "raw_tag",
+        "tag_value": "Vertrauen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konzentration",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "purpose_signal",
+        "tag_value": "Zusammenhalt",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m056",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m057",
+        "tag_type": "raw_tag",
+        "tag_value": "Erklärungen und Inhalte",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m057",
+        "tag_type": "raw_tag",
+        "tag_value": "Phantasie anregen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m057",
+        "tag_type": "topic",
+        "tag_value": "Resilienz",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m057",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m057",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "raw_tag",
+        "tag_value": "Gefühle erkennen und einordnen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gefühle regulieren",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m058",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "raw_tag",
+        "tag_value": "Gefühle erkennen und einordnen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "topic",
+        "tag_value": "Emotionen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "use_case",
+        "tag_value": "Gefuehle ausdruecken",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m059",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m060",
+        "tag_type": "raw_tag",
+        "tag_value": "Erklärungen und Inhalte",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m060",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m060",
+        "tag_type": "topic",
+        "tag_value": "Resilienz",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m060",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m060",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m060",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "raw_tag",
+        "tag_value": "Vertrauen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "purpose_signal",
+        "tag_value": "Selbstvertrauen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m061",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "raw_tag",
+        "tag_value": "Vertrauen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m062",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "raw_tag",
+        "tag_value": "Sinneswahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "raw_tag",
+        "tag_value": "Entspannung, Beruhigung und Cool-Down",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "purpose_signal",
+        "tag_value": "Stabilisierung",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m063",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "raw_tag",
+        "tag_value": "Vertrauen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "purpose_signal",
+        "tag_value": "eigene Selbstheilungskräfte nutzen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m064",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "purpose_signal",
+        "tag_value": "Vertrauen in eigene Lösungsstrategien stärken",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m065",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "raw_tag",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "purpose_signal",
+        "tag_value": "Konfliktfähigkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kompromissfähigkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "purpose_signal",
+        "tag_value": "Toleranz für Ungewissheit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m066",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "raw_tag",
+        "tag_value": "Vertrauen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "skill",
+        "tag_value": "Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "use_case",
+        "tag_value": "Vertrauen aufbauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m067",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "purpose_signal",
+        "tag_value": "Förderung Klassengemeinschaft",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m068",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "purpose_signal",
+        "tag_value": "Feedback geben",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "purpose_signal",
+        "tag_value": "spielerische Auseinandersetzung mit Gemeinsamkeiten und Differenzen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "purpose_signal",
+        "tag_value": "Ressourcen in der Gruppe wahrnehmen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "phase",
+        "tag_value": "Abschluss",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m069",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "raw_tag",
+        "tag_value": "Ressourcenaktivierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "raw_tag",
+        "tag_value": "Phantasie anregen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "topic",
+        "tag_value": "Zukunftsperspektiven",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "use_case",
+        "tag_value": "Zukunft erkunden",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m070",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "raw_tag",
+        "tag_value": "Auflockerung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "purpose_signal",
+        "tag_value": "Gruppenspiel",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "purpose_signal",
+        "tag_value": "Zusammenhalt",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m071",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "topic",
+        "tag_value": "Resilienz",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m072",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperation",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "purpose_signal",
+        "tag_value": "Geschicklichkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m073",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kooperation",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "purpose_signal",
+        "tag_value": "Geschicklichkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m074",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "raw_tag",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "raw_tag",
+        "tag_value": "Stärken erkennen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kreativität",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "skill",
+        "tag_value": "Selbstwahrnehmung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "vector",
+        "tag_value": "Staerken / Ressourcen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m078",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "purpose_signal",
+        "tag_value": "Kennenlernen",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "purpose_signal",
+        "tag_value": "Teambuilding",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "vector",
+        "tag_value": "Gefuehle / Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m079",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_gefuehle",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "purpose_signal",
+        "tag_value": "Spaß",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "skill",
+        "tag_value": "Partizipation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m080",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "raw_tag",
+        "tag_value": "Reflexion und Feedback",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "raw_tag",
+        "tag_value": "Überleitungen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "purpose_signal",
+        "tag_value": "Inhalt zum Thema Stärken",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "purpose_signal",
+        "tag_value": "Differenzierung des Stärkenbegriffs",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "topic",
+        "tag_value": "Staerken",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "topic",
+        "tag_value": "Beziehungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "skill",
+        "tag_value": "Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "phase",
+        "tag_value": "Reflektieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "phase",
+        "tag_value": "Ueberleitung",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "use_case",
+        "tag_value": "Staerken sichtbar machen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "use_case",
+        "tag_value": "Abschluss / Reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "vector",
+        "tag_value": "Reflexion / Feedback",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m081",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_reflexion",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "raw_tag",
+        "tag_value": "Visualisierung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "raw_tag",
+        "tag_value": "Partizipation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "skill",
+        "tag_value": "Kreativitaet",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "skill",
+        "tag_value": "Partizipation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "phase",
+        "tag_value": "Vertiefen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "use_case",
+        "tag_value": "Partizipation ermoeglichen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "vector",
+        "tag_value": "Zukunft / Entscheidungen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "vector",
+        "tag_value": "Kreativitaet / Visualisierung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m082",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_zukunft",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "raw_tag",
+        "tag_value": "Warm-Up und Kennenlernen",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "raw_tag",
+        "tag_value": "Gruppendynamik und Kooperation",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "topic",
+        "tag_value": "Gruppendynamik",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "skill",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "skill",
+        "tag_value": "Kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "phase",
+        "tag_value": "Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "use_case",
+        "tag_value": "Kennenlernen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "use_case",
+        "tag_value": "Kooperation foerdern",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "vector",
+        "tag_value": "Warm-up / Ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "vector",
+        "tag_value": "Kooperation / Vertrauen",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_ankommen",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m083",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_kooperation",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "raw_tag",
+        "tag_value": "Aktivierung und Bewegung",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "purpose_signal",
+        "tag_value": "Achtsamkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "purpose_signal",
+        "tag_value": "zu sich selbst finden",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "skill",
+        "tag_value": "Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "phase",
+        "tag_value": "Aktivieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "use_case",
+        "tag_value": "Energizer",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "vector",
+        "tag_value": "Aktivierung / Bewegung",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.9
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m084",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "raw_tag",
+        "tag_value": "Achtsamkeit und Konzentration",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "raw_tag",
+        "tag_value": "Entspannung, Beruhigung und Cool-Down",
+        "source": "RAW_IMPORT:Tag1-Tag5",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "purpose_signal",
+        "tag_value": "Achtsamkeit",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "purpose_signal",
+        "tag_value": "zu sich selbst finden",
+        "source": "RAW_IMPORT:Purpose",
+        "confidence": 1.0
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "topic",
+        "tag_value": "Achtsamkeit",
+        "source": "NEW_CONTROLLED_TAXONOMY:topic",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "skill",
+        "tag_value": "Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:skill",
+        "confidence": 0.85
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "phase",
+        "tag_value": "Fokussieren",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "phase",
+        "tag_value": "Beruhigen",
+        "source": "NEW_CONTROLLED_TAXONOMY:phase",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "use_case",
+        "tag_value": "Fokus zurueckholen",
+        "source": "NEW_CONTROLLED_TAXONOMY:use_case",
+        "confidence": 0.8
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "vector",
+        "tag_value": "Achtsamkeit / Konzentration",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "vector",
+        "tag_value": "Entspannung / Cool-Down",
+        "source": "NEW_CONTROLLED_TAXONOMY:vector",
+        "confidence": 0.95
+      },
+      {
+        "method_id": "m085",
+        "tag_type": "collection_candidate",
+        "tag_value": "col_fokus",
+        "source": "NEW_CONTROLLED_TAXONOMY:collection",
+        "confidence": 0.75
+      }
+    ],
+    "methodVariants": [
+      {
+        "variant_id": "m005_v_platzwechsel",
+        "method_id": "m005",
+        "variant_name": "Platzwechsel-Variante",
+        "variant_label": "Mit Platztausch",
+        "recommended_duration": null,
+        "phase": "Ankommen",
+        "use_case": "Kennenlernen",
+        "energy_role": "aktivieren",
+        "social_setting": "Sitzkreis mit Platzwechsel",
+        "instruction_short": "Fragen stellen und bei passender Antwort die Plaetze tauschen.",
+        "composer_card_summary": "Kennenlernformat mit mehr Bewegung als die reine Sitzkreisversion.",
+        "active_session_prompt": "Stelle klare Wer-von-euch-Fragen und halte das Platztauschen kurz und zuegig.",
+        "facilitator_tip": "Einzelne Antworten ruhig nachfragen, wenn daraus Kontakt entsteht.",
+        "risk_alert": null,
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Explizite Alternative in der Beschreibung."
+      },
+      {
+        "variant_id": "m016_v_3ecken",
+        "method_id": "m016",
+        "variant_name": "3-Ecken-Variante",
+        "variant_label": "Mit 3 Ecken",
+        "recommended_duration": null,
+        "phase": "Ankommen",
+        "use_case": "Positionierung",
+        "energy_role": "aktivieren",
+        "social_setting": "Gruppe im Raum",
+        "instruction_short": "Drei Antwortoptionen im Raum markieren und die Gruppe positionieren.",
+        "composer_card_summary": "Reduziert die Antwortkomplexitaet fuer juengere oder unentschlossene Gruppen.",
+        "active_session_prompt": "Frage stellen, drei klare Positionen benennen und Bewegung im Raum zulassen.",
+        "facilitator_tip": "Eine offene Ecke nur nutzen, wenn genug Zeit fuer kurze Begruendungen bleibt.",
+        "risk_alert": null,
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Variante direkt im Methodentitel angelegt."
+      },
+      {
+        "variant_id": "m020_v_twitter",
+        "method_id": "m020",
+        "variant_name": "Twitter-Feedback",
+        "variant_label": "Hashtag-Feedback",
+        "recommended_duration": null,
+        "phase": "Reflektieren",
+        "use_case": "Feedback",
+        "energy_role": "abschliessen",
+        "social_setting": "Einzeln im Plenum",
+        "instruction_short": "Feedback als kurzen Hashtag notieren oder nennen.",
+        "composer_card_summary": "Sehr kompaktes Abschlussformat fuer schnelle Rueckmeldungen.",
+        "active_session_prompt": "Bitte um einen klaren Hashtag pro Person und sammele die Begriffe sichtbar.",
+        "facilitator_tip": "Kurze Rueckfragen nur dort stellen, wo ein Hashtag erklaerungsbeduerftig ist.",
+        "risk_alert": null,
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Explizite Unterform in der Quelle."
+      },
+      {
+        "variant_id": "m020_v_hochgleichief",
+        "method_id": "m020",
+        "variant_name": "Hoch-Gleich-Tief",
+        "variant_label": "Koerperliches Stimmungsbarometer",
+        "recommended_duration": null,
+        "phase": "Reflektieren",
+        "use_case": "Feedback",
+        "energy_role": "abschliessen",
+        "social_setting": "Gruppe im Raum",
+        "instruction_short": "Aufstehen, sitzen bleiben oder auf den Stuhl steigen je nach Rueckmeldung.",
+        "composer_card_summary": "Schnelles Feedbackformat mit sichtbarer Gruppenstimmung.",
+        "active_session_prompt": "Formuliere die Bewertungsstufen klar und gib der Gruppe kurz Zeit zur Positionierung.",
+        "facilitator_tip": "Die Rueckmeldung bleibt knapp; einzelne Stimmen nur freiwillig vertiefen.",
+        "risk_alert": "Auf sichere Stuhl-Nutzung achten, wenn die hoechste Stufe auf dem Stuhl steht.",
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Explizite Unterform in der Quelle."
+      },
+      {
+        "variant_id": "m020_v_daumen",
+        "method_id": "m020",
+        "variant_name": "Daumen-Feedback",
+        "variant_label": "Daumen hoch / gleich / runter",
+        "recommended_duration": null,
+        "phase": "Reflektieren",
+        "use_case": "Feedback",
+        "energy_role": "abschliessen",
+        "social_setting": "Plenum",
+        "instruction_short": "Rueckmeldung nonverbal per Daumenzeichen geben.",
+        "composer_card_summary": "Niedrigschwelliger Abschluss ohne Material.",
+        "active_session_prompt": "Stelle eine klare Abschlussfrage und lasse die Gruppe gleichzeitig abstimmen.",
+        "facilitator_tip": "Gut geeignet, wenn wenig Zeit bleibt oder Offenheit in der Gruppe noch gering ist.",
+        "risk_alert": null,
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Explizite Unterform in der Quelle."
+      },
+      {
+        "variant_id": "m061_v_kreis",
+        "method_id": "m061",
+        "variant_name": "Kreis-Vertrauensuebung",
+        "variant_label": "Im 5-8er-Kreis",
+        "recommended_duration": null,
+        "phase": "Vertiefen",
+        "use_case": "Vertrauen aufbauen",
+        "energy_role": "vertiefen",
+        "social_setting": "5-8 Personen im Kreis",
+        "instruction_short": "Eine Person laesst sich mit geschlossenen Augen in die Gruppe fallen.",
+        "composer_card_summary": "Koerperlich deutliche Vertrauensuebung fuer kleine Kreise.",
+        "active_session_prompt": "Kreis eng halten, Sicherheitsabstand klein halten und die Person in der Mitte gut einweisen.",
+        "facilitator_tip": "Nur nutzen, wenn die Gruppe schon etwas Sicherheit miteinander hat.",
+        "risk_alert": "Koerperkontakt und geschlossene Augen erfordern klare Rahmung und enge Aufsicht.",
+        "materials_override": "Ausreichend Platz",
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Variante explizit in der Quelle."
+      },
+      {
+        "variant_id": "m061_v_paare",
+        "method_id": "m061",
+        "variant_name": "Partner-Fallvariante",
+        "variant_label": "Zu zweit rueckwaerts fallen",
+        "recommended_duration": null,
+        "phase": "Vertiefen",
+        "use_case": "Vertrauen aufbauen",
+        "energy_role": "vertiefen",
+        "social_setting": "Paare",
+        "instruction_short": "Abwechselnd rueckwaerts in die Arme der Partnerperson fallen lassen.",
+        "composer_card_summary": "Kompaktere Vertrauensvariante als der grosse Kreis.",
+        "active_session_prompt": "Paare stabil aufstellen und vor dem Fallen klaeren, wie gefangen wird.",
+        "facilitator_tip": "Vorher pruefen, ob beide Personen die Uebung wirklich mittragen moechten.",
+        "risk_alert": "Nur mit klarer Sicherheitsanleitung und aufmerksamer Aufsicht einsetzen.",
+        "materials_override": "Ausreichend Platz",
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": null,
+        "uncertainty_note": "Variante explizit in der Quelle."
+      },
+      {
+        "variant_id": "m069_v_warmup",
+        "method_id": "m069",
+        "variant_name": "Warm-up-Einsatz",
+        "variant_label": "Als Einstieg",
+        "recommended_duration": null,
+        "phase": "Ankommen",
+        "use_case": "Staerken sichtbar machen",
+        "energy_role": "aktivieren",
+        "social_setting": "Sesselkreis",
+        "instruction_short": "Den Tauschmarkt frueh einsetzen, um vorhandene Staerken in die Gruppe zu holen.",
+        "composer_card_summary": "Offener Staerken-Tausch als lebendiger Einstieg mit hoher Beteiligung.",
+        "active_session_prompt": "Eroeffne den Basar mit einem eigenen Beispiel und ziehe stille Personen bewusst mit hinein.",
+        "facilitator_tip": "Darauf achten, dass nur Ressourcen und keine Defizite gehandelt werden.",
+        "risk_alert": "Freiwilligkeit sichern und niemanden in Selbstdarstellung draengen.",
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": true,
+        "uncertainty_note": "Quelle nennt die Methode als Warming-up und Schlusspunkt; Dauer nur als 30 Min. oder mehr."
+      },
+      {
+        "variant_id": "m069_v_abschluss",
+        "method_id": "m069",
+        "variant_name": "Abschluss-Einsatz",
+        "variant_label": "Als Schlusspunkt",
+        "recommended_duration": null,
+        "phase": "Abschluss",
+        "use_case": "Reflexion",
+        "energy_role": "abschliessen",
+        "social_setting": "Sesselkreis",
+        "instruction_short": "Den Tauschmarkt spaeter einsetzen, um gesehene Staerken und Qualitaeten zu spiegeln.",
+        "composer_card_summary": "Staerkenbasar als reflexiver Gruppenabschluss.",
+        "active_session_prompt": "Spiegele beobachtete Staerken, halte den Tausch wertschatzend und achte auf Beteiligung aller.",
+        "facilitator_tip": "Vergessene Personen aktiv einladen, ohne Druck zu machen.",
+        "risk_alert": "Rueckmeldungen sollten ressourcenorientiert bleiben; keine Defizite verhandeln.",
+        "materials_override": null,
+        "suitable_for_finder": true,
+        "suitable_for_library": true,
+        "suitable_for_composer": true,
+        "suitable_for_active_session": true,
+        "uncertainty_flag": true,
+        "uncertainty_note": "Quelle nennt die Methode als Warming-up und Schlusspunkt; Dauer nur als 30 Min. oder mehr."
+      }
+    ],
+    "finderIntents": [
+      {
+        "intent_id": "intent_ankommen",
+        "intent_label_de": "Ankommen & Kennenlernen",
+        "user_need_statement": "Ich brauche einen leichten Einstieg, damit die Gruppe ankommt und sich begegnet.",
+        "description": "Situation-first Einstieg fuer erste Minuten, neue Gruppen oder lockere Starts.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "mittel",
+        "class_state": "noch nicht verbunden",
+        "recommended_method_ids_or_variant_ids": [
+          "m001",
+          "m003",
+          "m015",
+          "m016",
+          "m042",
+          "m083"
+        ],
+        "ranking_notes": "Priorisiert Methoden mit starken Warm-Up- oder Kennenlern-Signalen."
+      },
+      {
+        "intent_id": "intent_kurz_aktivieren",
+        "intent_label_de": "Kurz aktivieren",
+        "user_need_statement": "Ich habe nur wenige Minuten und will Bewegung oder Wachheit in die Gruppe bringen.",
+        "description": "Geeignet fuer kurze Energizer oder Unterbrechungen nach laengerem Sitzen.",
+        "duration_filter_min": 0,
+        "duration_filter_max": 10,
+        "energy_target": "hoch",
+        "class_state": "muede oder trage",
+        "recommended_method_ids_or_variant_ids": [
+          "m006",
+          "m017",
+          "m018",
+          "m042",
+          "m080"
+        ],
+        "ranking_notes": "Wo keine exakte Dauer vorliegt, werden nur klar kurze Methoden nach vorne gezogen."
+      },
+      {
+        "intent_id": "intent_fokus",
+        "intent_label_de": "Fokus zurueckholen",
+        "user_need_statement": "Die Gruppe ist abgelenkt; ich brauche Konzentration ohne lange Erklaerung.",
+        "description": "Baut auf Achtsamkeits-, Konzentrations- und Wahrnehmungs-Tags auf.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "mittel",
+        "class_state": "unruhig oder verstreut",
+        "recommended_method_ids_or_variant_ids": [
+          "m027",
+          "m028",
+          "m030",
+          "m031",
+          "m046"
+        ],
+        "ranking_notes": "Bevorzugt klare, niedrigschwellige Konzentrationsspiele mit wenig Material."
+      },
+      {
+        "intent_id": "intent_beruhigen",
+        "intent_label_de": "Beruhigen & runterfahren",
+        "user_need_statement": "Die Gruppe ist laut oder aufgedreht und braucht einen ruhigeren Uebergang.",
+        "description": "Nutzt explizite Cool-Down-, Entspannungs- und Achtsamkeitssignale.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "niedrig",
+        "class_state": "laut oder ueberreizt",
+        "recommended_method_ids_or_variant_ids": [
+          "m023",
+          "m024",
+          "m026",
+          "m063",
+          "m085"
+        ],
+        "ranking_notes": "Methoden mit ruhigem Fokus und klarer sprachlicher Anleitung werden bevorzugt."
+      },
+      {
+        "intent_id": "intent_gefuehle",
+        "intent_label_de": "Gefuehle ausdruecken",
+        "user_need_statement": "Ich will Stimmungen sichtbar machen oder ueber Gefuehle ins Gespraech kommen.",
+        "description": "Basiert auf Gefuehle erkennen und einordnen sowie verwandten Beschreibungen.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "niedrig",
+        "class_state": "emotional oder unklar",
+        "recommended_method_ids_or_variant_ids": [
+          "m002",
+          "m047",
+          "m048",
+          "m049",
+          "m058",
+          "m059"
+        ],
+        "ranking_notes": "Startet mit niedrigschwelligen Befindlichkeitsformaten vor offeneren Runden."
+      },
+      {
+        "intent_id": "intent_staerken",
+        "intent_label_de": "Staerken sichtbar machen",
+        "user_need_statement": "Ich moechte Ressourcen, positive Eigenschaften oder Selbstvertrauen aktivieren.",
+        "description": "Grounded in Staerken erkennen, Ressourcenaktivierung und Selbstwahrnehmung.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "mittel",
+        "class_state": "arbeitsfaehig",
+        "recommended_method_ids_or_variant_ids": [
+          "m019",
+          "m040",
+          "m041",
+          "m053",
+          "m065",
+          "m078"
+        ],
+        "ranking_notes": "Mischt wahrnehmungsorientierte und gestalterische Staerkenmethoden."
+      },
+      {
+        "intent_id": "intent_kooperation",
+        "intent_label_de": "Kooperation foerdern",
+        "user_need_statement": "Ich brauche eine Methode, bei der die Gruppe gemeinsam handeln und sich abstimmen muss.",
+        "description": "Leitet sich aus Teamspiel-, Kooperations- und Gruppendynamiksignalen ab.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "hoch",
+        "class_state": "gemeinsame Aufgabe gesucht",
+        "recommended_method_ids_or_variant_ids": [
+          "m007",
+          "m008",
+          "m011",
+          "m056",
+          "m073",
+          "m074"
+        ],
+        "ranking_notes": "Bevorzugt deutliche gemeinsame Aufgaben statt reiner Diskussionsformate."
+      },
+      {
+        "intent_id": "intent_vertrauen",
+        "intent_label_de": "Vertrauen aufbauen",
+        "user_need_statement": "Ich moechte Beziehung, Aufmerksamkeit oder gegenseitige Unterstuetzung staerken.",
+        "description": "Nutzt die Rohsignale Vertrauen, Gruppendynamik und ausgewaehlte Beziehungsmethoden.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "mittel",
+        "class_state": "vorsichtig oder noch nicht sicher",
+        "recommended_method_ids_or_variant_ids": [
+          "m025",
+          "m061_v_kreis",
+          "m061_v_paare",
+          "m067",
+          "m069_v_abschluss"
+        ],
+        "ranking_notes": "Ordnet koerperlich sensiblere Formate spaeter ein und verweist auf Risiko-Hinweise."
+      },
+      {
+        "intent_id": "intent_reflexion",
+        "intent_label_de": "Reflexion & Abschluss",
+        "user_need_statement": "Ich brauche einen klaren Rueckblick oder einen bewussten Schlusspunkt.",
+        "description": "Fasst Feedback-, Abschluss- und Reflexionsformate zusammen.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "niedrig",
+        "class_state": "am Ende einer Einheit",
+        "recommended_method_ids_or_variant_ids": [
+          "m020_v_twitter",
+          "m020_v_hochgleichief",
+          "m020_v_daumen",
+          "m021",
+          "m044",
+          "m069_v_abschluss"
+        ],
+        "ranking_notes": "Kurze Feedback-Formate zuerst; offenere Austauschformen danach."
+      },
+      {
+        "intent_id": "intent_zukunft",
+        "intent_label_de": "Zukunft & Entscheidungen",
+        "user_need_statement": "Ich will Zukunftsbilder, Auswahlprozesse oder partizipative Ideenentwicklung anstossen.",
+        "description": "Grounded in Zukunft und Entscheidungen sowie Partizipation.",
+        "duration_filter_min": null,
+        "duration_filter_max": null,
+        "energy_target": "mittel",
+        "class_state": "planend oder suchend",
+        "recommended_method_ids_or_variant_ids": [
+          "m035",
+          "m036",
+          "m037",
+          "m038",
+          "m039",
+          "m070"
+        ],
+        "ranking_notes": "Sortiert von Problemaufsammlung zu Auswahl und Zukunftsbild."
+      }
+    ],
+    "collections": [
+      {
+        "collection_id": "col_ankommen",
+        "name_de": "Ankommen & Kennenlernen",
+        "short_description": "Leichte Einstiege fuer den Beginn einer Stunde oder eines Workshops.",
+        "editorial_rationale": "Aus wiederkehrenden Warm-Up- und Kennenlern-Tags gebildet.",
+        "sort_order": 1,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "collection_id": "col_fokus",
+        "name_de": "Fokus, Achtsamkeit & Beruhigung",
+        "short_description": "Methoden zum Sammeln, Wahrnehmen und Runterfahren.",
+        "editorial_rationale": "Baut auf den Roh-Tags zu Achtsamkeit, Konzentration und Cool-Down auf.",
+        "sort_order": 2,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "name_de": "Gefuehle & Beziehungen",
+        "short_description": "Methoden zum Benennen, Austauschen und Einordnen sozialer und emotionaler Zustaende.",
+        "editorial_rationale": "Konservativ aus Gefuehle-, Vertrauen- und Beziehungsbezuegen zusammengefuehrt.",
+        "sort_order": 3,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "collection_id": "col_staerken",
+        "name_de": "Staerken & Ressourcen",
+        "short_description": "Methoden, die positive Eigenschaften, Ressourcen und Selbstvertrauen sichtbar machen.",
+        "editorial_rationale": "Direkt aus Staerken erkennen und Ressourcenaktivierung abgeleitet.",
+        "sort_order": 4,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "collection_id": "col_kooperation",
+        "name_de": "Kooperation & Vertrauen",
+        "short_description": "Gruppenorientierte Methoden fuer Zusammenarbeit, Abstimmung und gegenseitige Unterstuetzung.",
+        "editorial_rationale": "Gruppendynamik, Kooperation und Vertrauen sind im Rohmaterial eng gekoppelt.",
+        "sort_order": 5,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "collection_id": "col_zukunft",
+        "name_de": "Zukunft & Entscheidungen",
+        "short_description": "Methoden fuer Zukunftsbilder, Einigungsprozesse und partizipative Planung.",
+        "editorial_rationale": "Basiert auf dem klar abgegrenzten Roh-Cluster Zukunft und Entscheidungen.",
+        "sort_order": 6,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      },
+      {
+        "collection_id": "col_reflexion",
+        "name_de": "Reflexion & Abschluss",
+        "short_description": "Methoden fuer Rueckmeldung, Auswertung und bewusste Schlussmomente.",
+        "editorial_rationale": "Kombiniert Reflexion und Feedback mit expliziten Abschlussverwendungen aus der Quelle.",
+        "sort_order": 7,
+        "visibility": "visible",
+        "uncertainty_flag": null,
+        "uncertainty_note": null
+      }
+    ],
+    "collectionItems": [
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m001",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m002",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m005",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m042",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m047",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m049",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m080",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m003",
+        "item_type": "method",
+        "sort_order": 8,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m004",
+        "item_type": "method",
+        "sort_order": 9,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_ankommen",
+        "method_id_or_variant_id": "m015",
+        "item_type": "method",
+        "sort_order": 10,
+        "reason_for_inclusion": "Deutliche Warm-up- oder Kennenlern-Signale im Rohmaterial."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m023",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m085",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m018",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m026",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m030",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m032",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m040",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m043",
+        "item_type": "method",
+        "sort_order": 8,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m046",
+        "item_type": "method",
+        "sort_order": 9,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_fokus",
+        "method_id_or_variant_id": "m056",
+        "item_type": "method",
+        "sort_order": 10,
+        "reason_for_inclusion": "Achtsamkeit, Konzentration oder Beruhigung sind klar markiert."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m002",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m044",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m047",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m049",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m004",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m022",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m048",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m058",
+        "item_type": "method",
+        "sort_order": 8,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m059",
+        "item_type": "method",
+        "sort_order": 9,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_gefuehle",
+        "method_id_or_variant_id": "m079",
+        "item_type": "method",
+        "sort_order": 10,
+        "reason_for_inclusion": "Bezieht sich explizit auf Gefuehle, Befindlichkeit oder Beziehung."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m011",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m019",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m053",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m012",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m013",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m040",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m044",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m045",
+        "item_type": "method",
+        "sort_order": 8,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m050",
+        "item_type": "method",
+        "sort_order": 9,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_staerken",
+        "method_id_or_variant_id": "m051",
+        "item_type": "method",
+        "sort_order": 10,
+        "reason_for_inclusion": "Staerken-, Ressourcen- oder Selbstvertrauensbezug ist im Import klar sichtbar."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m010",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m011",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m008",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m009",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m012",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m013",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m043",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m046",
+        "item_type": "method",
+        "sort_order": 8,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m050",
+        "item_type": "method",
+        "sort_order": 9,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_kooperation",
+        "method_id_or_variant_id": "m056",
+        "item_type": "method",
+        "sort_order": 10,
+        "reason_for_inclusion": "Kooperation, Gruppendynamik oder Vertrauen stehen im Vordergrund."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m035",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m036",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m037",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m038",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m039",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m070",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_zukunft",
+        "method_id_or_variant_id": "m082",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Die Methode bearbeitet Zukunft, Entscheidungen oder partizipative Planung."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m010",
+        "item_type": "method",
+        "sort_order": 1,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m081",
+        "item_type": "method",
+        "sort_order": 2,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m021",
+        "item_type": "method",
+        "sort_order": 3,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m044",
+        "item_type": "method",
+        "sort_order": 4,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m051",
+        "item_type": "method",
+        "sort_order": 5,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m069",
+        "item_type": "method",
+        "sort_order": 6,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m020",
+        "item_type": "method",
+        "sort_order": 7,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      },
+      {
+        "collection_id": "col_reflexion",
+        "method_id_or_variant_id": "m052",
+        "item_type": "method",
+        "sort_order": 8,
+        "reason_for_inclusion": "Die Methode eignet sich fuer Feedback, Rueckblick oder Abschluss."
+      }
+    ],
+    "vectors": [
+      {
+        "vector_id": "vector_ankommen",
+        "vector_name_de": "Warm-up / Ankommen",
+        "vector_definition": "Methoden fuers Ankommen, Kennenlernen und fuer erste Aktivierung am Beginn einer Einheit.",
+        "notes": "Konservativ aus Roh-Tags wie Warm-Up und Kennenlernen sowie Einstieg abgeleitet."
+      },
+      {
+        "vector_id": "vector_aktivierung",
+        "vector_name_de": "Aktivierung / Bewegung",
+        "vector_definition": "Methoden mit merklicher koerperlicher Aktivierung, Auflockerung oder Bewegungsanteil.",
+        "notes": "Vor allem aus Aktivierung und Bewegung, Bewegungsfoerderung und Auflockerung abgeleitet."
+      },
+      {
+        "vector_id": "vector_fokus",
+        "vector_name_de": "Achtsamkeit / Konzentration",
+        "vector_definition": "Methoden, die Aufmerksamkeit, Sinnesfokus oder konzentriertes Wahrnehmen staerken.",
+        "notes": "Aus Achtsamkeit und Konzentration sowie Sinneswahrnehmung gebildet."
+      },
+      {
+        "vector_id": "vector_gefuehle",
+        "vector_name_de": "Gefuehle / Beziehungen",
+        "vector_definition": "Methoden zum Benennen, Wahrnehmen oder Teilen von Gefuehlen und Beziehungserfahrungen.",
+        "notes": "Fuehrt Emotionen und soziale Bezuege zusammen, wenn die Quelle dies nahelegt."
+      },
+      {
+        "vector_id": "vector_staerken",
+        "vector_name_de": "Staerken / Ressourcen",
+        "vector_definition": "Methoden, die persoenliche Staerken, Ressourcen oder Selbstvertrauen sichtbar machen.",
+        "notes": "Direkt aus Staerken erkennen, Ressourcenaktivierung und verwandten Formulierungen gebildet."
+      },
+      {
+        "vector_id": "vector_kooperation",
+        "vector_name_de": "Kooperation / Vertrauen",
+        "vector_definition": "Methoden fuer Gruppendynamik, Zusammenarbeit, Zusammenhalt und Vertrauen.",
+        "notes": "Basiert auf Roh-Tags zu Gruppendynamik, Kooperation und Vertrauen."
+      },
+      {
+        "vector_id": "vector_reflexion",
+        "vector_name_de": "Reflexion / Feedback",
+        "vector_definition": "Methoden fuer Rueckblick, Rueckmeldung, Auswertung und bewussten Abschluss.",
+        "notes": "Aus Reflexion und Feedback sowie ausgewaehlten Abschlusshinweisen gebildet."
+      },
+      {
+        "vector_id": "vector_zukunft",
+        "vector_name_de": "Zukunft / Entscheidungen",
+        "vector_definition": "Methoden zu Zukunftsbildern, Entscheidungsfindung und Partizipation.",
+        "notes": "Direkt aus Zukunft und Entscheidungen sowie Partizipation abgeleitet."
+      },
+      {
+        "vector_id": "vector_kreativ",
+        "vector_name_de": "Kreativitaet / Visualisierung",
+        "vector_definition": "Methoden mit starkem Gestaltungs-, Bild-, Visualisierungs- oder Ideenanteil.",
+        "notes": "Fuehrt Kreativitaet, Visualisierung und Phantasie nur dort zusammen, wo die Quelle dies stuetzt."
+      },
+      {
+        "vector_id": "vector_entspannung",
+        "vector_name_de": "Entspannung / Cool-Down",
+        "vector_definition": "Methoden zum Runterfahren, Regulieren und bewussten Beruhigen einer Gruppe.",
+        "notes": "Aus Entspannung, Beruhigung und Cool-Down sowie ruhigen Koerperreisen gebildet."
+      }
+    ],
+    "methodVectorMap": [
+      {
+        "method_id": "m001",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m001",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m002",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m002",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m002",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m003",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m004",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m004",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m004",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m004",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m005",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m006",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m007",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m007",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m008",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m008",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m009",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m009",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m010",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m010",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m010",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m010",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m011",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m011",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m012",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m012",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m012",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m013",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m013",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m014",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m014",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m015",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m015",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m016",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m017",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m017",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m018",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m018",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m019",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m019",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m020",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m021",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m021",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m022",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m022",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m022",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m022",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m023",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m023",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m024",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m025",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m025",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m026",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m026",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m027",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m027",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m028",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m029",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m029",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m030",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m031",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m032",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m032",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m033",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m033",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m033",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m034",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m034",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m035",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m035",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m035",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m035",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m036",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m036",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m036",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m037",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m038",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m039",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m040",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m040",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m040",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m041",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m041",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m041",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m042",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m042",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m043",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m043",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m043",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m044",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m044",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m044",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m045",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m045",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m046",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m046",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m046",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m047",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m047",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m048",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m048",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m049",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m049",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m050",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m050",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m050",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m050",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m051",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m051",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m051",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m052",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m052",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m053",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m053",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m054",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m054",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m054",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m055",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m055",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m055",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m056",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m056",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m057",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m058",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m058",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m058",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m059",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m059",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m059",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m060",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m061",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m061",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m062",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m062",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m063",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m063",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m064",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m064",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m065",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m065",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m065",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m065",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m066",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m066",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m067",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m068",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m068",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m068",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m068",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m069",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m069",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m069",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m070",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m070",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m070",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m070",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m071",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m071",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m071",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m072",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m072",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m072",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m073",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m073",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m073",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m073",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m074",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m074",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m074",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m074",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m078",
+        "vector_id": "vector_staerken",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m078",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m079",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m079",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m079",
+        "vector_id": "vector_gefuehle",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m079",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m080",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m080",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m081",
+        "vector_id": "vector_reflexion",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m081",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m082",
+        "vector_id": "vector_zukunft",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m082",
+        "vector_id": "vector_kreativ",
+        "confidence": 0.85,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m083",
+        "vector_id": "vector_ankommen",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m083",
+        "vector_id": "vector_kooperation",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m084",
+        "vector_id": "vector_aktivierung",
+        "confidence": 0.9,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m084",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m084",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m085",
+        "vector_id": "vector_fokus",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      },
+      {
+        "method_id": "m085",
+        "vector_id": "vector_entspannung",
+        "confidence": 0.95,
+        "note": "Keyword-Mapping aus Rohfeldern"
+      }
+    ],
+    "composerBlocksReference": [
+      {
+        "block_ref_id": "block_m001",
+        "source_type": "method",
+        "source_id": "m001",
+        "display_title": "Pappteller Steckbrief",
+        "duration_display": null,
+        "card_summary": "Jede*r TN bekommt einen Pappteller und Stifte.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "bewegung",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Pappteller, Stifte",
+        "searchable_text": "Pappteller Steckbrief | Jede*r TN bekommt einen Pappteller und Stifte. | Kennenlernen | Pappteller, Stifte | Warm-Up und Kennenlernen | Aktivierung und Bewegung | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m002",
+        "source_type": "method",
+        "source_id": "m002",
+        "display_title": "Stimmung als Wetter",
+        "duration_display": null,
+        "card_summary": "WS-Leitung fragt TN, welches Wetter ihre aktuelle Stimmung am besten beschreibt.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "ggf. Papier, Stifte",
+        "searchable_text": "Stimmung als Wetter | WS-Leitung fragt TN, welches Wetter ihre aktuelle Stimmung am besten beschreibt. | Gefühle | ggf. Papier, Stifte | Warm-Up und Kennenlernen | Gefühle erkennen und einordnen | Warm-up / Ankommen | Gefuehle / Beziehungen | Kreativitaet / Visualisierung",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen | Gefuehle / Beziehungen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m003",
+        "source_type": "method",
+        "source_id": "m003",
+        "display_title": "\"Schön, dass du da bist!\"",
+        "duration_display": null,
+        "card_summary": "TN verteilen sich im Raum und begrüßen sich immer Gegenseitig mit \"Schön, dass du da bist!\" und schauen sich in die Augen (+ ggf.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "karte",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "\"Schön, dass du da bist!\" | TN verteilen sich im Raum und begrüßen sich immer Gegenseitig mit \"Schön, dass du da bist!\" und schauen sich in die Augen (+ ggf. | Warm-Up | Warm-Up und Kennenlernen | Überleitungen | Warm-up / Ankommen",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m004",
+        "source_type": "method",
+        "source_id": "m004",
+        "display_title": "Tauschgesellschaft",
+        "duration_display": null,
+        "card_summary": "Jede*r TN wählt eine Stimmung (+ dazu passende Fortbewegungsart/Mimik/Gestik).",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Tauschgesellschaft | Jede*r TN wählt eine Stimmung (+ dazu passende Fortbewegungsart/Mimik/Gestik). | Warm-Up | Warm-Up und Kennenlernen | Achtsamkeit und Konzentration | Warm-up / Ankommen | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Gefuehle / Beziehungen",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Gefuehle / Beziehungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m005",
+        "source_type": "method",
+        "source_id": "m005",
+        "display_title": "Alle, die... / / Wer von euch...?",
+        "duration_display": null,
+        "card_summary": "Im Sitzkreis: WS-Leitende stellen \"Wer von euch...\"-Fragen und TN stehen auf, wenn sie die Frage mit \"Ich\" beantworten können.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "karte",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Alle, die... / / Wer von euch...? | Im Sitzkreis: WS-Leitende stellen \"Wer von euch...\"-Fragen und TN stehen auf, wenn sie die Frage mit \"Ich\" beantworten können. | Aktivierend | Warm-Up und Kennenlernen | Überleitungen | Warm-up / Ankommen",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m006",
+        "source_type": "method",
+        "source_id": "m006",
+        "display_title": "Roboter",
+        "duration_display": null,
+        "card_summary": "Es steht jede*r TN frei, wann und wie oft er*sie sich erheben will.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "bewegung",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Roboter | Es steht jede*r TN frei, wann und wie oft er*sie sich erheben will. | Aktivierend | Auflockerung | Aktivierung und Bewegung | Aktivierung / Bewegung",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m007",
+        "source_type": "method",
+        "source_id": "m007",
+        "display_title": "In Gruppe bis 10 zählen",
+        "duration_display": null,
+        "card_summary": "In 3 Gruppen teilen und bis 10 zählen lassen, wobei nicht ausgemacht werden darf, wer wann eine Zahl sagt und niemand zwei Zahlen hintereinander sagen darf",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "In Gruppe bis 10 zählen | In 3 Gruppen teilen und bis 10 zählen lassen, wobei nicht ausgemacht werden darf, wer wann eine Zahl sagt und niemand zwei Zahlen hintereinander sagen darf | Kooperationsspiel | Gruppendynamik und Kooperation | Achtsamkeit und Konzentration | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "filter_text": "Fokussieren | Gemeinschaft | niedrig | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m008",
+        "source_type": "method",
+        "source_id": "m008",
+        "display_title": "Der wandernde Tennisball",
+        "duration_display": null,
+        "card_summary": "(Kleingruppen mit mind.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "gruppe",
+        "group_setting": "Team",
+        "materials_hint": "Tennisbälle",
+        "searchable_text": "Der wandernde Tennisball | (Kleingruppen mit mind. | Teamspiel | Tennisbälle | Gruppendynamik und Kooperation | Kreativität | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Team | hoch | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m009",
+        "source_type": "method",
+        "source_id": "m009",
+        "display_title": "Achtung hier kommt ein Karton!",
+        "duration_display": null,
+        "card_summary": "(Kleingruppen mit mind.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "gruppe",
+        "group_setting": "Team",
+        "materials_hint": "Karton",
+        "searchable_text": "Achtung hier kommt ein Karton! | (Kleingruppen mit mind. | Teamspiel | Karton | Gruppendynamik und Kooperation | Kreativität | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Team | hoch | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m010",
+        "source_type": "method",
+        "source_id": "m010",
+        "display_title": "Hai-Attacke (wie Hangman)",
+        "duration_display": null,
+        "card_summary": "WS-Leitende überlegt sich ein oder mehrere Wörter und schreibt nur den 1.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Tafel/Whiteboard",
+        "searchable_text": "Hai-Attacke (wie Hangman) | WS-Leitende überlegt sich ein oder mehrere Wörter und schreibt nur den 1. | Teamspiel | Tafel/Whiteboard | Gruppendynamik und Kooperation | Auflockerung | Aktivierung / Bewegung | Kooperation / Vertrauen | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Kooperation / Vertrauen | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m011",
+        "source_type": "method",
+        "source_id": "m011",
+        "display_title": "Murmelbahn",
+        "duration_display": "10-15 Min.",
+        "card_summary": "TN werden in Kleingruppen eingeteilt (max.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Team",
+        "materials_hint": "Murmeln, verschiedene Utensilien (Holzleisten, Werkzeuge, etc.), Maßband",
+        "searchable_text": "Murmelbahn | TN werden in Kleingruppen eingeteilt (max. | Teamspiel | Murmeln, verschiedene Utensilien (Holzleisten, Werkzeuge, etc.), Maßband | Gruppendynamik und Kooperation | Stärken erkennen | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "filter_text": "Vertiefen | Team | hoch | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m012",
+        "source_type": "method",
+        "source_id": "m012",
+        "display_title": "Marshmellow Challenge",
+        "duration_display": "18 Min.",
+        "card_summary": "Man spielt die Marshmallow Challenge in Gruppen von vier bis fünf Spielern.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Team",
+        "materials_hint": "Kreppband, Spagehtti, Marshmellows",
+        "searchable_text": "Marshmellow Challenge | Man spielt die Marshmallow Challenge in Gruppen von vier bis fünf Spielern. | Teamspiel | Kreppband, Spagehtti, Marshmellows | Gruppendynamik und Kooperation | Stärken erkennen | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Team | hoch | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m013",
+        "source_type": "method",
+        "source_id": "m013",
+        "display_title": "Da Vinci Code Brücke",
+        "duration_display": null,
+        "card_summary": "Kleingruppen bekommen die Aufgabe eine Leonardo-Brücke zu errichten.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Team",
+        "materials_hint": "Gleichförmige, lange Holzstäbchen (z.B. große Streichhölzer oder Ess-Stäbchen)",
+        "searchable_text": "Da Vinci Code Brücke | Kleingruppen bekommen die Aufgabe eine Leonardo-Brücke zu errichten. | Teamspiel | Gleichförmige, lange Holzstäbchen (z.B. große Streichhölzer oder Ess-Stäbchen) | Gruppendynamik und Kooperation | Stärken erkennen | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "filter_text": "Vertiefen | Team | hoch | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m014",
+        "source_type": "method",
+        "source_id": "m014",
+        "display_title": "Faule Ausrede",
+        "duration_display": null,
+        "card_summary": "Die TN sitzen im Kreis.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "bewegung",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Faule Ausrede | Die TN sitzen im Kreis. | Phantasieanregend | Auflockerung | Phantasie anregen | Aktivierung / Bewegung | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m015",
+        "source_type": "method",
+        "source_id": "m015",
+        "display_title": "Aufstellungen",
+        "duration_display": null,
+        "card_summary": "TN müssen sich in einer Reihe aufstellen: nach Alter, Alphabetisch (Anfangsbuchstabe Vorname), .....",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "bewegung",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Aufstellungen | TN müssen sich in einer Reihe aufstellen: nach Alter, Alphabetisch (Anfangsbuchstabe Vorname), ..... | Bewegungsfördernd | Warm-Up und Kennenlernen | Aktivierung und Bewegung | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m016",
+        "source_type": "method",
+        "source_id": "m016",
+        "display_title": "4-Ecken-Aufstellung (oder 3-Ecken)",
+        "duration_display": null,
+        "card_summary": "TN stellen sich im Raum auf.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "karte",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "4-Ecken-Aufstellung (oder 3-Ecken) | TN stellen sich im Raum auf. | Kennenlernen | Warm-Up und Kennenlernen | Überleitungen | Warm-up / Ankommen",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m017",
+        "source_type": "method",
+        "source_id": "m017",
+        "display_title": "Kommando",
+        "duration_display": null,
+        "card_summary": "Hier sind gute Reaktionen der TN und schnelles Agieren der WS-Leitung gefragt.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Kommando | Hier sind gute Reaktionen der TN und schnelles Agieren der WS-Leitung gefragt. | Bewegungsfördernd | Auflockerung | Achtsamkeit und Konzentration | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m018",
+        "source_type": "method",
+        "source_id": "m018",
+        "display_title": "Stühle kippen",
+        "duration_display": null,
+        "card_summary": "Stühle werden im Kreis aufgestellt.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Stühle",
+        "searchable_text": "Stühle kippen | Stühle werden im Kreis aufgestellt. | Bewegungsfördernd | Stühle | Aktivierung und Bewegung | Achtsamkeit und Konzentration | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m019",
+        "source_type": "method",
+        "source_id": "m019",
+        "display_title": "Stärken-Tiere",
+        "duration_display": null,
+        "card_summary": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": "Tier Bilder (Fotos)",
+        "searchable_text": "Stärken-Tiere | Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt. | Selbstwahrnehmung | Tier Bilder (Fotos) | Selbstwahrnehmung | Stärken erkennen | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Einzeln | mittel | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m020",
+        "source_type": "method",
+        "source_id": "m020",
+        "display_title": "Schnelles Feedback",
+        "duration_display": null,
+        "card_summary": "Twitter-Feedback: Feedback als Hashtag aufschreiben #langweilig",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Schnelles Feedback | Twitter-Feedback: Feedback als Hashtag aufschreiben #langweilig | Feedback geben | Reflexion und Feedback | Überleitungen | Reflexion / Feedback",
+        "filter_text": "Reflektieren | Gemeinschaft | mittel | Reflexion / Feedback",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m021",
+        "source_type": "method",
+        "source_id": "m021",
+        "display_title": "Feedbackplakat (Rücken)",
+        "duration_display": null,
+        "card_summary": "Jede*r TN bekommt ein Plakat/Papier, das am Rücken befestigt wird, und einen Stift.",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Papier, Stifte",
+        "searchable_text": "Feedbackplakat (Rücken) | Jede*r TN bekommt ein Plakat/Papier, das am Rücken befestigt wird, und einen Stift. | Feedback geben | Papier, Stifte | Reflexion und Feedback | Überleitungen | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "filter_text": "Reflektieren | Gemeinschaft | mittel | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m022",
+        "source_type": "method",
+        "source_id": "m022",
+        "display_title": "Kraftposition",
+        "duration_display": null,
+        "card_summary": "TN werden ermutigt, sich eine \"Kraftposition\" vorzustellen: \"Schließe die Augen und erinnere dich an eine Situation in der du dich richtig gut gefühlt hast (z.B.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Kraftposition | TN werden ermutigt, sich eine \"Kraftposition\" vorzustellen: \"Schließe die Augen und erinnere dich an eine Situation in der du dich richtig gut gefühlt hast (z.B. | Ressourcenaktivierung | Selbstwahrnehmung | Ressourcenaktivierung | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Gefuehle / Beziehungen | Staerken / Ressourcen",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Gefuehle / Beziehungen | Staerken / Ressourcen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m023",
+        "source_type": "method",
+        "source_id": "m023",
+        "display_title": "Rosinen-Übung",
+        "duration_display": null,
+        "card_summary": "Jede*r TN bekommt eine Rosine/getrocknete Mango o.ä..",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Einzeln",
+        "materials_hint": "Rosinen oder getrocknete Mango",
+        "searchable_text": "Rosinen-Übung | Jede*r TN bekommt eine Rosine/getrocknete Mango o.ä.. | Achtsamkeit | Rosinen oder getrocknete Mango | Sinneswahrnehmung | Achtsamkeit und Konzentration | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "filter_text": "Fokussieren | Einzeln | niedrig | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m024",
+        "source_type": "method",
+        "source_id": "m024",
+        "display_title": "5-Finger-Methode",
+        "duration_display": null,
+        "card_summary": "Anleitung: Strecke eine Hand aus und schau dir alle 5 Finger genau an.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "5-Finger-Methode | Anleitung: Strecke eine Hand aus und schau dir alle 5 Finger genau an. | Achtsamkeit | Achtsamkeit und Konzentration | Sinneswahrnehmung | Achtsamkeit / Konzentration",
+        "filter_text": "Fokussieren | Einzeln | niedrig | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m025",
+        "source_type": "method",
+        "source_id": "m025",
+        "display_title": "Offenes Ohr",
+        "duration_display": null,
+        "card_summary": "Anleitung: Überlege dir 1) was dich gerade stresst und 2) auf was du dich gerade freust.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Offenes Ohr | Anleitung: Überlege dir 1) was dich gerade stresst und 2) auf was du dich gerade freust. | Achtsamkeit | Achtsamkeit und Konzentration | Vertrauen | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "filter_text": "Fokussieren | Gemeinschaft | niedrig | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m026",
+        "source_type": "method",
+        "source_id": "m026",
+        "display_title": "Body-Scan",
+        "duration_display": null,
+        "card_summary": "Anleitung: Achte darauf, dass du bequem sitzt oder liegst, die Arme liegen neben dem Körper oder liegen bequem auf den Oberschenkeln.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Body-Scan | Anleitung: Achte darauf, dass du bequem sitzt oder liegst, die Arme liegen neben dem Körper oder liegen bequem auf den Oberschenkeln. | Achtsamkeit | Achtsamkeit und Konzentration | Entspannung, Beruhigung und Cool-Down | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "filter_text": "Fokussieren | Einzeln | niedrig | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m027",
+        "source_type": "method",
+        "source_id": "m027",
+        "display_title": "Orchester (Body Percussion)",
+        "duration_display": null,
+        "card_summary": "TN stehen im Kreis.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Orchester (Body Percussion) | TN stehen im Kreis. | Konzentration | Achtsamkeit und Konzentration | Aktivierung und Bewegung | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m028",
+        "source_type": "method",
+        "source_id": "m028",
+        "display_title": "Dirigent*in",
+        "duration_display": null,
+        "card_summary": "1 Kind ist das Ratekind und geht aus dem Raum.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Dirigent*in | 1 Kind ist das Ratekind und geht aus dem Raum. | Achtsamkeit | Achtsamkeit und Konzentration | Sinneswahrnehmung | Achtsamkeit / Konzentration",
+        "filter_text": "Fokussieren | Gemeinschaft | hoch | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m029",
+        "source_type": "method",
+        "source_id": "m029",
+        "display_title": "Stille Reaktion",
+        "duration_display": null,
+        "card_summary": "TN sitzen auf ihren Stühlen (wichtig: genügend Platz).",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Stille Reaktion | TN sitzen auf ihren Stühlen (wichtig: genügend Platz). | Kooperationsspiel | Achtsamkeit und Konzentration | Gruppendynamik und Kooperation | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "filter_text": "Fokussieren | Gemeinschaft | niedrig | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m030",
+        "source_type": "method",
+        "source_id": "m030",
+        "display_title": "Wo bin ich?",
+        "duration_display": null,
+        "card_summary": "TN schließen Augen.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Timer",
+        "searchable_text": "Wo bin ich? | TN schließen Augen. | Achtsamkeit | Timer | Achtsamkeit und Konzentration | Sinneswahrnehmung | Achtsamkeit / Konzentration",
+        "filter_text": "Fokussieren | Gemeinschaft | niedrig | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m031",
+        "source_type": "method",
+        "source_id": "m031",
+        "display_title": "Ohrenspitzer",
+        "duration_display": null,
+        "card_summary": "TN schließen Augen.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Ohrenspitzer | TN schließen Augen. | Achtsamkeit | Achtsamkeit und Konzentration | Sinneswahrnehmung | Achtsamkeit / Konzentration",
+        "filter_text": "Fokussieren | Gemeinschaft | niedrig | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m032",
+        "source_type": "method",
+        "source_id": "m032",
+        "display_title": "Klassendedektiv*in",
+        "duration_display": null,
+        "card_summary": "1 Kind ist Dedektiv*in, muss sich im Raum alles genau anschauen und dann den Raum verlassen.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Klassendedektiv*in | 1 Kind ist Dedektiv*in, muss sich im Raum alles genau anschauen und dann den Raum verlassen. | Achtsamkeit | Achtsamkeit und Konzentration | Sinneswahrnehmung | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m033",
+        "source_type": "method",
+        "source_id": "m033",
+        "display_title": "Ich packe meinen Koffer (Stärken Edition)",
+        "duration_display": null,
+        "card_summary": "WS-Leitung beginnt mit: \"Ich packe meinen Koffer und nehme Ehrlichkeit mit\".",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Ich packe meinen Koffer (Stärken Edition) | WS-Leitung beginnt mit: \"Ich packe meinen Koffer und nehme Ehrlichkeit mit\". | Konzentration | Achtsamkeit und Konzentration | Auflockerung | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m034",
+        "source_type": "method",
+        "source_id": "m034",
+        "display_title": "Zungenmörder*in",
+        "duration_display": null,
+        "card_summary": "1 Kind ist Ratekind und verlässt Raum.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Zungenmörder*in | 1 Kind ist Ratekind und verlässt Raum. | Konzentration | Achtsamkeit und Konzentration | Auflockerung | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m035",
+        "source_type": "method",
+        "source_id": "m035",
+        "display_title": "Motzmauer / Klagemauer",
+        "duration_display": null,
+        "card_summary": "Als erstes wird eine Leitfrage formuliert, zu der Kritik gesammelt werden soll (z.B.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "stern",
+        "group_setting": "Team",
+        "materials_hint": null,
+        "searchable_text": "Motzmauer / Klagemauer | Als erstes wird eine Leitfrage formuliert, zu der Kritik gesammelt werden soll (z.B. | Sammlung/Nennung von Kritik/Problemen/Negativem | Ressourcenaktivierung | Überleitungen | Warm-up / Ankommen | Aktivierung / Bewegung | Staerken / Ressourcen | Zukunft / Entscheidungen",
+        "filter_text": "Ankommen | Team | hoch | Warm-up / Ankommen | Aktivierung / Bewegung | Staerken / Ressourcen | Zukunft / Entscheidungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m036",
+        "source_type": "method",
+        "source_id": "m036",
+        "display_title": "Entscheidungspyramide",
+        "duration_display": null,
+        "card_summary": "Die Methode filtert Themen, Bedürfnisse und Ideen.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "kompass",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Entscheidungspyramide | Die Methode filtert Themen, Bedürfnisse und Ideen. | Die Methode unterstützt Gruppen bei Einigungsprozes- sen. Sie filtert aus einer Masse von Ideen | Zukunft und Entscheidungen | Gruppendynamik und Kooperation | Kooperation / Vertrauen | Zukunft / Entscheidungen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Kooperation / Vertrauen | Zukunft / Entscheidungen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m037",
+        "source_type": "method",
+        "source_id": "m037",
+        "display_title": "Entscheidungskreis",
+        "duration_display": null,
+        "card_summary": "Mit Hilfe des Entscheidungskreises werden gesammelte Ideen und Vorschläge anhand verschiedener Kriterien auf ihre Umsetzbarkeit geprüft.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "kompass",
+        "group_setting": "Team",
+        "materials_hint": null,
+        "searchable_text": "Entscheidungskreis | Mit Hilfe des Entscheidungskreises werden gesammelte Ideen und Vorschläge anhand verschiedener Kriterien auf ihre Umsetzbarkeit geprüft. | Ideen werden auf ihre Durchführbarkeit überprüft | Zukunft und Entscheidungen | Partizipation | Zukunft / Entscheidungen",
+        "filter_text": "Vertiefen | Team | mittel | Zukunft / Entscheidungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m038",
+        "source_type": "method",
+        "source_id": "m038",
+        "display_title": "Zukunftswerkstatt / Ideenwerkstatt",
+        "duration_display": null,
+        "card_summary": "Ich will genauer wissen, was Zukunftswerkstätten sind!",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "kompass",
+        "group_setting": "Team",
+        "materials_hint": null,
+        "searchable_text": "Zukunftswerkstatt / Ideenwerkstatt | Ich will genauer wissen, was Zukunftswerkstätten sind! | Ideen für Zukunft entwickeln | Zukunft und Entscheidungen | Partizipation | Zukunft / Entscheidungen",
+        "filter_text": "Vertiefen | Team | mittel | Zukunft / Entscheidungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m039",
+        "source_type": "method",
+        "source_id": "m039",
+        "display_title": "Der Weg in die Zukunft/Wunschvorstellung (für jüngere Kids)",
+        "duration_display": null,
+        "card_summary": "TN schreiben ihre Wünsche, Visionen, Ziele auf große Füße (Papier-Vorlage) - diese werden anschließend als \"Weg in die Zukunft auf den Bogen gelegt\".",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "kompass",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Der Weg in die Zukunft/Wunschvorstellung (für jüngere Kids) | TN schreiben ihre Wünsche, Visionen, Ziele auf große Füße (Papier-Vorlage) - diese werden anschließend als \"Weg in die Zukunft auf den Bogen gelegt\". | eigene Visionen festhalten | Zukunft und Entscheidungen | Partizipation | Zukunft / Entscheidungen",
+        "filter_text": "Vertiefen | Einzeln | mittel | Zukunft / Entscheidungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m040",
+        "source_type": "method",
+        "source_id": "m040",
+        "display_title": "Zoo der Stärken",
+        "duration_display": null,
+        "card_summary": "Anleitung: Ich will, dass sich jetzt jeder von euch folgendes vorstellt: Ihr steht vor einem riesigen goldenen Tor.",
+        "phase": "Beruhigen",
+        "energy_role": "beruhigen",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Zoo der Stärken | Anleitung: Ich will, dass sich jetzt jeder von euch folgendes vorstellt: Ihr steht vor einem riesigen goldenen Tor. | Phantasieanregend | Stärken erkennen | Selbstwahrnehmung | Staerken / Ressourcen | Kreativitaet / Visualisierung | Entspannung / Cool-Down",
+        "filter_text": "Beruhigen | Gemeinschaft | niedrig | Staerken / Ressourcen | Kreativitaet / Visualisierung | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m041",
+        "source_type": "method",
+        "source_id": "m041",
+        "display_title": "Museum der Stärken",
+        "duration_display": null,
+        "card_summary": "Anleitung: Im folgenden Gedächtnisexperiment habt ihr die Möglichkeit herauszufinden, was eure Stärken sind.",
+        "phase": "Beruhigen",
+        "energy_role": "beruhigen",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Museum der Stärken | Anleitung: Im folgenden Gedächtnisexperiment habt ihr die Möglichkeit herauszufinden, was eure Stärken sind. | Phantasieanregend | Stärken erkennen | Selbstwahrnehmung | Staerken / Ressourcen | Kreativitaet / Visualisierung | Entspannung / Cool-Down",
+        "filter_text": "Beruhigen | Einzeln | niedrig | Staerken / Ressourcen | Kreativitaet / Visualisierung | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m042",
+        "source_type": "method",
+        "source_id": "m042",
+        "display_title": "Obstsalat",
+        "duration_display": null,
+        "card_summary": "Wir setzen oder stellen uns auf markierten Plätzen im Kreis.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "bewegung",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "ggf. Karten mit Obstsorten (kann aber auch mündlcih zugeteilt werden)",
+        "searchable_text": "Obstsalat | Wir setzen oder stellen uns auf markierten Plätzen im Kreis. | Warm-Up | ggf. Karten mit Obstsorten (kann aber auch mündlcih zugeteilt werden) | Warm-Up und Kennenlernen | Aktivierung und Bewegung | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m043",
+        "source_type": "method",
+        "source_id": "m043",
+        "display_title": "Stofftier weitergeben Spiel",
+        "duration_display": null,
+        "card_summary": "im Sitzkreis: TN müssen sich mit den Füßen ein Stofftier weitergeben, ohne dass dieses auf den Boden fällt.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Stofftier",
+        "searchable_text": "Stofftier weitergeben Spiel | im Sitzkreis: TN müssen sich mit den Füßen ein Stofftier weitergeben, ohne dass dieses auf den Boden fällt. | Teamspiel | Stofftier | Aktivierung und Bewegung | Gruppendynamik und Kooperation | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m044",
+        "source_type": "method",
+        "source_id": "m044",
+        "display_title": "Komplimentekette",
+        "duration_display": null,
+        "card_summary": "Im Plenum klären was ein Kompliment ist und wie es sicht anfühlt, eines zu bekommen.",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Stärken als Adjektive-\nKarten,\nleere Zettel,\nStifte",
+        "searchable_text": "Komplimentekette | Im Plenum klären was ein Kompliment ist und wie es sicht anfühlt, eines zu bekommen. | Feedback geben | Stärken als Adjektive-\nKarten,\nleere Zettel,\nStifte | Stärken erkennen | Femdwahrnehmung | Gefuehle / Beziehungen | Staerken / Ressourcen | Reflexion / Feedback",
+        "filter_text": "Reflektieren | Gemeinschaft | mittel | Gefuehle / Beziehungen | Staerken / Ressourcen | Reflexion / Feedback",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m045",
+        "source_type": "method",
+        "source_id": "m045",
+        "display_title": "Stärken-Tiere",
+        "duration_display": null,
+        "card_summary": "Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": "Tier-Bilder (Fotos)",
+        "searchable_text": "Stärken-Tiere | Im Sitzkreis: Tier-Bilder liegen in die Mitte legen und TN ermutigen, ein Tier auszusuchen, das sie beschreibt. | Selbstwahrnehmung | Tier-Bilder (Fotos) | Stärken erkennen | Selbstwahrnehmung | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Einzeln | mittel | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m046",
+        "source_type": "method",
+        "source_id": "m046",
+        "display_title": "Klatschspiel",
+        "duration_display": null,
+        "card_summary": "Eine WS-Leitung stellt sich vor die Gruppe und erklärt das Ziel: Alle TN müssen es schaffen gleichzeitig mit der WS-Leitung zu klatschen.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Klatschspiel | Eine WS-Leitung stellt sich vor die Gruppe und erklärt das Ziel: Alle TN müssen es schaffen gleichzeitig mit der WS-Leitung zu klatschen. | Konzentration | Auflockerung | Achtsamkeit und Konzentration | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m047",
+        "source_type": "method",
+        "source_id": "m047",
+        "display_title": "Gefühlskarten",
+        "duration_display": null,
+        "card_summary": "Gefühlskarten (z.B.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Gefühlskarten (z.B. Gefühlsmonster)",
+        "searchable_text": "Gefühlskarten | Gefühlskarten (z.B. | Gefühle einordnen und benennen | Gefühlskarten (z.B. Gefühlsmonster) | Gefühle erkennen und einordnen | Warm-Up und Kennenlernen | Warm-up / Ankommen | Gefuehle / Beziehungen",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen | Gefuehle / Beziehungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m048",
+        "source_type": "method",
+        "source_id": "m048",
+        "display_title": "Befindlichkeitsrunde mit Gegenständen",
+        "duration_display": null,
+        "card_summary": "TN werden aufgefordert einen Gegenstand zu suchen, der zu ihrem derzeitigen Gemütszustand passt.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Befindlichkeitsrunde mit Gegenständen | TN werden aufgefordert einen Gegenstand zu suchen, der zu ihrem derzeitigen Gemütszustand passt. | Befindlichkeitsrunde | Gefühle erkennen und einordnen | Warm-Up und Kennenlernen | Warm-up / Ankommen | Gefuehle / Beziehungen",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen | Gefuehle / Beziehungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m049",
+        "source_type": "method",
+        "source_id": "m049",
+        "display_title": "Anspannung mit Gummiband",
+        "duration_display": null,
+        "card_summary": "Jede*r TN erhält ein Gummiband und soll anhand diesem seine*ihre Anspannung visualisieren (z.B.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Gummibänder",
+        "searchable_text": "Anspannung mit Gummiband | Jede*r TN erhält ein Gummiband und soll anhand diesem seine*ihre Anspannung visualisieren (z.B. | Gefühle/Anspannung einordnen und benennen | Gummibänder | Gefühle erkennen und einordnen | Warm-Up und Kennenlernen | Warm-up / Ankommen | Gefuehle / Beziehungen",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen | Gefuehle / Beziehungen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m050",
+        "source_type": "method",
+        "source_id": "m050",
+        "display_title": "Ressourcenlandkarte / Kraftlandkarte",
+        "duration_display": null,
+        "card_summary": "TN erhalten ein großes Batt Papier (z.B.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": "Papier, Stifte",
+        "searchable_text": "Ressourcenlandkarte / Kraftlandkarte | TN erhalten ein großes Batt Papier (z.B. | Ressourcenaktivierung | Papier, Stifte | Visualisierung | Ressourcenaktivierung | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m051",
+        "source_type": "method",
+        "source_id": "m051",
+        "display_title": "Ressourcendusche",
+        "duration_display": null,
+        "card_summary": "TN werden ermutigt, auf kleine Papierschnipsel (oder Post-its) zu schreiben, wer oder was ihnen Kraft spendet, z.B.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Papier, Stifte, Scheren",
+        "searchable_text": "Ressourcendusche | TN werden ermutigt, auf kleine Papierschnipsel (oder Post-its) zu schreiben, wer oder was ihnen Kraft spendet, z.B. | Ressourcenaktivierung | Papier, Stifte, Scheren | Ressourcenaktivierung | Reflexion und Feedback | Aktivierung / Bewegung | Staerken / Ressourcen | Reflexion / Feedback",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Reflexion / Feedback",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m052",
+        "source_type": "method",
+        "source_id": "m052",
+        "display_title": "Buch über mein Leben",
+        "duration_display": null,
+        "card_summary": "Ein Buch/Comic über dein Leben - wie würde der Titel lauten?",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Buch über mein Leben | Ein Buch/Comic über dein Leben - wie würde der Titel lauten? | Selbstwahrnehmung | Selbstwahrnehmung | Reflexion und Feedback | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "filter_text": "Reflektieren | Einzeln | mittel | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m053",
+        "source_type": "method",
+        "source_id": "m053",
+        "display_title": "Steckbrief / Kraft-Namen Generator",
+        "duration_display": null,
+        "card_summary": "TN benötigen Papier und Stifte.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": "Papier, Stifte",
+        "searchable_text": "Steckbrief / Kraft-Namen Generator | TN benötigen Papier und Stifte. | Stärken an sich selber entdecken | Papier, Stifte | Selbstwahrnehmung | Stärken erkennen | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Einzeln | mittel | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m054",
+        "source_type": "method",
+        "source_id": "m054",
+        "display_title": "Spiel des Lebens (Bilder verunstalten)",
+        "duration_display": null,
+        "card_summary": "TN erhalten ein Blatt Papier und werden aufgefordert ein Bild zu zeichnen, das ihnen gefällt (oder einen Gegenstand zu zeichnen, der ihnen gefällt).",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Spiel des Lebens (Bilder verunstalten) | TN erhalten ein Blatt Papier und werden aufgefordert ein Bild zu zeichnen, das ihnen gefällt (oder einen Gegenstand zu zeichnen, der ihnen gefällt). | Lösungsorientierung | Ressourcenaktivierung | Kreativität | Aktivierung / Bewegung | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m055",
+        "source_type": "method",
+        "source_id": "m055",
+        "display_title": "Soziales Gefüge Landkarte",
+        "duration_display": null,
+        "card_summary": "TN erhalten ein großes Blatt Papier und werden ermutigt, das eigene soziale Gefüge zu visualisieren.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Soziales Gefüge Landkarte | TN erhalten ein großes Blatt Papier und werden ermutigt, das eigene soziale Gefüge zu visualisieren. | Soziales Netzwerk visualisieren | Ressourcenaktivierung | Visualisierung | Aktivierung / Bewegung | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m056",
+        "source_type": "method",
+        "source_id": "m056",
+        "display_title": "Gordischer Knoten",
+        "duration_display": null,
+        "card_summary": "Beim Teamspiel Gorderischer Knoten steht eine Gruppe von Spieler*innen dicht beisammen im Kreis, jeder streckt die Arme nach vorne aus und gibt einem anderen aufs Geratewohl die Hände; au...",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Team",
+        "materials_hint": null,
+        "searchable_text": "Gordischer Knoten | Beim Teamspiel Gorderischer Knoten steht eine Gruppe von Spieler*innen dicht beisammen im Kreis, jeder streckt die Arme nach vorne aus und gibt einem anderen aufs Geratewohl die Hände; au... | Teamspiel | Gruppendynamik und Kooperation | Vertrauen | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "filter_text": "Fokussieren | Team | hoch | Achtsamkeit / Konzentration | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m057",
+        "source_type": "method",
+        "source_id": "m057",
+        "display_title": "Resilienz-Stories",
+        "duration_display": null,
+        "card_summary": "WS-Leitung liest eine Geschichte vor, in der eine Person resilient ist.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "karte",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Resilienz-Stories | WS-Leitung liest eine Geschichte vor, in der eine Person resilient ist. | Erklärungen und Inhalte | Phantasie anregen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m058",
+        "source_type": "method",
+        "source_id": "m058",
+        "display_title": "Gute Laune/miese Laune Plakat / Sonne/Regen Plakat",
+        "duration_display": null,
+        "card_summary": "TN erhalten ein Blatt Papier.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Gute Laune/miese Laune Plakat / Sonne/Regen Plakat | TN erhalten ein Blatt Papier. | Gefühle benennen | Gefühle erkennen und einordnen | Warm-Up und Kennenlernen | Warm-up / Ankommen | Gefuehle / Beziehungen | Kreativitaet / Visualisierung",
+        "filter_text": "Ankommen | Einzeln | mittel | Warm-up / Ankommen | Gefuehle / Beziehungen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m059",
+        "source_type": "method",
+        "source_id": "m059",
+        "display_title": "Froh und traurig Runde",
+        "duration_display": null,
+        "card_summary": "TN bilden einen Kreis.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Froh und traurig Runde | TN bilden einen Kreis. | Gefühle benennen | Gefühle erkennen und einordnen | Warm-Up und Kennenlernen | Warm-up / Ankommen | Gefuehle / Beziehungen | Kreativitaet / Visualisierung",
+        "filter_text": "Ankommen | Gemeinschaft | mittel | Warm-up / Ankommen | Gefuehle / Beziehungen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m060",
+        "source_type": "method",
+        "source_id": "m060",
+        "display_title": "Resilienz Schwamm/ / Wackel-/Drückfiguren",
+        "duration_display": null,
+        "card_summary": "Anhand von einem Schwamm oder einer Wackelfigur wird abstrakt Resilienz erklärt: Resilienz kommt aus dem Lateinischen und heißt \"zurückspringen\".",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "karte",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Resilienz Schwamm/ / Wackel-/Drückfiguren | Anhand von einem Schwamm oder einer Wackelfigur wird abstrakt Resilienz erklärt: Resilienz kommt aus dem Lateinischen und heißt \"zurückspringen\". | Resilienz erklären | Erklärungen und Inhalte | Visualisierung | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m061",
+        "source_type": "method",
+        "source_id": "m061",
+        "display_title": "Vertrauensübungen",
+        "duration_display": null,
+        "card_summary": "Die Teilnehmenden stellen sich in Kreisen zu 5-8 Personen auf.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Ausreichend Platz",
+        "searchable_text": "Vertrauensübungen | Die Teilnehmenden stellen sich in Kreisen zu 5-8 Personen auf. | Vertrauen in andere | Ausreichend Platz | Vertrauen | Gruppendynamik und Kooperation | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m062",
+        "source_type": "method",
+        "source_id": "m062",
+        "display_title": "Selbstvertrauen Körperübungen",
+        "duration_display": null,
+        "card_summary": null,
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Selbstvertrauen Körperübungen | Vertrauen | Gruppendynamik und Kooperation | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Staerken / Ressourcen | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m063",
+        "source_type": "method",
+        "source_id": "m063",
+        "display_title": "Die 5-4-3-2-1-Übung",
+        "duration_display": null,
+        "card_summary": "TN werden ermutigt, es sich bequem zu machen.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Die 5-4-3-2-1-Übung | TN werden ermutigt, es sich bequem zu machen. | Achtsamkeit | Sinneswahrnehmung | Entspannung, Beruhigung und Cool-Down | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "filter_text": "Fokussieren | Einzeln | niedrig | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m064",
+        "source_type": "method",
+        "source_id": "m064",
+        "display_title": "Innere hilfreiche Wesen",
+        "duration_display": null,
+        "card_summary": "Anleitung: Was passiert in deinem Körper, wenn du dich verletzt und eine Wunde hast?",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "gruppe",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Innere hilfreiche Wesen | Anleitung: Was passiert in deinem Körper, wenn du dich verletzt und eine Wunde hast? | Vertrauen in den eigenen Körper | Visualisierung | Vertrauen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Einzeln | mittel | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m065",
+        "source_type": "method",
+        "source_id": "m065",
+        "display_title": "Ich werd's schaffen",
+        "duration_display": null,
+        "card_summary": "TN werden aufgefordert, sich zu überlegen, welche Herausforderungen oder Krisen (klein und groß) sie im Leben schon erlebt haben.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": "Papier, Stifte",
+        "searchable_text": "Ich werd's schaffen | TN werden aufgefordert, sich zu überlegen, welche Herausforderungen oder Krisen (klein und groß) sie im Leben schon erlebt haben. | Selbstvertrauen | Papier, Stifte | Ressourcenaktivierung | Visualisierung | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m066",
+        "source_type": "method",
+        "source_id": "m066",
+        "display_title": "Wer hat Recht?",
+        "duration_display": null,
+        "card_summary": "TN arbeiten in 2er Teams.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "gruppe",
+        "group_setting": "Team",
+        "materials_hint": "Papier, Stifte",
+        "searchable_text": "Wer hat Recht? | TN arbeiten in 2er Teams. | Lösungsorientierung | Papier, Stifte | Gruppendynamik und Kooperation | Kreativität | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Team | mittel | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m067",
+        "source_type": "method",
+        "source_id": "m067",
+        "display_title": "Handgelenk an Handgelenk",
+        "duration_display": null,
+        "card_summary": "TN stehen sich gegenüber, sodass sich sich gut an den Handgelenken fassen können.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Handgelenk an Handgelenk | TN stehen sich gegenüber, sodass sich sich gut an den Handgelenken fassen können. | Vertrauen in andere | Vertrauen | Gruppendynamik und Kooperation | Kooperation / Vertrauen",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m068",
+        "source_type": "method",
+        "source_id": "m068",
+        "display_title": "Finde jemanden....",
+        "duration_display": null,
+        "card_summary": "TN erhalten Arbeitsblatt mit verschiedenen Beispielen (z.B.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": "Arbeitsblatt",
+        "searchable_text": "Finde jemanden.... | TN erhalten Arbeitsblatt mit verschiedenen Beispielen (z.B. | Visualisierung von Ressourcen in der Klasse | Arbeitsblatt | Ressourcenaktivierung | Gruppendynamik und Kooperation | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m069",
+        "source_type": "method",
+        "source_id": "m069",
+        "display_title": "Tauschmarkt der Talente",
+        "duration_display": "ab 30 Min.",
+        "card_summary": "Im Sesselkreis: Im ersten Schritt überlegt sich jede*r TN für sich, welche Fähigkeiten und Stärken er*sie zu haben glaubt oder einfach, was er*sie besonders gut kann.",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Tauschmarkt der Talente | Im Sesselkreis: Im ersten Schritt überlegt sich jede*r TN für sich, welche Fähigkeiten und Stärken er*sie zu haben glaubt oder einfach, was er*sie besonders gut kann. | Eigene Stärken und Stärken von anderen erkennen | Stärken erkennen | Gruppendynamik und Kooperation | Staerken / Ressourcen | Kooperation / Vertrauen | Reflexion / Feedback",
+        "filter_text": "Reflektieren | Gemeinschaft | mittel | Staerken / Ressourcen | Kooperation / Vertrauen | Reflexion / Feedback",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m070",
+        "source_type": "method",
+        "source_id": "m070",
+        "display_title": "Zeitmaschine",
+        "duration_display": null,
+        "card_summary": "1.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": null,
+        "searchable_text": "Zeitmaschine | 1. | Ressourcenaktivierung | Phantasie anregen | Aktivierung / Bewegung | Staerken / Ressourcen | Zukunft / Entscheidungen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Zukunft / Entscheidungen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m071",
+        "source_type": "method",
+        "source_id": "m071",
+        "display_title": "Schere-Stein-Papier bzw. / Schnick-Schnack- / Schnuck für Gruppen",
+        "duration_display": null,
+        "card_summary": "Zwei Gruppen stehen einander entlang der Mittellinie (kann imaginär sein) des Spielfeldes gegenüber.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Schere-Stein-Papier bzw. / Schnick-Schnack- / Schnuck für Gruppen | Zwei Gruppen stehen einander entlang der Mittellinie (kann imaginär sein) des Spielfeldes gegenüber. | Auflockerung | Gruppendynamik und Kooperation | Auflockerung | Aktivierung / Bewegung | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Aktivieren | Gemeinschaft | hoch | Aktivierung / Bewegung | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m072",
+        "source_type": "method",
+        "source_id": "m072",
+        "display_title": "Klassenbatterie",
+        "duration_display": null,
+        "card_summary": "Trainer*innen zeichnen große leere (Klassen)Batterie an Tafel.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Klassenbatterie | Trainer*innen zeichnen große leere (Klassen)Batterie an Tafel. | Klassenresilienz | Visualisierung | Gruppendynamik und Kooperation | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m073",
+        "source_type": "method",
+        "source_id": "m073",
+        "display_title": "Egg Drop (outdoor)",
+        "duration_display": null,
+        "card_summary": "In Kleingruppen/outdoor: Jede Gruppe bekommt ein Ei (roh oder gekocht) und die Aufgabe innerhalb einer gewissen Zeitspanne (z.B.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Team",
+        "materials_hint": null,
+        "searchable_text": "Egg Drop (outdoor) | In Kleingruppen/outdoor: Jede Gruppe bekommt ein Ei (roh oder gekocht) und die Aufgabe innerhalb einer gewissen Zeitspanne (z.B. | Teamspiel | Gruppendynamik und Kooperation | Stärken erkennen | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Team | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m074",
+        "source_type": "method",
+        "source_id": "m074",
+        "display_title": "Wasserflaschen Challenge (outdoor)",
+        "duration_display": null,
+        "card_summary": "TN werden in 2 gleich große Gruppen aufgeteilt.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Team",
+        "materials_hint": null,
+        "searchable_text": "Wasserflaschen Challenge (outdoor) | TN werden in 2 gleich große Gruppen aufgeteilt. | Teamspiel | Gruppendynamik und Kooperation | Stärken erkennen | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Team | hoch | Aktivierung / Bewegung | Staerken / Ressourcen | Kooperation / Vertrauen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m078",
+        "source_type": "method",
+        "source_id": "m078",
+        "display_title": "Superhero",
+        "duration_display": null,
+        "card_summary": "TN kreieren anhand des Superhero Arbeitsblatts einen eigenen Stärken-Superhero",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Einzeln",
+        "materials_hint": "Arbeitsblatt",
+        "searchable_text": "Superhero | TN kreieren anhand des Superhero Arbeitsblatts einen eigenen Stärken-Superhero | Selbstwahrnehmung | Arbeitsblatt | Selbstwahrnehmung | Stärken erkennen | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Einzeln | mittel | Staerken / Ressourcen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m079",
+        "source_type": "method",
+        "source_id": "m079",
+        "display_title": "In einer Klasse/Freund*innenschaft (etc.) ist mir wichtig, dass...",
+        "duration_display": null,
+        "card_summary": "Variation von Obstsalat bzw.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "herz",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "In einer Klasse/Freund*innenschaft (etc.) ist mir wichtig, dass... | Variation von Obstsalat bzw. | Aktivierung | Warm-Up und Kennenlernen | Aktivierung und Bewegung | Warm-up / Ankommen | Aktivierung / Bewegung | Gefuehle / Beziehungen | Kooperation / Vertrauen",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Aktivierung / Bewegung | Gefuehle / Beziehungen | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m080",
+        "source_type": "method",
+        "source_id": "m080",
+        "display_title": "Begrüßungs-Klischees",
+        "duration_display": "bis 5 Min.",
+        "card_summary": "Eignet sich gut als Einstiegsübung: TN spazieren durch den Raum und betrachten achtsam, wer ihnen entgegenkommt, wer heute noch da ist, was sie sehen etc.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "bewegung",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Begrüßungs-Klischees | Eignet sich gut als Einstiegsübung: TN spazieren durch den Raum und betrachten achtsam, wer ihnen entgegenkommt, wer heute noch da ist, was sie sehen etc. | Aktivierung | Warm-Up und Kennenlernen | Aktivierung und Bewegung | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Aktivierung / Bewegung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m081",
+        "source_type": "method",
+        "source_id": "m081",
+        "display_title": "Wer ist am stärksten?",
+        "duration_display": null,
+        "card_summary": "Die TN bilden Kleingruppen (2-4 Personen) und bekommen ein Set an Personen/Situationen vom Arbeitsblatt (in Streifen geschnitten).",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Team",
+        "materials_hint": "Arbeitsblatt siehe: Stark, aber wie? Seite 41",
+        "searchable_text": "Wer ist am stärksten? | Die TN bilden Kleingruppen (2-4 Personen) und bekommen ein Set an Personen/Situationen vom Arbeitsblatt (in Streifen geschnitten). | Selbstreflexion | Arbeitsblatt siehe: Stark, aber wie? Seite 41 | Reflexion und Feedback | Überleitungen | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "filter_text": "Reflektieren | Team | mittel | Reflexion / Feedback | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m082",
+        "source_type": "method",
+        "source_id": "m082",
+        "display_title": "Plakatarbeit",
+        "duration_display": null,
+        "card_summary": "zB auf leeren Plakaten \"Danke\" auf verschiedenen Sprachen sammeln",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "kompass",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Plakatarbeit | zB auf leeren Plakaten \"Danke\" auf verschiedenen Sprachen sammeln | Visualisierung | Partizipation | Zukunft / Entscheidungen | Kreativitaet / Visualisierung",
+        "filter_text": "Vertiefen | Gemeinschaft | mittel | Zukunft / Entscheidungen | Kreativitaet / Visualisierung",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m083",
+        "source_type": "method",
+        "source_id": "m083",
+        "display_title": "Namensrunde mit Handbewegung",
+        "duration_display": null,
+        "card_summary": "Jede*r TN sagt den Namen und zeigt mit einer Handbewegung/Körpersprache, wie er*sie gerade da ist und wie es ihm*ihr gerade geht.",
+        "phase": "Ankommen",
+        "energy_role": "starten",
+        "icon_hint": "gruppe",
+        "group_setting": "Gemeinschaft",
+        "materials_hint": null,
+        "searchable_text": "Namensrunde mit Handbewegung | Jede*r TN sagt den Namen und zeigt mit einer Handbewegung/Körpersprache, wie er*sie gerade da ist und wie es ihm*ihr gerade geht. | Warm-Up und Kennenlernen | Gruppendynamik und Kooperation | Warm-up / Ankommen | Kooperation / Vertrauen",
+        "filter_text": "Ankommen | Gemeinschaft | hoch | Warm-up / Ankommen | Kooperation / Vertrauen",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m084",
+        "source_type": "method",
+        "source_id": "m084",
+        "display_title": "Storylauf",
+        "duration_display": null,
+        "card_summary": "Ein Spaziergang durch die Stadt mit vielen Erlebnissen wird beschrieben.",
+        "phase": "Aktivieren",
+        "energy_role": "aktivieren",
+        "icon_hint": "blatt",
+        "group_setting": "Einzeln",
+        "materials_hint": "evtl. Skript",
+        "searchable_text": "Storylauf | Ein Spaziergang durch die Stadt mit vielen Erlebnissen wird beschrieben. | Ruhe | evtl. Skript | Achtsamkeit und Konzentration | Aktivierung und Bewegung | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "filter_text": "Aktivieren | Einzeln | hoch | Aktivierung / Bewegung | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m085",
+        "source_type": "method",
+        "source_id": "m085",
+        "display_title": "Körperreise",
+        "duration_display": null,
+        "card_summary": "Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten.",
+        "phase": "Fokussieren",
+        "energy_role": "fokussieren",
+        "icon_hint": "blatt",
+        "group_setting": "Einzeln",
+        "materials_hint": "evtl. Skript",
+        "searchable_text": "Körperreise | Ähnlich wie der Bodyscan (#26), hier gilt es, einen ruhigen Raum zu eröffnen und auch Unruhe auszuhalten. | Ruhe | evtl. Skript | Achtsamkeit und Konzentration | Entspannung, Beruhigung und Cool-Down | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "filter_text": "Fokussieren | Einzeln | niedrig | Achtsamkeit / Konzentration | Entspannung / Cool-Down",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m005_v_platzwechsel",
+        "source_type": "variant",
+        "source_id": "m005_v_platzwechsel",
+        "display_title": "Alle, die... / / Wer von euch...? - Mit Platztausch",
+        "duration_display": null,
+        "card_summary": "Kennenlernformat mit mehr Bewegung als die reine Sitzkreisversion.",
+        "phase": "Ankommen",
+        "energy_role": "aktivieren",
+        "icon_hint": "karte",
+        "group_setting": "Sitzkreis mit Platzwechsel",
+        "materials_hint": null,
+        "searchable_text": "Mit Platztausch | Kennenlernformat mit mehr Bewegung als die reine Sitzkreisversion. | Kennenlernen | Sitzkreis mit Platzwechsel | Alle, die... / / Wer von euch...?",
+        "filter_text": "Ankommen | aktivieren | Sitzkreis mit Platzwechsel | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m016_v_3ecken",
+        "source_type": "variant",
+        "source_id": "m016_v_3ecken",
+        "display_title": "4-Ecken-Aufstellung (oder 3-Ecken) - Mit 3 Ecken",
+        "duration_display": null,
+        "card_summary": "Reduziert die Antwortkomplexitaet fuer juengere oder unentschlossene Gruppen.",
+        "phase": "Ankommen",
+        "energy_role": "aktivieren",
+        "icon_hint": "karte",
+        "group_setting": "Gruppe im Raum",
+        "materials_hint": null,
+        "searchable_text": "Mit 3 Ecken | Reduziert die Antwortkomplexitaet fuer juengere oder unentschlossene Gruppen. | Positionierung | Gruppe im Raum | 4-Ecken-Aufstellung (oder 3-Ecken)",
+        "filter_text": "Ankommen | aktivieren | Gruppe im Raum | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m020_v_twitter",
+        "source_type": "variant",
+        "source_id": "m020_v_twitter",
+        "display_title": "Schnelles Feedback - Hashtag-Feedback",
+        "duration_display": null,
+        "card_summary": "Sehr kompaktes Abschlussformat fuer schnelle Rueckmeldungen.",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Einzeln im Plenum",
+        "materials_hint": null,
+        "searchable_text": "Hashtag-Feedback | Sehr kompaktes Abschlussformat fuer schnelle Rueckmeldungen. | Feedback | Einzeln im Plenum | Schnelles Feedback",
+        "filter_text": "Reflektieren | abschliessen | Einzeln im Plenum | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m020_v_hochgleichief",
+        "source_type": "variant",
+        "source_id": "m020_v_hochgleichief",
+        "display_title": "Schnelles Feedback - Koerperliches Stimmungsbarometer",
+        "duration_display": null,
+        "card_summary": "Schnelles Feedbackformat mit sichtbarer Gruppenstimmung.",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Gruppe im Raum",
+        "materials_hint": null,
+        "searchable_text": "Koerperliches Stimmungsbarometer | Schnelles Feedbackformat mit sichtbarer Gruppenstimmung. | Feedback | Gruppe im Raum | Schnelles Feedback",
+        "filter_text": "Reflektieren | abschliessen | Gruppe im Raum | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m020_v_daumen",
+        "source_type": "variant",
+        "source_id": "m020_v_daumen",
+        "display_title": "Schnelles Feedback - Daumen hoch / gleich / runter",
+        "duration_display": null,
+        "card_summary": "Niedrigschwelliger Abschluss ohne Material.",
+        "phase": "Reflektieren",
+        "energy_role": "abschliessen",
+        "icon_hint": "sprechblase",
+        "group_setting": "Plenum",
+        "materials_hint": null,
+        "searchable_text": "Daumen hoch / gleich / runter | Niedrigschwelliger Abschluss ohne Material. | Feedback | Plenum | Schnelles Feedback",
+        "filter_text": "Reflektieren | abschliessen | Plenum | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m061_v_kreis",
+        "source_type": "variant",
+        "source_id": "m061_v_kreis",
+        "display_title": "Vertrauensübungen - Im 5-8er-Kreis",
+        "duration_display": null,
+        "card_summary": "Koerperlich deutliche Vertrauensuebung fuer kleine Kreise.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "5-8 Personen im Kreis",
+        "materials_hint": "Ausreichend Platz",
+        "searchable_text": "Im 5-8er-Kreis | Koerperlich deutliche Vertrauensuebung fuer kleine Kreise. | Vertrauen aufbauen | 5-8 Personen im Kreis | Vertrauensübungen",
+        "filter_text": "Vertiefen | vertiefen | 5-8 Personen im Kreis | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m061_v_paare",
+        "source_type": "variant",
+        "source_id": "m061_v_paare",
+        "display_title": "Vertrauensübungen - Zu zweit rueckwaerts fallen",
+        "duration_display": null,
+        "card_summary": "Kompaktere Vertrauensvariante als der grosse Kreis.",
+        "phase": "Vertiefen",
+        "energy_role": "vertiefen",
+        "icon_hint": "stern",
+        "group_setting": "Paare",
+        "materials_hint": "Ausreichend Platz",
+        "searchable_text": "Zu zweit rueckwaerts fallen | Kompaktere Vertrauensvariante als der grosse Kreis. | Vertrauen aufbauen | Paare | Vertrauensübungen",
+        "filter_text": "Vertiefen | vertiefen | Paare | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m069_v_warmup",
+        "source_type": "variant",
+        "source_id": "m069_v_warmup",
+        "display_title": "Tauschmarkt der Talente - Als Einstieg",
+        "duration_display": "ab 30 Min.",
+        "card_summary": "Offener Staerken-Tausch als lebendiger Einstieg mit hoher Beteiligung.",
+        "phase": "Ankommen",
+        "energy_role": "aktivieren",
+        "icon_hint": "stern",
+        "group_setting": "Sesselkreis",
+        "materials_hint": null,
+        "searchable_text": "Als Einstieg | Offener Staerken-Tausch als lebendiger Einstieg mit hoher Beteiligung. | Staerken sichtbar machen | Sesselkreis | Tauschmarkt der Talente",
+        "filter_text": "Ankommen | aktivieren | Sesselkreis | Gemeinschaft",
+        "is_customizable": true
+      },
+      {
+        "block_ref_id": "block_m069_v_abschluss",
+        "source_type": "variant",
+        "source_id": "m069_v_abschluss",
+        "display_title": "Tauschmarkt der Talente - Als Schlusspunkt",
+        "duration_display": "ab 30 Min.",
+        "card_summary": "Staerkenbasar als reflexiver Gruppenabschluss.",
+        "phase": "Abschluss",
+        "energy_role": "abschliessen",
+        "icon_hint": "stern",
+        "group_setting": "Sesselkreis",
+        "materials_hint": null,
+        "searchable_text": "Als Schlusspunkt | Staerkenbasar als reflexiver Gruppenabschluss. | Reflexion | Sesselkreis | Tauschmarkt der Talente",
+        "filter_text": "Abschluss | abschliessen | Sesselkreis | Gemeinschaft",
+        "is_customizable": true
+      }
+    ],
+    "uiFieldMapping": [
+      {
+        "screen": "Method Finder",
+        "component": "Quick-start chips",
+        "ui_label": "Situationsbasierte Einstiege",
+        "source_sheet": "Finder_Intents",
+        "source_field": "intent_label_de, user_need_statement, description",
+        "transformation_rule": "Je Intent eine Finder-Kachel oder ein Chip.",
+        "fallback_rule": "Wenn kein Intent passt, freien Problembeschrieb anbieten.",
+        "notes": "Auf die Logik von entry_moment_situation_based_start.html abgestimmt; freie Texteingabe bleibt Runtime-Eingabe."
+      },
+      {
+        "screen": "Method Finder",
+        "component": "Intent result ranking",
+        "ui_label": "Empfohlene Methoden",
+        "source_sheet": "Finder_Intents + Methods + Method_Variants",
+        "source_field": "recommended_method_ids_or_variant_ids",
+        "transformation_rule": "IDs auf Method- oder Variant-Datensaetze aufloesen und mit ranking_notes sortieren.",
+        "fallback_rule": "Wenn empfohlene IDs fehlen, ueber Method_Tags.use_case und Method_Vector_Map aehnliche Treffer bilden.",
+        "notes": "Keine fiktiven Finder-Kategorien aus Mockups einsetzen."
+      },
+      {
+        "screen": "Library",
+        "component": "Method list cards",
+        "ui_label": "Bibliothekskarte",
+        "source_sheet": "Methods",
+        "source_field": "name_de, short_description, duration_min, duration_max, group_form, materials, safeguarding_flag",
+        "transformation_rule": "Dauer als Range rendern; Materialien nur als knappen Chip zeigen.",
+        "fallback_rule": "Leere Felder ausblenden statt Platzhalter zu erfinden; Duration-Chips verbergen, wenn duration_min und duration_max leer sind.",
+        "notes": "Auf library_editorial_collection.html abgestimmt. Chau Philomene One nur fuer editoriale Highlights; funktionale Karte in Roboto."
+      },
+      {
+        "screen": "Library",
+        "component": "Browse vectors",
+        "ui_label": "Thematische Vektoren",
+        "source_sheet": "Vectors + Method_Vector_Map",
+        "source_field": "vector_name_de, vector_definition",
+        "transformation_rule": "Vektor als browsebare Dimension mit zugeordneten Methoden verwenden.",
+        "fallback_rule": "Bei schwacher Zuordnung Confidence-Hinweis intern nutzen, aber UI klar halten.",
+        "notes": "Sparse Browse-Dimensionen statt facettenreicher Filterwand."
+      },
+      {
+        "screen": "Library collection pages",
+        "component": "Collection hero and list",
+        "ui_label": "Kollektion",
+        "source_sheet": "Collections + Collection_Items + Methods/Method_Variants",
+        "source_field": "name_de, short_description, editorial_rationale, item lists",
+        "transformation_rule": "Collection_Items sortiert aufloesen und jeweils Methode oder Variante laden.",
+        "fallback_rule": "Wenn ein Item fehlt, Collection nicht mit Ersatzdaten auffuellen.",
+        "notes": "Kollektionen sind kuratiert und nicht identisch mit Taxonomie."
+      },
+      {
+        "screen": "Method Detail",
+        "component": "Header",
+        "ui_label": "Titel, Kurzbeschreibung, Meta",
+        "source_sheet": "Methods",
+        "source_field": "name_de, short_description, duration_min, duration_max, group_form, materials",
+        "transformation_rule": "Meta-Chips nur bei vorhandenen Werten zeigen.",
+        "fallback_rule": "Fehlende Dauer oder Gruppengroesse nicht durch Standards ersetzen; Duration-Chips verbergen, wenn keine grounded duration vorliegt.",
+        "notes": "Auf method_detail_the_human_mirror.html abgestimmt. Reale Methodentitel ueberschreiben Mockup-Platzhalter ausnahmslos."
+      },
+      {
+        "screen": "Method Detail",
+        "component": "Operational guide",
+        "ui_label": "Durchfuehrung",
+        "source_sheet": "Methods",
+        "source_field": "full_description",
+        "transformation_rule": "Absatzweise oder in Schritte zerlegen, ohne neue Fachinhalte hinzuzufuegen.",
+        "fallback_rule": "Wenn die Quelle knapp ist, Originaltext knapp und unveraendert zeigen.",
+        "notes": "Nicht in pseudotherapeutische Sprache umschreiben."
+      },
+      {
+        "screen": "Method Detail",
+        "component": "Facilitator notes",
+        "ui_label": "Hinweise fuer Leitung",
+        "source_sheet": "Methods + Method_Variants",
+        "source_field": "facilitator_notes, facilitator_tip, risk_alert, safeguarding_flag",
+        "transformation_rule": "Variant-spezifische Hinweise haben Vorrang vor Method-Basishinweisen.",
+        "fallback_rule": "Wenn kein Hinweis vorhanden ist, Bereich ausblenden statt zu erfinden.",
+        "notes": "Risk/Trust-Layer muss operational und plausibel bleiben."
+      },
+      {
+        "screen": "Composer method pool",
+        "component": "Draggable pool cards",
+        "ui_label": "Pool-Eintrag",
+        "source_sheet": "Composer_Blocks_Reference",
+        "source_field": "display_title, duration_display, card_summary, phase, energy_role",
+        "transformation_rule": "Composer verwendet nur diese Helper-Sicht als Pool-Source.",
+        "fallback_rule": "Ohne passenden Block keine implizite Runtime-Ableitung erfinden; Dauer im Pool nur zeigen, wenn duration_display befuellt ist.",
+        "notes": "Auf workshop_composer_session_flow.html abgestimmt. Pool kann Methoden und Varianten gemeinsam anzeigen."
+      },
+      {
+        "screen": "Composer timeline blocks",
+        "component": "Session block",
+        "ui_label": "Zeitblock",
+        "source_sheet": "Composer_Blocks_Reference + Methods + Method_Variants",
+        "source_field": "block_ref_id, source_id, phase, energy_role",
+        "transformation_rule": "Runtime speichert Session-Instanz getrennt; SSOT liefert nur referenzierbare Block-Basis.",
+        "fallback_rule": "Custom Blocks muessen als Runtime-Objekte ausserhalb dieser SSOT entstehen; Timeline-Dauerlabels verbergen, wenn duration_display leer ist.",
+        "notes": "Session blocks sind nicht identisch mit Methoden. Die Composer-Timeline folgt der Produktlogik aus workshop_composer_session_flow.html."
+      },
+      {
+        "screen": "Active Session",
+        "component": "Current instruction",
+        "ui_label": "Jetzt anleiten",
+        "source_sheet": "Method_Variants + Methods",
+        "source_field": "active_session_prompt, full_description",
+        "transformation_rule": "Variant prompt zuerst, sonst kurze Passage aus full_description.",
+        "fallback_rule": "Wenn beides fehlt, nur Titel plus Method Detail verlinken.",
+        "notes": "Auf active_session_pro_facilitator_mode.html abgestimmt. Active Session zeigt eine konkrete Session-Instanz; Notizen und Timer sind Runtime-Daten."
+      },
+      {
+        "screen": "Active Session",
+        "component": "Facilitator tip",
+        "ui_label": "Moderationshinweis",
+        "source_sheet": "Method_Variants + Methods",
+        "source_field": "facilitator_tip, facilitator_notes",
+        "transformation_rule": "Variant hint hat Vorrang; lange Notizen fuer die Session-Ansicht kuerzen.",
+        "fallback_rule": "Wenn kein Hinweis vorliegt, Bereich ausblenden.",
+        "notes": "Leitungshinweise duerfen nicht von Mockup-Patterns erfunden werden."
+      },
+      {
+        "screen": "Active Session",
+        "component": "Risk alert",
+        "ui_label": "Achtung",
+        "source_sheet": "Method_Variants + Methods",
+        "source_field": "risk_alert, safeguarding_flag, facilitator_notes",
+        "transformation_rule": "Nur bei realer Quelle oder klarer Variant-Notiz als Alert ausgeben.",
+        "fallback_rule": "Kein generischer Warntext, wenn die Quelle nichts hergibt.",
+        "notes": "Passt zu Schul- und Workshoprealitaet; ersetzt kein paedagogisches Urteil."
+      },
+      {
+        "screen": "All screens",
+        "component": "Brand and surface constraints",
+        "ui_label": "Visuelle Leitplanken",
+        "source_sheet": "README + Mockup_Constraints",
+        "source_field": "DESIGN.md, entry_moment_situation_based_start.html, library_editorial_collection.html, method_detail_the_human_mirror.html, workshop_composer_session_flow.html, active_session_pro_facilitator_mode.html",
+        "transformation_rule": "Aurora-Palette, Intentional Asymmetry, No-Line Rule, Gradient-CTA und Layering als UI-Systemregel anwenden.",
+        "fallback_rule": "Bei kuenftigen Exporten nur die UI-Regeln angleichen; die kanonischen Inhalte bleiben in dieser SSOT verankert.",
+        "notes": "Die Werte sind gegen DESIGN.md und die verfuegbaren HTML-Exporte verifiziert und duerfen nicht durch fiktive Mockup-Inhalte ersetzt werden."
+      }
+    ],
+    "mockupConstraints": [
+      {
+        "constraint_id": "mc_001",
+        "area": "Content titles",
+        "rule": "Reale Methodentitel aus dem Import ueberschreiben Mockup-Platzhalter immer.",
+        "reason": "Die Methodenliste ist die fachliche Quelle; Mockups liefern nur UI-Logik.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_002",
+        "area": "Taxonomy",
+        "rule": "Reale Themen, Tags und konservative NEW_CONTROLLED_TAXONOMY schlagen jede fiktive Mockup-Taxonomie.",
+        "reason": "Produktlogik darf die Fachlogik strukturieren, aber nicht ersetzen.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_003",
+        "area": "Duration",
+        "rule": "Dauerchips duerfen nur reale oder konservativ aus der Quelle normalisierte Werte zeigen.",
+        "reason": "Zeitangaben beeinflussen Auswahl, Planung und Moderation direkt.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_004",
+        "area": "Risk and facilitation",
+        "rule": "Facilitator- und Risiko-Hinweise muessen paedagogisch plausibel bleiben und duerfen nicht aus Mockups erfunden werden.",
+        "reason": "Die App darf reale Workshop-Praxis nicht falsch absichern.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_005",
+        "area": "Product logic",
+        "rule": "Mockups duerfen Layout, Interaktion und Navigationsmuster liefern, aber keine fiktionale Inhaltsstruktur in die SSOT einschreiben.",
+        "reason": "Die SSOT soll produktbereit und fachlich belastbar bleiben.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_006",
+        "area": "Finder",
+        "rule": "Situation-first Finder-Intents muessen auf wiederkehrenden Quellmustern beruhen und bei Unsicherheit offen als kontrollierte Produkt-Abstraktion markiert werden.",
+        "reason": "Die Quelle enthaelt Tags, aber keine ausformulierte Finder-IA.",
+        "severity": "medium"
+      },
+      {
+        "constraint_id": "mc_007",
+        "area": "Variants",
+        "rule": "Method_Variants nur dann ausspielen, wenn im Import eine klare Unterform, Dauer- oder Einsatzvariante beschrieben ist.",
+        "reason": "Sonst wuerde die UI mehr Fachlogik behaupten als vorhanden ist.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_008",
+        "area": "Frontend design system",
+        "rule": "Frontend muss Aurora-Palette, Intentional Asymmetry, No-Line Rule, Chau Philomene One nur fuer editoriale Display-Momente, Roboto fuer funktionale UI, Gradient-CTA und Surface-Layering/Glass respektieren.",
+        "reason": "Diese Designvorgaben wurden durch DESIGN.md und die verfuegbaren HTML-Exporte konkret bestaetigt.",
+        "severity": "high"
+      },
+      {
+        "constraint_id": "mc_009",
+        "area": "Duration UI",
+        "rule": "Duration chips, Karten-Metadaten und Timeline-Labels muessen verborgen bleiben, wenn keine grounded duration vorhanden ist.",
+        "reason": "Die Quelle enthaelt viele Methoden ohne belastbare Dauer; leere Werte sind ehrlicher als Scheingenauigkeit.",
+        "severity": "high"
+      }
+    ],
+    "openQuestions": [
+      {
+        "question_id": "oq_001",
+        "area": "Mockup baseline",
+        "issue": "DESIGN.md sowie die fuenf HTML-Exporte waren verfuegbar und wurden fuer Produktlogik-Alignment genutzt. Offen ist nur, ob diese Dateien den finalen Referenzstand oder einen explorativen Zwischenstand repraesentieren.",
+        "options": "A) Diese Dateien als aktuelle UI-Baseline behandeln; B) bei neueren Exporten gezielt gegenpruefen.",
+        "recommended_option": "A",
+        "why": "Die aktuelle SSOT ist jetzt mit den verfuegbaren Design- und Mockup-Dateien abgestimmt und bleibt dabei fachlich quellentreu.",
+        "blocking_or_non_blocking": "non-blocking"
+      },
+      {
+        "question_id": "oq_002",
+        "area": "Legacy numbering",
+        "issue": "Im Import fehlen die Legacy-Nummern 75-77.",
+        "options": "A) Als historische Luecke dokumentieren; B) fehlende Zeilen spaeter aus Originalquellen ergaenzen.",
+        "recommended_option": "A",
+        "why": "Die vorhandenen 82 Zeilen koennen sauber verarbeitet werden, ohne Nummern kuenstlich aufzufuellen.",
+        "blocking_or_non_blocking": "non-blocking"
+      },
+      {
+        "question_id": "oq_003",
+        "area": "Duplicate methods",
+        "issue": "Der Titel Staerken-Tiere kommt in Legacy-Zeile 19 und 45 doppelt vor, mit leicht unterschiedlichen Details.",
+        "options": "A) Vorlaeufig getrennt lassen; B) nach fachlicher Ruecksprache zu einer kanonischen Methode mergen.",
+        "recommended_option": "A",
+        "why": "Ohne sichere Merging-Regel waere ein Zusammenziehen spekulativ.",
+        "blocking_or_non_blocking": "non-blocking"
+      },
+      {
+        "question_id": "oq_004",
+        "area": "Duration completeness",
+        "issue": "Die Time-Estimate-Spalte ist fast durchgehend leer; einige Zeiten stehen nur in Beschreibung oder Notizen.",
+        "options": "A) Nur explizite Werte aus dem Fliesstext uebernehmen; B) Dauern fachlich nachpflegen.",
+        "recommended_option": "B",
+        "why": "Fuer Finder- und Composer-Qualitaet waere eine gezielte Dauerpflege sehr wertvoll.",
+        "blocking_or_non_blocking": "non-blocking"
+      },
+      {
+        "question_id": "oq_005",
+        "area": "Audience metadata",
+        "issue": "Altersspannen fehlen im Import vollstaendig; Gruppengroessen nur punktuell.",
+        "options": "A) Felder leer lassen; B) Alters- und Gruppengroessenpflege in separater Review-Runde ergaenzen.",
+        "recommended_option": "A",
+        "why": "Leere Werte sind ehrlicher als ungesicherte Vermutungen.",
+        "blocking_or_non_blocking": "non-blocking"
+      },
+      {
+        "question_id": "oq_006",
+        "area": "Incomplete source row",
+        "issue": "Legacy-Zeile 62 Selbstvertrauen Koerperuebungen enthaelt kaum fachliche Details.",
+        "options": "A) Als unvollstaendig markieren; B) aus weiteren Polarstern-Quellen nachergaenzen.",
+        "recommended_option": "A",
+        "why": "Die Zeile soll sichtbar bleiben, aber nicht mehr Vollstaendigkeit behaupten als vorhanden.",
+        "blocking_or_non_blocking": "non-blocking"
+      },
+      {
+        "question_id": "oq_007",
+        "area": "Supporting pedagogy docs",
+        "issue": "Die optional genannten Hintergrunddokumente waren im Workspace nicht vorhanden.",
+        "options": "A) Nur mit Workbook plus Stitch-Docs arbeiten; B) spaeter konservative Nachvalidierung mit den Fachdokumenten machen.",
+        "recommended_option": "B",
+        "why": "Die aktuelle Struktur steht, kann aber durch spaetere Validierung noch stabiler werden.",
+        "blocking_or_non_blocking": "non-blocking"
+      }
+    ]
+  }
+};
